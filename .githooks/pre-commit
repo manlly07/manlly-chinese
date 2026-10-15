@@ -1,6 +1,12 @@
 #!/bin/sh
 # Lint các file TS/TSX đang được stage + kiểm tra dữ liệu học nếu có sửa src/content.
 set -e
+# package-lock.json cài qua registry nội bộ → đổi về npmjs để Cloudflare/CI tải được
+if git diff --cached --name-only | grep -qx 'package-lock.json' && grep -q '172.31.252.188:8081' package-lock.json; then
+  echo "▶ Đổi registry nội bộ trong package-lock.json → registry.npmjs.org"
+  sed -i 's#http://172.31.252.188:8081/repository/npm-proxy/#https://registry.npmjs.org/#g' package-lock.json
+  git add package-lock.json
+fi
 files=$(git diff --cached --name-only --diff-filter=ACMR | grep -E '\.(ts|tsx|js|mjs)$' || true)
 if [ -n "$files" ]; then
   echo "▶ ESLint (file đã stage)…"
