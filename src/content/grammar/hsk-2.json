@@ -1,0 +1,1293 @@
+{
+ "level": 2,
+ "items": [
+  {
+   "id": "g-hsk2-yixia",
+   "level": 2,
+   "title": "Động từ + 一下",
+   "pattern": "Động từ + 一下",
+   "explain": "一下 sau động từ làm câu nhẹ nhàng, “… một chút / thử”: 介绍一下, 等一下, 看一下.",
+   "vnPitfalls": [
+    "一下 đứng SAU động từ: ❌ 一下介绍 → ✅ 介绍一下"
+   ],
+   "examples": [
+    {
+     "zh": "我介绍一下，这是我朋友。",
+     "py": "Wǒ jièshào yīxià, zhè shì wǒ péngyou.",
+     "vi": "Để tôi giới thiệu, đây là bạn tôi."
+    },
+    {
+     "zh": "请等一下。",
+     "py": "Qǐng děng yīxià.",
+     "vi": "Xin đợi một chút."
+    }
+   ],
+   "exercises": [
+    {
+     "type": "order",
+     "tokens": [
+      "一下",
+      "你",
+      "看"
+     ],
+     "answer": "你看一下",
+     "vi": "Bạn xem một chút."
+    },
+    {
+     "type": "fill",
+     "text": "请等＿。",
+     "options": [
+      "一下",
+      "一起",
+      "一些"
+     ],
+     "answer": "一下",
+     "vi": "Xin đợi một chút."
+    },
+    {
+     "type": "choose",
+     "prompt": "Câu đúng là:",
+     "options": [
+      "我一下介绍。",
+      "我介绍一下。",
+      "一下我介绍。"
+     ],
+     "answer": "我介绍一下。"
+    }
+   ]
+  },
+  {
+   "id": "g-hsk2-liang",
+   "level": 2,
+   "title": "两 và 二",
+   "pattern": "两 + lượng từ · 二 khi đếm",
+   "explain": "Trước lượng từ, “hai” là 两: 两个人, 两本书. Đếm số, số thứ tự, số có nhiều chữ số dùng 二: 第二, 十二.",
+   "vnPitfalls": [
+    "❌ 二个孩子 → ✅ 两个孩子"
+   ],
+   "examples": [
+    {
+     "zh": "他们有两个孩子。",
+     "py": "Tāmen yǒu liǎng gè háizi.",
+     "vi": "Họ có hai đứa con."
+    },
+    {
+     "zh": "我有两个妹妹。",
+     "py": "Wǒ yǒu liǎng gè mèimei.",
+     "vi": "Tôi có hai em gái."
+    }
+   ],
+   "exercises": [
+    {
+     "type": "order",
+     "tokens": [
+      "两",
+      "我",
+      "个",
+      "有",
+      "哥哥"
+     ],
+     "answer": "我有两个哥哥",
+     "vi": "Tôi có hai anh trai."
+    },
+    {
+     "type": "fill",
+     "text": "我家有＿个孩子。",
+     "options": [
+      "两",
+      "二",
+      "第二"
+     ],
+     "answer": "两",
+     "vi": "Nhà tôi có hai đứa con."
+    },
+    {
+     "type": "choose",
+     "prompt": "“Hai em trai” là:",
+     "options": [
+      "二个弟弟",
+      "两个弟弟",
+      "两弟弟个"
+     ],
+     "answer": "两个弟弟"
+    }
+   ]
+  },
+  {
+   "id": "g-hsk2-zhengzai",
+   "level": 2,
+   "title": "正在 (đang)",
+   "pattern": "正在 + động từ (+ 呢)",
+   "explain": "正在/在 + động từ diễn tả hành động đang diễn ra: 他正在吃饭呢. Phủ định: 没在 + động từ.",
+   "vnPitfalls": [
+    "正在 đứng trước động từ, không đặt sau như “ăn đang”.",
+    "Không dùng 正在 với động từ trạng thái như 是, 有, 喜欢."
+   ],
+   "examples": [
+    {
+     "zh": "我正在上班。",
+     "py": "Wǒ zhèngzài shàngbān.",
+     "vi": "Tôi đang đi làm."
+    },
+    {
+     "zh": "妈妈正在做饭呢。",
+     "py": "Māma zhèngzài zuò fàn ne.",
+     "vi": "Mẹ đang nấu cơm."
+    }
+   ],
+   "exercises": [
+    {
+     "type": "order",
+     "tokens": [
+      "正在",
+      "他",
+      "睡觉"
+     ],
+     "answer": "他正在睡觉",
+     "vi": "Anh ấy đang ngủ."
+    },
+    {
+     "type": "fill",
+     "text": "我＿看书呢。",
+     "options": [
+      "正在",
+      "已经",
+      "每"
+     ],
+     "answer": "正在",
+     "vi": "Tôi đang đọc sách."
+    },
+    {
+     "type": "choose",
+     "prompt": "Câu đúng là:",
+     "options": [
+      "他正在是老师。",
+      "他正在打电话。",
+      "他打电话正在。"
+     ],
+     "answer": "他正在打电话。"
+    }
+   ]
+  },
+  {
+   "id": "g-hsk2-guo",
+   "level": 2,
+   "title": "过 (đã từng)",
+   "pattern": "Động từ + 过",
+   "explain": "过 sau động từ chỉ kinh nghiệm “đã từng”. Phủ định: 没 + động từ + 过.",
+   "vnPitfalls": [
+    "❌ 我不去过 → ✅ 我没去过",
+    "过 khác 了: 过 = trải nghiệm, 了 = việc đã hoàn thành."
+   ],
+   "examples": [
+    {
+     "zh": "你去过中国吗？",
+     "py": "Nǐ qù guo Zhōngguó ma?",
+     "vi": "Bạn đã từng đến Trung Quốc chưa?"
+    },
+    {
+     "zh": "我没吃过羊肉。",
+     "py": "Wǒ méi chī guo yángròu.",
+     "vi": "Tôi chưa từng ăn thịt cừu."
+    }
+   ],
+   "exercises": [
+    {
+     "type": "order",
+     "tokens": [
+      "过",
+      "我",
+      "北京",
+      "去"
+     ],
+     "answer": "我去过北京",
+     "vi": "Tôi đã từng đến Bắc Kinh."
+    },
+    {
+     "type": "fill",
+     "text": "我没看＿这个电影。",
+     "options": [
+      "过",
+      "了",
+      "着"
+     ],
+     "answer": "过",
+     "vi": "Tôi chưa từng xem bộ phim này."
+    },
+    {
+     "type": "choose",
+     "prompt": "Câu đúng là:",
+     "options": [
+      "我不去过中国。",
+      "我没去过中国。",
+      "我去没过中国。"
+     ],
+     "answer": "我没去过中国。"
+    }
+   ]
+  },
+  {
+   "id": "g-hsk2-yidianr",
+   "level": 2,
+   "title": "Tính từ + 一点儿",
+   "pattern": "Tính từ + 一点儿",
+   "explain": "一点儿 sau tính từ = “… hơn một chút”, dùng khi mặc cả, đề nghị: 便宜一点儿吧!",
+   "vnPitfalls": [
+    "Thứ tự: tính từ TRƯỚC 一点儿: ❌ 一点儿便宜 → ✅ 便宜一点儿"
+   ],
+   "examples": [
+    {
+     "zh": "能便宜一点儿吗？",
+     "py": "Néng piányi yīdiǎnr ma?",
+     "vi": "Rẻ hơn một chút được không?"
+    },
+    {
+     "zh": "请说慢一点儿。",
+     "py": "Qǐng shuō màn yīdiǎnr.",
+     "vi": "Xin nói chậm một chút."
+    }
+   ],
+   "exercises": [
+    {
+     "type": "order",
+     "tokens": [
+      "一点儿",
+      "便宜"
+     ],
+     "answer": "便宜一点儿",
+     "vi": "rẻ hơn một chút"
+    },
+    {
+     "type": "fill",
+     "text": "太贵了，便宜＿吧！",
+     "options": [
+      "一点儿",
+      "一下",
+      "一起"
+     ],
+     "answer": "一点儿",
+     "vi": "Đắt quá, bớt chút đi!"
+    },
+    {
+     "type": "choose",
+     "prompt": "Câu đúng là:",
+     "options": [
+      "能一点儿便宜吗？",
+      "能便宜一点儿吗？",
+      "便宜能一点儿吗？"
+     ],
+     "answer": "能便宜一点儿吗？"
+    }
+   ]
+  },
+  {
+   "id": "g-hsk2-de-adj",
+   "level": 2,
+   "title": "Tính từ + 的 + danh từ",
+   "pattern": "Tính từ + 的 + danh từ · …的 (thay danh từ)",
+   "explain": "Định ngữ đứng TRƯỚC danh từ: 红的衣服 (áo đỏ). Có thể bỏ danh từ: 我要红的 (tôi lấy cái màu đỏ).",
+   "vnPitfalls": [
+    "❌ 衣服红的 → ✅ 红的衣服 / 红衣服 (tính từ một âm tiết có thể bỏ 的)"
+   ],
+   "examples": [
+    {
+     "zh": "我喜欢白的。",
+     "py": "Wǒ xǐhuan bái de.",
+     "vi": "Tôi thích cái màu trắng."
+    },
+    {
+     "zh": "这是新的手机。",
+     "py": "Zhè shì xīn de shǒujī.",
+     "vi": "Đây là điện thoại mới."
+    }
+   ],
+   "exercises": [
+    {
+     "type": "order",
+     "tokens": [
+      "的",
+      "红",
+      "衣服"
+     ],
+     "answer": "红的衣服",
+     "vi": "quần áo màu đỏ"
+    },
+    {
+     "type": "fill",
+     "text": "我要黑＿。",
+     "options": [
+      "的",
+      "得",
+      "了"
+     ],
+     "answer": "的",
+     "vi": "Tôi lấy cái màu đen."
+    },
+    {
+     "type": "choose",
+     "prompt": "“Cái áo mới” là:",
+     "options": [
+      "衣服新的",
+      "新的衣服",
+      "的新衣服"
+     ],
+     "answer": "新的衣服"
+    }
+   ]
+  },
+  {
+   "id": "g-hsk2-yao",
+   "level": 2,
+   "title": "要 (muốn, cần, sắp)",
+   "pattern": "要 + danh từ/động từ",
+   "explain": "要 + danh từ = muốn có (gọi món: 我要一杯咖啡). 要 + động từ = muốn/cần làm. Phủ định “không muốn” thường dùng 不想.",
+   "vnPitfalls": [
+    "“Không cần” là 不用, không nói 不要 khi từ chối lịch sự (不要 nghe như “đừng”)."
+   ],
+   "examples": [
+    {
+     "zh": "我要一杯牛奶。",
+     "py": "Wǒ yào yī bēi niúnǎi.",
+     "vi": "Tôi muốn một cốc sữa."
+    },
+    {
+     "zh": "你要吃什么？",
+     "py": "Nǐ yào chī shénme?",
+     "vi": "Bạn muốn ăn gì?"
+    }
+   ],
+   "exercises": [
+    {
+     "type": "order",
+     "tokens": [
+      "要",
+      "我",
+      "咖啡",
+      "一杯"
+     ],
+     "answer": "我要一杯咖啡",
+     "vi": "Tôi muốn một cốc cà phê."
+    },
+    {
+     "type": "fill",
+     "text": "我＿两个鸡蛋。",
+     "options": [
+      "要",
+      "是",
+      "在"
+     ],
+     "answer": "要",
+     "vi": "Tôi muốn hai quả trứng."
+    },
+    {
+     "type": "choose",
+     "prompt": "Gọi món đúng là:",
+     "options": [
+      "我一杯茶要。",
+      "我要一杯茶。",
+      "要我一杯茶。"
+     ],
+     "answer": "我要一杯茶。"
+    }
+   ]
+  },
+  {
+   "id": "g-hsk2-ba",
+   "level": 2,
+   "title": "Trợ từ 吧",
+   "pattern": "Câu + 吧",
+   "explain": "吧 cuối câu để đề nghị (“nhé, đi”) hoặc đoán chắc (“chắc là… nhỉ”).",
+   "vnPitfalls": [
+    "Đừng dùng 吧 với người cần kính trọng khi ra lệnh — nghe hơi suồng sã."
+   ],
+   "examples": [
+    {
+     "zh": "我们走吧！",
+     "py": "Wǒmen zǒu ba!",
+     "vi": "Chúng ta đi thôi!"
+    },
+    {
+     "zh": "你是老师吧？",
+     "py": "Nǐ shì lǎoshī ba?",
+     "vi": "Bạn là giáo viên phải không?"
+    }
+   ],
+   "exercises": [
+    {
+     "type": "order",
+     "tokens": [
+      "吧",
+      "我们",
+      "进"
+     ],
+     "answer": "我们进吧",
+     "vi": "Chúng ta vào nhé."
+    },
+    {
+     "type": "fill",
+     "text": "你累了，休息一下＿。",
+     "options": [
+      "吧",
+      "吗",
+      "呢"
+     ],
+     "answer": "吧",
+     "vi": "Bạn mệt rồi, nghỉ chút đi."
+    },
+    {
+     "type": "choose",
+     "prompt": "Câu rủ rê đúng là:",
+     "options": [
+      "我们去吧！",
+      "我们吧去！",
+      "吧我们去！"
+     ],
+     "answer": "我们去吧！"
+    }
+   ]
+  },
+  {
+   "id": "g-hsk2-gei",
+   "level": 2,
+   "title": "给 (cho, đưa)",
+   "pattern": "给 + người + vật · 给 + người + động từ",
+   "explain": "给 làm động từ: 给我一杯茶 (cho tôi một cốc trà). Làm giới từ: 给妈妈打电话 (gọi điện cho mẹ) — 给 + người đứng TRƯỚC động từ.",
+   "vnPitfalls": [
+    "❌ 打电话给妈妈 (khẩu ngữ có dùng, nhưng chuẩn hơn) → ✅ 给妈妈打电话"
+   ],
+   "examples": [
+    {
+     "zh": "服务员，请给我一杯水。",
+     "py": "Fúwùyuán, qǐng gěi wǒ yī bēi shuǐ.",
+     "vi": "Phục vụ ơi, cho tôi một cốc nước."
+    },
+    {
+     "zh": "我给妈妈打电话。",
+     "py": "Wǒ gěi māma dǎ diànhuà.",
+     "vi": "Tôi gọi điện cho mẹ."
+    }
+   ],
+   "exercises": [
+    {
+     "type": "order",
+     "tokens": [
+      "给",
+      "我",
+      "打电话",
+      "你"
+     ],
+     "answer": "我给你打电话",
+     "vi": "Tôi gọi điện cho bạn."
+    },
+    {
+     "type": "fill",
+     "text": "请＿我一杯茶。",
+     "options": [
+      "给",
+      "让",
+      "送"
+     ],
+     "answer": "给",
+     "vi": "Cho tôi một cốc trà."
+    },
+    {
+     "type": "choose",
+     "prompt": "Câu đúng là:",
+     "options": [
+      "我打电话给你明天。",
+      "我明天给你打电话。",
+      "我给打电话你明天。"
+     ],
+     "answer": "我明天给你打电话。"
+    }
+   ]
+  },
+  {
+   "id": "g-hsk2-li",
+   "level": 2,
+   "title": "离 (cách)",
+   "pattern": "A 离 B + 远/近",
+   "explain": "离 nói khoảng cách giữa hai nơi: 我家离学校很近 (nhà tôi cách trường rất gần).",
+   "vnPitfalls": [
+    "Khác 从 (từ… đi): 离 chỉ khoảng cách, không chỉ điểm xuất phát."
+   ],
+   "examples": [
+    {
+     "zh": "机场离这儿远吗？",
+     "py": "Jīchǎng lí zhèr yuǎn ma?",
+     "vi": "Sân bay cách đây xa không?"
+    },
+    {
+     "zh": "我家离学校很近。",
+     "py": "Wǒ jiā lí xuéxiào hěn jìn.",
+     "vi": "Nhà tôi cách trường rất gần."
+    }
+   ],
+   "exercises": [
+    {
+     "type": "order",
+     "tokens": [
+      "离",
+      "我家",
+      "很远",
+      "医院"
+     ],
+     "answer": "我家离医院很远",
+     "vi": "Nhà tôi cách bệnh viện rất xa."
+    },
+    {
+     "type": "fill",
+     "text": "商店＿这儿很近。",
+     "options": [
+      "离",
+      "从",
+      "往"
+     ],
+     "answer": "离",
+     "vi": "Cửa hàng cách đây rất gần."
+    },
+    {
+     "type": "choose",
+     "prompt": "Câu đúng là:",
+     "options": [
+      "学校离我家很近。",
+      "学校从我家很近。",
+      "学校很近离我家。"
+     ],
+     "answer": "学校离我家很近。"
+    }
+   ]
+  },
+  {
+   "id": "g-hsk2-cong-dao",
+   "level": 2,
+   "title": "从……到……",
+   "pattern": "从 A 到 B",
+   "explain": "从 = từ, 到 = đến; dùng cho nơi chốn và thời gian: 从北京到上海, 从九点到五点.",
+   "vnPitfalls": [
+    "Cụm 从…到… đứng TRƯỚC động từ: ❌ 我工作从九点到五点 → ✅ 我从九点到五点工作"
+   ],
+   "examples": [
+    {
+     "zh": "我从越南来。",
+     "py": "Wǒ cóng Yuènán lái.",
+     "vi": "Tôi đến từ Việt Nam."
+    },
+    {
+     "zh": "从这儿到机场要多少钱？",
+     "py": "Cóng zhèr dào jīchǎng yào duōshao qián?",
+     "vi": "Từ đây đến sân bay hết bao nhiêu tiền?"
+    }
+   ],
+   "exercises": [
+    {
+     "type": "order",
+     "tokens": [
+      "从",
+      "到",
+      "这儿",
+      "机场"
+     ],
+     "answer": "从这儿到机场",
+     "vi": "từ đây đến sân bay"
+    },
+    {
+     "type": "fill",
+     "text": "我＿九点到五点上班。",
+     "options": [
+      "从",
+      "离",
+      "往"
+     ],
+     "answer": "从",
+     "vi": "Tôi làm từ chín giờ đến năm giờ."
+    },
+    {
+     "type": "choose",
+     "prompt": "Câu đúng là:",
+     "options": [
+      "我上班从八点。",
+      "我从八点上班。",
+      "从我八点上班。"
+     ],
+     "answer": "我从八点上班。"
+    }
+   ]
+  },
+  {
+   "id": "g-hsk2-keneng",
+   "level": 2,
+   "title": "可能 (có lẽ)",
+   "pattern": "可能 + động từ/câu",
+   "explain": "可能 = có lẽ, có thể (dự đoán): 明天可能下雨.",
+   "vnPitfalls": [
+    "可能 khác 可以 (được phép) và 能 (có khả năng)."
+   ],
+   "examples": [
+    {
+     "zh": "明天可能下雪。",
+     "py": "Míngtiān kěnéng xià xuě.",
+     "vi": "Ngày mai có lẽ có tuyết."
+    },
+    {
+     "zh": "他可能不来了。",
+     "py": "Tā kěnéng bù lái le.",
+     "vi": "Có lẽ anh ấy không đến nữa."
+    }
+   ],
+   "exercises": [
+    {
+     "type": "order",
+     "tokens": [
+      "可能",
+      "明天",
+      "下雨"
+     ],
+     "answer": "明天可能下雨",
+     "vi": "Mai có lẽ mưa."
+    },
+    {
+     "type": "fill",
+     "text": "今天＿是阴天。",
+     "options": [
+      "可能",
+      "可以",
+      "会"
+     ],
+     "answer": "可能",
+     "vi": "Hôm nay có lẽ trời râm."
+    },
+    {
+     "type": "choose",
+     "prompt": "“Có lẽ anh ấy bị ốm” là:",
+     "options": [
+      "他可以生病了。",
+      "他可能生病了。",
+      "他生病可能了。"
+     ],
+     "answer": "他可能生病了。"
+    }
+   ]
+  },
+  {
+   "id": "g-hsk2-de-complement",
+   "level": 2,
+   "title": "Bổ ngữ trạng thái với 得",
+   "pattern": "Động từ + 得 + tính từ",
+   "explain": "Đánh giá cách làm: 他跑得很快 (anh ấy chạy rất nhanh). Có tân ngữ thì lặp động từ: 他说汉语说得很好.",
+   "vnPitfalls": [
+    "Nhầm 的/得: sau ĐỘNG TỪ dùng 得, trước DANH TỪ dùng 的.",
+    "❌ 他说汉语很好得 → ✅ 他说汉语说得很好"
+   ],
+   "examples": [
+    {
+     "zh": "她唱歌唱得很好。",
+     "py": "Tā chànggē chàng de hěn hǎo.",
+     "vi": "Cô ấy hát rất hay."
+    },
+    {
+     "zh": "他游泳游得很快。",
+     "py": "Tā yóuyǒng yóu de hěn kuài.",
+     "vi": "Anh ấy bơi rất nhanh."
+    }
+   ],
+   "exercises": [
+    {
+     "type": "order",
+     "tokens": [
+      "跑",
+      "得",
+      "他",
+      "很快"
+     ],
+     "answer": "他跑得很快",
+     "vi": "Anh ấy chạy rất nhanh."
+    },
+    {
+     "type": "fill",
+     "text": "她跳舞跳＿很好。",
+     "options": [
+      "得",
+      "的",
+      "了"
+     ],
+     "answer": "得",
+     "vi": "Cô ấy nhảy rất đẹp."
+    },
+    {
+     "type": "choose",
+     "prompt": "Câu đúng là:",
+     "options": [
+      "他踢足球踢得很好。",
+      "他踢足球很好得。",
+      "他踢得足球很好。"
+     ],
+     "answer": "他踢足球踢得很好。"
+    }
+   ]
+  },
+  {
+   "id": "g-hsk2-bie",
+   "level": 2,
+   "title": "别 (đừng)",
+   "pattern": "别 + động từ",
+   "explain": "别 = đừng (khuyên, cấm). 别 + động từ + 了 = đừng… nữa.",
+   "vnPitfalls": [
+    "别 đứng trước động từ, không cần chủ ngữ khi ra lệnh."
+   ],
+   "examples": [
+    {
+     "zh": "别说话！",
+     "py": "Bié shuōhuà!",
+     "vi": "Đừng nói chuyện!"
+    },
+    {
+     "zh": "你生病了，别去上班了。",
+     "py": "Nǐ shēngbìng le, bié qù shàngbān le.",
+     "vi": "Bạn ốm rồi, đừng đi làm nữa."
+    }
+   ],
+   "exercises": [
+    {
+     "type": "order",
+     "tokens": [
+      "别",
+      "看",
+      "电视",
+      "了"
+     ],
+     "answer": "别看电视了",
+     "vi": "Đừng xem tivi nữa."
+    },
+    {
+     "type": "fill",
+     "text": "太晚了，＿玩了。",
+     "options": [
+      "别",
+      "不",
+      "没"
+     ],
+     "answer": "别",
+     "vi": "Muộn rồi, đừng chơi nữa."
+    },
+    {
+     "type": "choose",
+     "prompt": "“Đừng uống cà phê” là:",
+     "options": [
+      "不喝咖啡别。",
+      "别喝咖啡。",
+      "喝别咖啡。"
+     ],
+     "answer": "别喝咖啡。"
+    }
+   ]
+  },
+  {
+   "id": "g-hsk2-hai",
+   "level": 2,
+   "title": "还 (còn, vẫn)",
+   "pattern": "还 + động từ/tính từ",
+   "explain": "还 = vẫn, còn: 他还在睡觉 (anh ấy vẫn đang ngủ); 还有 = còn có.",
+   "vnPitfalls": [
+    "还 đứng sau chủ ngữ, trước động từ: ❌ 还他在学习 → ✅ 他还在学习"
+   ],
+   "examples": [
+    {
+     "zh": "他还没回家。",
+     "py": "Tā hái méi huí jiā.",
+     "vi": "Anh ấy vẫn chưa về nhà."
+    },
+    {
+     "zh": "你还有问题吗？",
+     "py": "Nǐ hái yǒu wèntí ma?",
+     "vi": "Bạn còn câu hỏi nào không?"
+    }
+   ],
+   "exercises": [
+    {
+     "type": "order",
+     "tokens": [
+      "还",
+      "他",
+      "睡觉",
+      "在"
+     ],
+     "answer": "他还在睡觉",
+     "vi": "Anh ấy vẫn đang ngủ."
+    },
+    {
+     "type": "fill",
+     "text": "我＿没考试。",
+     "options": [
+      "还",
+      "也",
+      "都"
+     ],
+     "answer": "还",
+     "vi": "Tôi vẫn chưa thi."
+    },
+    {
+     "type": "choose",
+     "prompt": "Câu đúng là:",
+     "options": [
+      "还他在教室。",
+      "他还在教室。",
+      "他在还教室。"
+     ],
+     "answer": "他还在教室。"
+    }
+   ]
+  },
+  {
+   "id": "g-hsk2-rang",
+   "level": 2,
+   "title": "让 (để, bảo)",
+   "pattern": "A 让 B + động từ",
+   "explain": "让 = bảo/để/cho phép ai làm gì: 妈妈让我早点儿睡觉.",
+   "vnPitfalls": [
+    "Người nhận yêu cầu đứng ngay sau 让: ❌ 让睡觉我 → ✅ 让我睡觉"
+   ],
+   "examples": [
+    {
+     "zh": "老师让我们回答问题。",
+     "py": "Lǎoshī ràng wǒmen huídá wèntí.",
+     "vi": "Thầy bảo chúng tôi trả lời câu hỏi."
+    },
+    {
+     "zh": "让我想一下。",
+     "py": "Ràng wǒ xiǎng yīxià.",
+     "vi": "Để tôi nghĩ một chút."
+    }
+   ],
+   "exercises": [
+    {
+     "type": "order",
+     "tokens": [
+      "让",
+      "妈妈",
+      "我",
+      "休息"
+     ],
+     "answer": "妈妈让我休息",
+     "vi": "Mẹ bảo tôi nghỉ ngơi."
+    },
+    {
+     "type": "fill",
+     "text": "＿我看一下。",
+     "options": [
+      "让",
+      "给",
+      "离"
+     ],
+     "answer": "让",
+     "vi": "Để tôi xem một chút."
+    },
+    {
+     "type": "choose",
+     "prompt": "Câu đúng là:",
+     "options": [
+      "老师让我们说汉语。",
+      "老师让说汉语我们。",
+      "让老师我们说汉语。"
+     ],
+     "answer": "老师让我们说汉语。"
+    }
+   ]
+  },
+  {
+   "id": "g-hsk2-yiqi",
+   "level": 2,
+   "title": "一起 (cùng nhau)",
+   "pattern": "Chủ ngữ + (和 + người +) 一起 + động từ",
+   "explain": "一起 đứng TRƯỚC động từ: 我们一起去吧. Với người khác: 我和你一起去.",
+   "vnPitfalls": [
+    "❌ 我们去一起 → ✅ 我们一起去"
+   ],
+   "examples": [
+    {
+     "zh": "我们一起去玩吧！",
+     "py": "Wǒmen yīqǐ qù wán ba!",
+     "vi": "Chúng ta cùng đi chơi nhé!"
+    },
+    {
+     "zh": "我和朋友一起准备考试。",
+     "py": "Wǒ hé péngyou yīqǐ zhǔnbèi kǎoshì.",
+     "vi": "Tôi cùng bạn ôn thi."
+    }
+   ],
+   "exercises": [
+    {
+     "type": "order",
+     "tokens": [
+      "一起",
+      "我们",
+      "吧",
+      "去"
+     ],
+     "answer": "我们一起去吧",
+     "vi": "Chúng ta cùng đi nhé."
+    },
+    {
+     "type": "fill",
+     "text": "我和你＿等他。",
+     "options": [
+      "一起",
+      "一下",
+      "一点儿"
+     ],
+     "answer": "一起",
+     "vi": "Tôi cùng bạn đợi anh ấy."
+    },
+    {
+     "type": "choose",
+     "prompt": "Câu đúng là:",
+     "options": [
+      "我们唱歌一起。",
+      "我们一起唱歌。",
+      "一起我们唱歌。"
+     ],
+     "answer": "我们一起唱歌。"
+    }
+   ]
+  },
+  {
+   "id": "g-hsk2-bi",
+   "level": 2,
+   "title": "So sánh với 比",
+   "pattern": "A 比 B + tính từ",
+   "explain": "A 比 B + tính từ = A … hơn B. KHÔNG thêm 很/非常 trước tính từ; muốn nói “hơn nhiều” dùng …多了.",
+   "vnPitfalls": [
+    "❌ 他比我很高 → ✅ 他比我高",
+    "Phủ định thường dùng 没有: 我没有他高 (tôi không cao bằng anh ấy)."
+   ],
+   "examples": [
+    {
+     "zh": "哥哥比我高。",
+     "py": "Gēge bǐ wǒ gāo.",
+     "vi": "Anh trai cao hơn tôi."
+    },
+    {
+     "zh": "今天比昨天冷。",
+     "py": "Jīntiān bǐ zuótiān lěng.",
+     "vi": "Hôm nay lạnh hơn hôm qua."
+    }
+   ],
+   "exercises": [
+    {
+     "type": "order",
+     "tokens": [
+      "比",
+      "我",
+      "他",
+      "忙"
+     ],
+     "answer": "他比我忙",
+     "vi": "Anh ấy bận hơn tôi."
+    },
+    {
+     "type": "fill",
+     "text": "这个手机＿那个贵。",
+     "options": [
+      "比",
+      "离",
+      "从"
+     ],
+     "answer": "比",
+     "vi": "Cái điện thoại này đắt hơn cái kia."
+    },
+    {
+     "type": "choose",
+     "prompt": "Câu đúng là:",
+     "options": [
+      "他比我很快。",
+      "他比我快。",
+      "他快比我。"
+     ],
+     "answer": "他比我快。"
+    }
+   ]
+  },
+  {
+   "id": "g-hsk2-jiu",
+   "level": 2,
+   "title": "就 (thì, đã, ngay)",
+   "pattern": "Thời gian + 就 + động từ",
+   "explain": "就 nhấn mạnh việc xảy ra sớm/nhanh hơn dự kiến: 他七点就来了 (mới 7 giờ anh ấy đã đến).",
+   "vnPitfalls": [
+    "就 đứng trước động từ, sau mốc thời gian."
+   ],
+   "examples": [
+    {
+     "zh": "他八点就到了。",
+     "py": "Tā bā diǎn jiù dào le.",
+     "vi": "Mới tám giờ anh ấy đã đến rồi."
+    },
+    {
+     "zh": "我马上就来。",
+     "py": "Wǒ mǎshàng jiù lái.",
+     "vi": "Tôi đến ngay."
+    }
+   ],
+   "exercises": [
+    {
+     "type": "order",
+     "tokens": [
+      "就",
+      "他",
+      "六点",
+      "起床了"
+     ],
+     "answer": "他六点就起床了",
+     "vi": "Mới sáu giờ anh ấy đã dậy rồi."
+    },
+    {
+     "type": "fill",
+     "text": "我十分钟＿到。",
+     "options": [
+      "就",
+      "还",
+      "也"
+     ],
+     "answer": "就",
+     "vi": "Mười phút nữa tôi đến ngay."
+    },
+    {
+     "type": "choose",
+     "prompt": "Câu đúng là:",
+     "options": [
+      "他就七点来了。",
+      "他七点就来了。",
+      "就他七点来了。"
+     ],
+     "answer": "他七点就来了。"
+    }
+   ]
+  },
+  {
+   "id": "g-hsk2-yinwei",
+   "level": 2,
+   "title": "因为……所以……",
+   "pattern": "因为 A，所以 B",
+   "explain": "Nối nguyên nhân – kết quả, giống “vì… nên…”. Có thể chỉ dùng một trong hai từ.",
+   "vnPitfalls": [
+    "Nguyên nhân thường đứng trước: 因为下雨，所以我没去."
+   ],
+   "examples": [
+    {
+     "zh": "因为下雨，所以我没去。",
+     "py": "Yīnwèi xiàyǔ, suǒyǐ wǒ méi qù.",
+     "vi": "Vì trời mưa nên tôi không đi."
+    },
+    {
+     "zh": "我生病了，所以没上班。",
+     "py": "Wǒ shēngbìng le, suǒyǐ méi shàngbān.",
+     "vi": "Tôi ốm nên không đi làm."
+    }
+   ],
+   "exercises": [
+    {
+     "type": "order",
+     "tokens": [
+      "因为",
+      "所以",
+      "累",
+      "我",
+      "休息"
+     ],
+     "answer": "因为累所以我休息",
+     "vi": "Vì mệt nên tôi nghỉ."
+    },
+    {
+     "type": "fill",
+     "text": "因为很忙，＿我没有时间。",
+     "options": [
+      "所以",
+      "但是",
+      "虽然"
+     ],
+     "answer": "所以",
+     "vi": "Vì rất bận nên tôi không có thời gian."
+    },
+    {
+     "type": "choose",
+     "prompt": "“Tại sao” là:",
+     "options": [
+      "为什么",
+      "因为",
+      "所以"
+     ],
+     "answer": "为什么"
+    }
+   ]
+  },
+  {
+   "id": "g-hsk2-suiran",
+   "level": 2,
+   "title": "虽然……但是……",
+   "pattern": "虽然 A，但是 B",
+   "explain": "“Tuy… nhưng…”: 虽然很累，但是很高兴.",
+   "vnPitfalls": [
+    "Tiếng Việt hay bỏ “nhưng”, tiếng Trung nên giữ 但是 (hoặc 可是)."
+   ],
+   "examples": [
+    {
+     "zh": "虽然很贵，但是很好。",
+     "py": "Suīrán hěn guì, dànshì hěn hǎo.",
+     "vi": "Tuy đắt nhưng rất tốt."
+    },
+    {
+     "zh": "虽然下雨，但是他来了。",
+     "py": "Suīrán xiàyǔ, dànshì tā lái le.",
+     "vi": "Tuy trời mưa nhưng anh ấy vẫn đến."
+    }
+   ],
+   "exercises": [
+    {
+     "type": "order",
+     "tokens": [
+      "虽然",
+      "但是",
+      "累",
+      "高兴",
+      "很",
+      "很"
+     ],
+     "answer": "虽然很累但是很高兴",
+     "vi": "Tuy mệt nhưng rất vui."
+    },
+    {
+     "type": "fill",
+     "text": "虽然很远，＿我想去。",
+     "options": [
+      "但是",
+      "所以",
+      "因为"
+     ],
+     "answer": "但是",
+     "vi": "Tuy xa nhưng tôi muốn đi."
+    },
+    {
+     "type": "choose",
+     "prompt": "Cặp từ “tuy… nhưng…” là:",
+     "options": [
+      "因为……所以……",
+      "虽然……但是……",
+      "从……到……"
+     ],
+     "answer": "虽然……但是……"
+    }
+   ]
+  },
+  {
+   "id": "g-hsk2-wan",
+   "level": 2,
+   "title": "Bổ ngữ kết quả 完, 好, 错",
+   "pattern": "Động từ + 完/好/错/到",
+   "explain": "Thêm kết quả sau động từ: 做完 (làm xong), 准备好 (chuẩn bị xong), 写错 (viết sai), 找到 (tìm thấy). Phủ định: 没 + động từ + kết quả.",
+   "vnPitfalls": [
+    "❌ 我没做完了 → ✅ 我没做完"
+   ],
+   "examples": [
+    {
+     "zh": "我做完了。",
+     "py": "Wǒ zuò wán le.",
+     "vi": "Tôi làm xong rồi."
+    },
+    {
+     "zh": "这个字你写错了。",
+     "py": "Zhège zì nǐ xiě cuò le.",
+     "vi": "Chữ này bạn viết sai rồi."
+    }
+   ],
+   "exercises": [
+    {
+     "type": "order",
+     "tokens": [
+      "完",
+      "我",
+      "了",
+      "吃"
+     ],
+     "answer": "我吃完了",
+     "vi": "Tôi ăn xong rồi."
+    },
+    {
+     "type": "fill",
+     "text": "你准备＿了吗？",
+     "options": [
+      "好",
+      "得",
+      "着"
+     ],
+     "answer": "好",
+     "vi": "Bạn chuẩn bị xong chưa?"
+    },
+    {
+     "type": "choose",
+     "prompt": "“Tôi chưa tìm thấy” là:",
+     "options": [
+      "我没找到。",
+      "我不找到。",
+      "我没找到了。"
+     ],
+     "answer": "我没找到。"
+    }
+   ]
+  },
+  {
+   "id": "g-hsk2-zhe",
+   "level": 2,
+   "title": "着 (trạng thái kéo dài)",
+   "pattern": "Động từ + 着",
+   "explain": "着 cho biết trạng thái đang kéo dài: 门开着 (cửa đang mở), 他笑着说 (anh ấy vừa cười vừa nói).",
+   "vnPitfalls": [
+    "着 khác 正在: 着 tả trạng thái, 正在 tả hành động đang diễn ra."
+   ],
+   "examples": [
+    {
+     "zh": "门开着。",
+     "py": "Mén kāi zhe.",
+     "vi": "Cửa đang mở."
+    },
+    {
+     "zh": "她笑着说：“欢迎！”",
+     "py": "Tā xiào zhe shuō: “Huānyíng!”",
+     "vi": "Cô ấy cười nói: “Chào mừng!”"
+    }
+   ],
+   "exercises": [
+    {
+     "type": "order",
+     "tokens": [
+      "着",
+      "门",
+      "开"
+     ],
+     "answer": "门开着",
+     "vi": "Cửa đang mở."
+    },
+    {
+     "type": "fill",
+     "text": "他笑＿说：“谢谢！”",
+     "options": [
+      "着",
+      "过",
+      "了"
+     ],
+     "answer": "着",
+     "vi": "Anh ấy cười nói: “Cảm ơn!”"
+    },
+    {
+     "type": "choose",
+     "prompt": "“Cửa đang mở” là:",
+     "options": [
+      "门开着。",
+      "门着开。",
+      "着门开。"
+     ],
+     "answer": "门开着。"
+    }
+   ]
+  }
+ ]
+}

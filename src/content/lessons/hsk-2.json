@@ -1,0 +1,456 @@
+{
+ "level": 2,
+ "lessons": [
+  {
+   "id": "hsk2-01",
+   "level": 2,
+   "title": "Rất vui được gặp",
+   "goals": [
+    "Giới thiệu người khác",
+    "Hỏi họ một cách lịch sự"
+   ],
+   "words": [
+    "介绍|jieshao",
+    "一下|yixia",
+    "姓|xing",
+    "您|nin",
+    "大家|dajia",
+    "欢迎|huanying",
+    "也|ye"
+   ],
+   "grammar": [
+    "g-hsk2-yixia"
+   ],
+   "dialogue": "d-hsk2-01"
+  },
+  {
+   "id": "hsk2-02",
+   "level": 2,
+   "title": "Anh chị em",
+   "goals": [
+    "Nói về anh chị em, vợ chồng, con cái"
+   ],
+   "words": [
+    "哥哥|gege",
+    "姐姐|jiejie",
+    "弟弟|didi",
+    "妹妹|meimei",
+    "丈夫|zhangfu",
+    "妻子|qizi",
+    "孩子|haizi",
+    "男|nan",
+    "女|nv",
+    "两|liang"
+   ],
+   "grammar": [
+    "g-hsk2-liang"
+   ],
+   "dialogue": "d-hsk2-02"
+  },
+  {
+   "id": "hsk2-03",
+   "level": 2,
+   "title": "Một ngày của tôi",
+   "goals": [
+    "Kể thói quen hằng ngày",
+    "Nói đang làm gì"
+   ],
+   "words": [
+    "起床|qichuang",
+    "早上|zaoshang",
+    "晚上|wanshang",
+    "上班|shangban",
+    "每|mei",
+    "已经|yijing",
+    "正在|zhengzai",
+    "小时|xiaoshi"
+   ],
+   "grammar": [
+    "g-hsk2-zhengzai"
+   ],
+   "dialogue": "d-hsk2-03"
+  },
+  {
+   "id": "hsk2-04",
+   "level": 2,
+   "title": "Sinh nhật vui vẻ",
+   "goals": [
+    "Hỏi sinh nhật",
+    "Nói đã từng làm gì"
+   ],
+   "words": [
+    "时间|shijian",
+    "去年|qunian",
+    "生日|shengri",
+    "快乐|kuaile",
+    "第一|diyi",
+    "次|ci",
+    "过|guo"
+   ],
+   "grammar": [
+    "g-hsk2-guo"
+   ],
+   "dialogue": "d-hsk2-04"
+  },
+  {
+   "id": "hsk2-05",
+   "level": 2,
+   "title": "Mặc cả",
+   "goals": [
+    "Hỏi đắt, rẻ",
+    "Đọc số trăm, nghìn"
+   ],
+   "words": [
+    "卖|mai",
+    "贵|gui",
+    "便宜|pianyi",
+    "件|jian",
+    "百|bai",
+    "千|qian",
+    "手表|shoubiao",
+    "手机|shouji",
+    "新|xin"
+   ],
+   "grammar": [
+    "g-hsk2-yidianr"
+   ],
+   "dialogue": "d-hsk2-05"
+  },
+  {
+   "id": "hsk2-06",
+   "level": 2,
+   "title": "Màu sắc",
+   "goals": [
+    "Nói màu sắc",
+    "Tả quần áo"
+   ],
+   "words": [
+    "颜色|yanse",
+    "白|bai",
+    "黑|hei",
+    "红|hong",
+    "穿|chuan",
+    "长|chang",
+    "真|zhen"
+   ],
+   "grammar": [
+    "g-hsk2-de-adj"
+   ],
+   "dialogue": "d-hsk2-06"
+  },
+  {
+   "id": "hsk2-07",
+   "level": 2,
+   "title": "Bữa sáng",
+   "goals": [
+    "Gọi đồ ăn sáng",
+    "Nói cần, muốn gì"
+   ],
+   "words": [
+    "鸡蛋|jidan",
+    "面条|miantiao",
+    "羊肉|yangrou",
+    "鱼|yu",
+    "西瓜|xigua",
+    "牛奶|niunai",
+    "咖啡|kafei",
+    "好吃|haochi",
+    "要|yao"
+   ],
+   "grammar": [
+    "g-hsk2-yao"
+   ],
+   "dialogue": "d-hsk2-07"
+  },
+  {
+   "id": "hsk2-08",
+   "level": 2,
+   "title": "Ở khách sạn",
+   "goals": [
+    "Nhận phòng",
+    "Nhờ phục vụ giúp"
+   ],
+   "words": [
+    "服务员|fuwuyuan",
+    "宾馆|binguan",
+    "房间|fangjian",
+    "门|men",
+    "进|jin",
+    "吧|ba",
+    "给|gei"
+   ],
+   "grammar": [
+    "g-hsk2-ba",
+    "g-hsk2-gei"
+   ],
+   "dialogue": "d-hsk2-08"
+  },
+  {
+   "id": "hsk2-09",
+   "level": 2,
+   "title": "Hỏi đường",
+   "goals": [
+    "Hỏi xa hay gần",
+    "Chỉ đường trái, phải"
+   ],
+   "words": [
+    "路|lu",
+    "远|yuan",
+    "近|jin",
+    "离|li",
+    "往|wang",
+    "左边|zuobian",
+    "右边|youbian",
+    "旁边|pangbian",
+    "走|zou"
+   ],
+   "grammar": [
+    "g-hsk2-li"
+   ],
+   "dialogue": "d-hsk2-09"
+  },
+  {
+   "id": "hsk2-10",
+   "level": 2,
+   "title": "Đi du lịch",
+   "goals": [
+    "Ra sân bay, mua vé",
+    "Nói đi từ đâu đến đâu"
+   ],
+   "words": [
+    "公共汽车|gonggongqiche",
+    "机场|jichang",
+    "票|piao",
+    "旅游|lvyou",
+    "从|cong",
+    "到|dao",
+    "出|chu",
+    "外|wai"
+   ],
+   "grammar": [
+    "g-hsk2-cong-dao"
+   ],
+   "dialogue": "d-hsk2-10"
+  },
+  {
+   "id": "hsk2-11",
+   "level": 2,
+   "title": "Trời nắng hay râm?",
+   "goals": [
+    "Dự đoán thời tiết",
+    "Nói cảm nghĩ, hy vọng"
+   ],
+   "words": [
+    "晴|qing",
+    "阴|yin",
+    "雪|xue",
+    "可能|keneng",
+    "觉得|juede",
+    "希望|xiwang",
+    "最|zui"
+   ],
+   "grammar": [
+    "g-hsk2-keneng"
+   ],
+   "dialogue": "d-hsk2-11"
+  },
+  {
+   "id": "hsk2-12",
+   "level": 2,
+   "title": "Thể thao",
+   "goals": [
+    "Nói môn thể thao yêu thích",
+    "Rủ chơi cùng"
+   ],
+   "words": [
+    "运动|yundong",
+    "跑步|paobu",
+    "游泳|youyong",
+    "踢足球|tizuqiu",
+    "打篮球|dalanqiu",
+    "跳舞|tiaowu",
+    "唱歌|changge"
+   ],
+   "grammar": [
+    "g-hsk2-de-complement"
+   ],
+   "dialogue": "d-hsk2-12"
+  },
+  {
+   "id": "hsk2-13",
+   "level": 2,
+   "title": "Sức khoẻ",
+   "goals": [
+    "Nói bị ốm, mệt",
+    "Khuyên nghỉ ngơi, uống thuốc"
+   ],
+   "words": [
+    "身体|shenti",
+    "生病|shengbing",
+    "药|yao",
+    "累|lei",
+    "休息|xiuxi",
+    "眼睛|yanjing",
+    "高|gao",
+    "别|bie"
+   ],
+   "grammar": [
+    "g-hsk2-bie"
+   ],
+   "dialogue": "d-hsk2-13"
+  },
+  {
+   "id": "hsk2-14",
+   "level": 2,
+   "title": "Kỳ thi",
+   "goals": [
+    "Hỏi về bài, kỳ thi",
+    "Hỏi và trả lời câu hỏi"
+   ],
+   "words": [
+    "教室|jiaoshi",
+    "课|ke",
+    "考试|kaoshi",
+    "题|ti",
+    "问题|wenti",
+    "问|wen",
+    "回答|huida",
+    "铅笔|qianbi",
+    "可以|keyi"
+   ],
+   "grammar": [
+    "g-hsk2-hai"
+   ],
+   "dialogue": "d-hsk2-14"
+  },
+  {
+   "id": "hsk2-15",
+   "level": 2,
+   "title": "Bạn hiểu không?",
+   "goals": [
+    "Nói hiểu, biết",
+    "Nhờ nói lại"
+   ],
+   "words": [
+    "告诉|gaosu",
+    "知道|zhidao",
+    "说话|shuohua",
+    "懂|dong",
+    "意思|yisi",
+    "报纸|baozhi",
+    "让|rang"
+   ],
+   "grammar": [
+    "g-hsk2-rang"
+   ],
+   "dialogue": "d-hsk2-15"
+  },
+  {
+   "id": "hsk2-16",
+   "level": 2,
+   "title": "Đi chơi cùng nhau",
+   "goals": [
+    "Mời, rủ bạn",
+    "Hẹn đợi nhau"
+   ],
+   "words": [
+    "帮助|bangzhu",
+    "送|song",
+    "玩|wan",
+    "一起|yiqi",
+    "等|deng",
+    "准备|zhunbei",
+    "开始|kaishi"
+   ],
+   "grammar": [
+    "g-hsk2-yiqi"
+   ],
+   "dialogue": "d-hsk2-16"
+  },
+  {
+   "id": "hsk2-17",
+   "level": 2,
+   "title": "So sánh",
+   "goals": [
+    "So sánh hơn kém",
+    "Nói nhanh, chậm"
+   ],
+   "words": [
+    "比|bi",
+    "快|kuai",
+    "慢|man",
+    "非常|feichang",
+    "还|hai",
+    "就|jiu",
+    "忙|mang"
+   ],
+   "grammar": [
+    "g-hsk2-bi",
+    "g-hsk2-jiu"
+   ],
+   "dialogue": "d-hsk2-17"
+  },
+  {
+   "id": "hsk2-18",
+   "level": 2,
+   "title": "Tại sao?",
+   "goals": [
+    "Hỏi và nói lý do",
+    "Nói \"tuy… nhưng…\""
+   ],
+   "words": [
+    "因为|yinwei",
+    "所以|suoyi",
+    "虽然|suiran",
+    "但是|danshi",
+    "为什么|weishenme",
+    "再|zai"
+   ],
+   "grammar": [
+    "g-hsk2-yinwei",
+    "g-hsk2-suiran"
+   ],
+   "dialogue": "d-hsk2-18"
+  },
+  {
+   "id": "hsk2-19",
+   "level": 2,
+   "title": "Xong chưa?",
+   "goals": [
+    "Nói làm xong, làm đúng/sai",
+    "Tả trạng thái"
+   ],
+   "words": [
+    "完|wan",
+    "得|de",
+    "错|cuo",
+    "对|dui",
+    "找|zhao",
+    "洗|xi",
+    "笑|xiao",
+    "它|ta",
+    "着|zhe"
+   ],
+   "grammar": [
+    "g-hsk2-wan",
+    "g-hsk2-zhe"
+   ],
+   "dialogue": "d-hsk2-19"
+  },
+  {
+   "id": "hsk2-20",
+   "level": 2,
+   "title": "Ở công ty",
+   "goals": [
+    "Nói về công ty, công việc",
+    "Ôn tập HSK 2"
+   ],
+   "words": [
+    "公司|gongsi",
+    "事情|shiqing"
+   ],
+   "grammar": [],
+   "dialogue": "d-hsk2-20"
+  }
+ ]
+}

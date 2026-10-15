@@ -1,0 +1,864 @@
+{
+ "initials": [
+  {
+   "py": "b",
+   "example": {
+    "hanzi": "爸",
+    "pinyin": "bà"
+   },
+   "tip": "Gần “b” tiếng Việt nhưng không rung cổ, môi bật nhẹ."
+  },
+  {
+   "py": "p",
+   "example": {
+    "hanzi": "怕",
+    "pinyin": "pà"
+   },
+   "tip": "Như b nhưng bật mạnh hơi ra — để tờ giấy trước miệng sẽ thấy rung."
+  },
+  {
+   "py": "m",
+   "example": {
+    "hanzi": "妈",
+    "pinyin": "mā"
+   },
+   "tip": "Như “m” tiếng Việt."
+  },
+  {
+   "py": "f",
+   "example": {
+    "hanzi": "飞",
+    "pinyin": "fēi"
+   },
+   "tip": "Như “ph” tiếng Việt."
+  },
+  {
+   "py": "d",
+   "example": {
+    "hanzi": "大",
+    "pinyin": "dà"
+   },
+   "tip": "Gần “t” tiếng Việt, không bật hơi."
+  },
+  {
+   "py": "t",
+   "example": {
+    "hanzi": "他",
+    "pinyin": "tā"
+   },
+   "tip": "Như “th” tiếng Việt, bật hơi mạnh."
+  },
+  {
+   "py": "n",
+   "example": {
+    "hanzi": "你",
+    "pinyin": "nǐ"
+   },
+   "tip": "Như “n” tiếng Việt."
+  },
+  {
+   "py": "l",
+   "example": {
+    "hanzi": "来",
+    "pinyin": "lái"
+   },
+   "tip": "Như “l” tiếng Việt."
+  },
+  {
+   "py": "g",
+   "example": {
+    "hanzi": "个",
+    "pinyin": "gè"
+   },
+   "tip": "Gần “c/k” tiếng Việt, không bật hơi."
+  },
+  {
+   "py": "k",
+   "example": {
+    "hanzi": "看",
+    "pinyin": "kàn"
+   },
+   "tip": "Như g nhưng bật hơi mạnh — không xát như “kh”."
+  },
+  {
+   "py": "h",
+   "example": {
+    "hanzi": "好",
+    "pinyin": "hǎo"
+   },
+   "tip": "Gần “kh” tiếng Việt (xát nhẹ ở cuống lưỡi)."
+  },
+  {
+   "py": "j",
+   "example": {
+    "hanzi": "家",
+    "pinyin": "jiā"
+   },
+   "tip": "Gần “ch” tiếng Việt, mặt lưỡi áp vào ngạc trên, không bật hơi."
+  },
+  {
+   "py": "q",
+   "example": {
+    "hanzi": "七",
+    "pinyin": "qī"
+   },
+   "tip": "Như j nhưng bật hơi mạnh."
+  },
+  {
+   "py": "x",
+   "example": {
+    "hanzi": "小",
+    "pinyin": "xiǎo"
+   },
+   "tip": "Gần “x” tiếng Việt, mặt lưỡi gần ngạc, môi dẹt."
+  },
+  {
+   "py": "zh",
+   "example": {
+    "hanzi": "中",
+    "pinyin": "zhōng"
+   },
+   "tip": "Uốn đầu lưỡi lên, gần “tr” (giọng phân biệt tr/ch), không bật hơi."
+  },
+  {
+   "py": "ch",
+   "example": {
+    "hanzi": "吃",
+    "pinyin": "chī"
+   },
+   "tip": "Như zh nhưng bật hơi mạnh."
+  },
+  {
+   "py": "sh",
+   "example": {
+    "hanzi": "是",
+    "pinyin": "shì"
+   },
+   "tip": "Uốn lưỡi, gần “s” nặng (giọng phân biệt s/x)."
+  },
+  {
+   "py": "r",
+   "example": {
+    "hanzi": "人",
+    "pinyin": "rén"
+   },
+   "tip": "Uốn lưỡi như sh nhưng rung cổ — gần “r” nhẹ, không rung lưỡi."
+  },
+  {
+   "py": "z",
+   "example": {
+    "hanzi": "字",
+    "pinyin": "zì"
+   },
+   "tip": "Như “ts”: đầu lưỡi chạm chân răng trên, không bật hơi."
+  },
+  {
+   "py": "c",
+   "example": {
+    "hanzi": "菜",
+    "pinyin": "cài"
+   },
+   "tip": "Như z nhưng bật hơi mạnh (“tsh”)."
+  },
+  {
+   "py": "s",
+   "example": {
+    "hanzi": "四",
+    "pinyin": "sì"
+   },
+   "tip": "Như “x” tiếng Việt, đầu lưỡi sau răng."
+  },
+  {
+   "py": "y",
+   "example": {
+    "hanzi": "有",
+    "pinyin": "yǒu"
+   },
+   "tip": "Như “d” giọng miền Nam / âm “i” đứng đầu."
+  },
+  {
+   "py": "w",
+   "example": {
+    "hanzi": "我",
+    "pinyin": "wǒ"
+   },
+   "tip": "Như âm “u/o” đứng đầu (giống “qu” bỏ q)."
+  }
+ ],
+ "finals": [
+  {
+   "py": "a",
+   "example": {
+    "hanzi": "八",
+    "pinyin": "bā"
+   },
+   "tip": "Như “a”.",
+   "group": "đơn"
+  },
+  {
+   "py": "o",
+   "example": {
+    "hanzi": "波",
+    "pinyin": "bō"
+   },
+   "tip": "Như “ô” rồi hơi mở về “ua”.",
+   "group": "đơn"
+  },
+  {
+   "py": "e",
+   "example": {
+    "hanzi": "喝",
+    "pinyin": "hē"
+   },
+   "tip": "Gần “ơ” nhưng lưỡi lùi vào trong.",
+   "group": "đơn"
+  },
+  {
+   "py": "i",
+   "example": {
+    "hanzi": "七",
+    "pinyin": "qī"
+   },
+   "tip": "Như “i”. Sau zh, ch, sh, r, z, c, s đọc gần “ư”.",
+   "group": "đơn"
+  },
+  {
+   "py": "u",
+   "example": {
+    "hanzi": "五",
+    "pinyin": "wǔ"
+   },
+   "tip": "Như “u”.",
+   "group": "đơn"
+  },
+  {
+   "py": "ü",
+   "example": {
+    "hanzi": "女",
+    "pinyin": "nǚ"
+   },
+   "tip": "Nói “i” rồi tròn môi lại. Sau j, q, x, y viết là u.",
+   "group": "đơn"
+  },
+  {
+   "py": "ai",
+   "example": {
+    "hanzi": "爱",
+    "pinyin": "ài"
+   },
+   "tip": "Như “ai”.",
+   "group": "kép"
+  },
+  {
+   "py": "ei",
+   "example": {
+    "hanzi": "北",
+    "pinyin": "běi"
+   },
+   "tip": "Như “ây”.",
+   "group": "kép"
+  },
+  {
+   "py": "ao",
+   "example": {
+    "hanzi": "好",
+    "pinyin": "hǎo"
+   },
+   "tip": "Như “ao”.",
+   "group": "kép"
+  },
+  {
+   "py": "ou",
+   "example": {
+    "hanzi": "狗",
+    "pinyin": "gǒu"
+   },
+   "tip": "Như “âu”.",
+   "group": "kép"
+  },
+  {
+   "py": "er",
+   "example": {
+    "hanzi": "二",
+    "pinyin": "èr"
+   },
+   "tip": "Uốn lưỡi khi nói “ơ” — như “ơ-r”.",
+   "group": "kép"
+  },
+  {
+   "py": "an",
+   "example": {
+    "hanzi": "三",
+    "pinyin": "sān"
+   },
+   "tip": "Như “an”.",
+   "group": "mũi"
+  },
+  {
+   "py": "en",
+   "example": {
+    "hanzi": "人",
+    "pinyin": "rén"
+   },
+   "tip": "Như “ân”.",
+   "group": "mũi"
+  },
+  {
+   "py": "ang",
+   "example": {
+    "hanzi": "忙",
+    "pinyin": "máng"
+   },
+   "tip": "Như “ang”.",
+   "group": "mũi"
+  },
+  {
+   "py": "eng",
+   "example": {
+    "hanzi": "冷",
+    "pinyin": "lěng"
+   },
+   "tip": "Như “âng”.",
+   "group": "mũi"
+  },
+  {
+   "py": "ong",
+   "example": {
+    "hanzi": "中",
+    "pinyin": "zhōng"
+   },
+   "tip": "Như “ung”.",
+   "group": "mũi"
+  },
+  {
+   "py": "ia",
+   "example": {
+    "hanzi": "家",
+    "pinyin": "jiā"
+   },
+   "tip": "Như “ia” đọc liền.",
+   "group": "có i"
+  },
+  {
+   "py": "ie",
+   "example": {
+    "hanzi": "写",
+    "pinyin": "xiě"
+   },
+   "tip": "Như “iê”.",
+   "group": "có i"
+  },
+  {
+   "py": "iao",
+   "example": {
+    "hanzi": "小",
+    "pinyin": "xiǎo"
+   },
+   "tip": "Như “eo” mở rộng (“i-ao”).",
+   "group": "có i"
+  },
+  {
+   "py": "iu",
+   "example": {
+    "hanzi": "九",
+    "pinyin": "jiǔ"
+   },
+   "tip": "Đọc “iêu” (viết tắt của iou).",
+   "group": "có i"
+  },
+  {
+   "py": "ian",
+   "example": {
+    "hanzi": "钱",
+    "pinyin": "qián"
+   },
+   "tip": "Như “iên”.",
+   "group": "có i"
+  },
+  {
+   "py": "in",
+   "example": {
+    "hanzi": "今",
+    "pinyin": "jīn"
+   },
+   "tip": "Như “in”.",
+   "group": "có i"
+  },
+  {
+   "py": "iang",
+   "example": {
+    "hanzi": "想",
+    "pinyin": "xiǎng"
+   },
+   "tip": "Như “i-ang” đọc liền.",
+   "group": "có i"
+  },
+  {
+   "py": "ing",
+   "example": {
+    "hanzi": "听",
+    "pinyin": "tīng"
+   },
+   "tip": "Như “inh”.",
+   "group": "có i"
+  },
+  {
+   "py": "iong",
+   "example": {
+    "hanzi": "熊",
+    "pinyin": "xióng"
+   },
+   "tip": "Như “i-ung” đọc liền.",
+   "group": "có i"
+  },
+  {
+   "py": "ua",
+   "example": {
+    "hanzi": "花",
+    "pinyin": "huā"
+   },
+   "tip": "Như “oa”.",
+   "group": "có u"
+  },
+  {
+   "py": "uo",
+   "example": {
+    "hanzi": "做",
+    "pinyin": "zuò"
+   },
+   "tip": "Như “ua/uô”.",
+   "group": "có u"
+  },
+  {
+   "py": "uai",
+   "example": {
+    "hanzi": "快",
+    "pinyin": "kuài"
+   },
+   "tip": "Như “oai”.",
+   "group": "có u"
+  },
+  {
+   "py": "ui",
+   "example": {
+    "hanzi": "回",
+    "pinyin": "huí"
+   },
+   "tip": "Đọc “uây” (viết tắt của uei).",
+   "group": "có u"
+  },
+  {
+   "py": "uan",
+   "example": {
+    "hanzi": "关",
+    "pinyin": "guān"
+   },
+   "tip": "Như “oan”.",
+   "group": "có u"
+  },
+  {
+   "py": "un",
+   "example": {
+    "hanzi": "准",
+    "pinyin": "zhǔn"
+   },
+   "tip": "Đọc “uân” (viết tắt của uen).",
+   "group": "có u"
+  },
+  {
+   "py": "uang",
+   "example": {
+    "hanzi": "床",
+    "pinyin": "chuáng"
+   },
+   "tip": "Như “oang”.",
+   "group": "có u"
+  },
+  {
+   "py": "ueng",
+   "example": {
+    "hanzi": "翁",
+    "pinyin": "wēng"
+   },
+   "tip": "Như “uâng”, chỉ đứng một mình (wēng).",
+   "group": "có u"
+  },
+  {
+   "py": "üe",
+   "example": {
+    "hanzi": "学",
+    "pinyin": "xué"
+   },
+   "tip": "Tròn môi “uê”.",
+   "group": "có ü"
+  },
+  {
+   "py": "üan",
+   "example": {
+    "hanzi": "远",
+    "pinyin": "yuǎn"
+   },
+   "tip": "Gần “oen” tròn môi.",
+   "group": "có ü"
+  },
+  {
+   "py": "ün",
+   "example": {
+    "hanzi": "云",
+    "pinyin": "yún"
+   },
+   "tip": "Gần “uyn”.",
+   "group": "có ü"
+  }
+ ],
+ "tones": [
+  {
+   "tone": 1,
+   "name": "Thanh 1",
+   "shape": "ˉ",
+   "desc": "Cao và ngang, kéo dài đều — gần thanh ngang tiếng Việt nhưng cao hơn.",
+   "contour": [
+    5,
+    5
+   ]
+  },
+  {
+   "tone": 2,
+   "name": "Thanh 2",
+   "shape": "ˊ",
+   "desc": "Đi lên từ giữa lên cao — gần thanh sắc, nhưng lên từ từ.",
+   "contour": [
+    3,
+    5
+   ]
+  },
+  {
+   "tone": 3,
+   "name": "Thanh 3",
+   "shape": "ˇ",
+   "desc": "Xuống thấp rồi lên — gần thanh hỏi. Khi nói nhanh thường chỉ đọc nửa đầu (thấp).",
+   "contour": [
+    2,
+    1,
+    4
+   ]
+  },
+  {
+   "tone": 4,
+   "name": "Thanh 4",
+   "shape": "ˋ",
+   "desc": "Rơi mạnh từ cao xuống thấp, dứt khoát — gần thanh huyền nhưng nhanh và mạnh hơn.",
+   "contour": [
+    5,
+    1
+   ]
+  },
+  {
+   "tone": 5,
+   "name": "Thanh nhẹ",
+   "shape": "·",
+   "desc": "Ngắn, nhẹ, không dấu. Thường ở âm tiết cuối: māma, xièxie.",
+   "contour": [
+    3
+   ]
+  }
+ ],
+ "toneSets": [
+  {
+   "base": "ma",
+   "chars": [
+    "妈",
+    "麻",
+    "马",
+    "骂"
+   ],
+   "pinyin": [
+    "mā",
+    "má",
+    "mǎ",
+    "mà"
+   ],
+   "meaning": [
+    "mẹ",
+    "cây gai",
+    "ngựa",
+    "mắng"
+   ]
+  },
+  {
+   "base": "ba",
+   "chars": [
+    "八",
+    "拔",
+    "把",
+    "爸"
+   ],
+   "pinyin": [
+    "bā",
+    "bá",
+    "bǎ",
+    "bà"
+   ],
+   "meaning": [
+    "tám",
+    "nhổ",
+    "cầm/nắm",
+    "bố"
+   ]
+  },
+  {
+   "base": "yi",
+   "chars": [
+    "一",
+    "姨",
+    "椅",
+    "意"
+   ],
+   "pinyin": [
+    "yī",
+    "yí",
+    "yǐ",
+    "yì"
+   ],
+   "meaning": [
+    "một",
+    "dì",
+    "ghế",
+    "ý"
+   ]
+  },
+  {
+   "base": "wu",
+   "chars": [
+    "屋",
+    "无",
+    "五",
+    "雾"
+   ],
+   "pinyin": [
+    "wū",
+    "wú",
+    "wǔ",
+    "wù"
+   ],
+   "meaning": [
+    "nhà",
+    "không có",
+    "năm",
+    "sương mù"
+   ]
+  },
+  {
+   "base": "tang",
+   "chars": [
+    "汤",
+    "糖",
+    "躺",
+    "烫"
+   ],
+   "pinyin": [
+    "tāng",
+    "táng",
+    "tǎng",
+    "tàng"
+   ],
+   "meaning": [
+    "canh",
+    "đường",
+    "nằm",
+    "nóng bỏng"
+   ]
+  },
+  {
+   "base": "shi",
+   "chars": [
+    "诗",
+    "十",
+    "使",
+    "是"
+   ],
+   "pinyin": [
+    "shī",
+    "shí",
+    "shǐ",
+    "shì"
+   ],
+   "meaning": [
+    "thơ",
+    "mười",
+    "khiến",
+    "là"
+   ]
+  },
+  {
+   "base": "qi",
+   "chars": [
+    "七",
+    "骑",
+    "起",
+    "气"
+   ],
+   "pinyin": [
+    "qī",
+    "qí",
+    "qǐ",
+    "qì"
+   ],
+   "meaning": [
+    "bảy",
+    "cưỡi",
+    "dậy",
+    "khí"
+   ]
+  },
+  {
+   "base": "hu",
+   "chars": [
+    "呼",
+    "湖",
+    "虎",
+    "户"
+   ],
+   "pinyin": [
+    "hū",
+    "hú",
+    "hǔ",
+    "hù"
+   ],
+   "meaning": [
+    "thở ra",
+    "hồ",
+    "hổ",
+    "hộ"
+   ]
+  },
+  {
+   "base": "tu",
+   "chars": [
+    "突",
+    "图",
+    "土",
+    "兔"
+   ],
+   "pinyin": [
+    "tū",
+    "tú",
+    "tǔ",
+    "tù"
+   ],
+   "meaning": [
+    "đột ngột",
+    "tranh",
+    "đất",
+    "thỏ"
+   ]
+  },
+  {
+   "base": "fei",
+   "chars": [
+    "飞",
+    "肥",
+    "匪",
+    "费"
+   ],
+   "pinyin": [
+    "fēi",
+    "féi",
+    "fěi",
+    "fèi"
+   ],
+   "meaning": [
+    "bay",
+    "béo",
+    "cướp",
+    "phí"
+   ]
+  }
+ ],
+ "sandhi": [
+  {
+   "title": "3 + 3 → 2 + 3",
+   "explain": "Hai thanh 3 đứng liền nhau, âm đầu đọc thành thanh 2.",
+   "examples": [
+    {
+     "hanzi": "你好",
+     "pinyin": "nǐ hǎo",
+     "actual": "ní hǎo"
+    },
+    {
+     "hanzi": "可以",
+     "pinyin": "kě yǐ",
+     "actual": "ké yǐ"
+    },
+    {
+     "hanzi": "水果",
+     "pinyin": "shuǐ guǒ",
+     "actual": "shuí guǒ"
+    }
+   ]
+  },
+  {
+   "title": "不 bù + thanh 4 → bú",
+   "explain": "不 đứng trước thanh 4 đọc thành thanh 2. Trước thanh 1, 2, 3 giữ bù.",
+   "examples": [
+    {
+     "hanzi": "不是",
+     "pinyin": "bù shì",
+     "actual": "bú shì"
+    },
+    {
+     "hanzi": "不去",
+     "pinyin": "bù qù",
+     "actual": "bú qù"
+    },
+    {
+     "hanzi": "不好",
+     "pinyin": "bù hǎo",
+     "actual": "bù hǎo"
+    }
+   ]
+  },
+  {
+   "title": "一 yī biến điệu",
+   "explain": "Trước thanh 4 (và thanh nhẹ) đọc yí; trước thanh 1, 2, 3 đọc yì; khi đếm số hoặc đứng cuối giữ yī.",
+   "examples": [
+    {
+     "hanzi": "一个",
+     "pinyin": "yī gè",
+     "actual": "yí gè"
+    },
+    {
+     "hanzi": "一天",
+     "pinyin": "yī tiān",
+     "actual": "yì tiān"
+    },
+    {
+     "hanzi": "第一",
+     "pinyin": "dì yī",
+     "actual": "dì yī"
+    }
+   ]
+  },
+  {
+   "title": "Thanh nhẹ",
+   "explain": "Âm tiết thứ hai của nhiều từ đọc ngắn và nhẹ, không dấu: trợ từ 吗, 呢, 了, 的; từ lặp 妈妈; hậu tố 子.",
+   "examples": [
+    {
+     "hanzi": "妈妈",
+     "pinyin": "mā ma",
+     "actual": "mā ma"
+    },
+    {
+     "hanzi": "桌子",
+     "pinyin": "zhuō zi",
+     "actual": "zhuō zi"
+    },
+    {
+     "hanzi": "谢谢",
+     "pinyin": "xiè xie",
+     "actual": "xiè xie"
+    }
+   ]
+  }
+ ]
+}

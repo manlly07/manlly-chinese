@@ -1,0 +1,408 @@
+[
+ {
+  "radical": "亻",
+  "variantOf": "人",
+  "hanViet": "nhân",
+  "meaning": "người",
+  "strokes": 2,
+  "examples": [
+   "你",
+   "他",
+   "们",
+   "做",
+   "住",
+   "件",
+   "休"
+  ]
+ },
+ {
+  "radical": "讠",
+  "variantOf": "言",
+  "hanViet": "ngôn",
+  "meaning": "lời nói",
+  "strokes": 2,
+  "examples": [
+   "说",
+   "话",
+   "认",
+   "识",
+   "谁",
+   "请",
+   "课",
+   "谢",
+   "语",
+   "读"
+  ]
+ },
+ {
+  "radical": "冫",
+  "hanViet": "băng",
+  "meaning": "băng, lạnh",
+  "strokes": 2,
+  "examples": [
+   "冷",
+   "准"
+  ]
+ },
+ {
+  "radical": "又",
+  "hanViet": "hựu",
+  "meaning": "lại, tay phải",
+  "strokes": 2,
+  "examples": [
+   "对",
+   "欢",
+   "友"
+  ]
+ },
+ {
+  "radical": "口",
+  "hanViet": "khẩu",
+  "meaning": "miệng",
+  "strokes": 3,
+  "examples": [
+   "吃",
+   "喝",
+   "叫",
+   "吗",
+   "呢",
+   "哪",
+   "号"
+  ]
+ },
+ {
+  "radical": "女",
+  "hanViet": "nữ",
+  "meaning": "phụ nữ",
+  "strokes": 3,
+  "examples": [
+   "妈",
+   "她",
+   "姐",
+   "妹",
+   "好",
+   "姓"
+  ]
+ },
+ {
+  "radical": "氵",
+  "variantOf": "水",
+  "hanViet": "thủy",
+  "meaning": "nước",
+  "strokes": 3,
+  "examples": [
+   "没",
+   "汉",
+   "洗",
+   "游",
+   "泳"
+  ]
+ },
+ {
+  "radical": "扌",
+  "variantOf": "手",
+  "hanViet": "thủ",
+  "meaning": "tay",
+  "strokes": 3,
+  "examples": [
+   "打",
+   "找",
+   "报"
+  ]
+ },
+ {
+  "radical": "艹",
+  "hanViet": "thảo",
+  "meaning": "cỏ",
+  "strokes": 3,
+  "examples": [
+   "菜",
+   "茶",
+   "苹",
+   "药"
+  ]
+ },
+ {
+  "radical": "宀",
+  "hanViet": "miên",
+  "meaning": "mái nhà",
+  "strokes": 3,
+  "examples": [
+   "家",
+   "字",
+   "室",
+   "宾"
+  ]
+ },
+ {
+  "radical": "门",
+  "hanViet": "môn",
+  "meaning": "cửa",
+  "strokes": 3,
+  "examples": [
+   "门",
+   "间"
+  ]
+ },
+ {
+  "radical": "土",
+  "hanViet": "thổ",
+  "meaning": "đất",
+  "strokes": 3,
+  "examples": [
+   "在",
+   "坐",
+   "块",
+   "场"
+  ]
+ },
+ {
+  "radical": "大",
+  "hanViet": "đại",
+  "meaning": "to, lớn",
+  "strokes": 3,
+  "examples": [
+   "太",
+   "天"
+  ]
+ },
+ {
+  "radical": "小",
+  "hanViet": "tiểu",
+  "meaning": "nhỏ",
+  "strokes": 3,
+  "examples": [
+   "少"
+  ]
+ },
+ {
+  "radical": "马",
+  "hanViet": "mã",
+  "meaning": "ngựa",
+  "strokes": 3,
+  "examples": [
+   "吗",
+   "妈"
+  ]
+ },
+ {
+  "radical": "纟",
+  "variantOf": "糸",
+  "hanViet": "mịch",
+  "meaning": "sợi tơ",
+  "strokes": 3,
+  "examples": [
+   "红",
+   "给",
+   "经",
+   "纸",
+   "绍"
+  ]
+ },
+ {
+  "radical": "饣",
+  "variantOf": "食",
+  "hanViet": "thực",
+  "meaning": "ăn",
+  "strokes": 3,
+  "examples": [
+   "饭"
+  ]
+ },
+ {
+  "radical": "犭",
+  "variantOf": "犬",
+  "hanViet": "khuyển",
+  "meaning": "chó",
+  "strokes": 3,
+  "examples": [
+   "狗",
+   "猫"
+  ]
+ },
+ {
+  "radical": "辶",
+  "hanViet": "sước",
+  "meaning": "bước đi",
+  "strokes": 3,
+  "examples": [
+   "这",
+   "还",
+   "进",
+   "近",
+   "远",
+   "过",
+   "送",
+   "运",
+   "道"
+  ]
+ },
+ {
+  "radical": "忄",
+  "variantOf": "心",
+  "hanViet": "tâm",
+  "meaning": "tim, lòng (đứng)",
+  "strokes": 3,
+  "examples": [
+   "快",
+   "忙"
+  ]
+ },
+ {
+  "radical": "心",
+  "hanViet": "tâm",
+  "meaning": "tim, lòng",
+  "strokes": 4,
+  "examples": [
+   "想",
+   "您",
+   "意",
+   "思",
+   "怎"
+  ]
+ },
+ {
+  "radical": "日",
+  "hanViet": "nhật",
+  "meaning": "mặt trời, ngày",
+  "strokes": 4,
+  "examples": [
+   "明",
+   "时",
+   "星",
+   "昨",
+   "是",
+   "晴"
+  ]
+ },
+ {
+  "radical": "月",
+  "hanViet": "nguyệt",
+  "meaning": "mặt trăng, thịt",
+  "strokes": 4,
+  "examples": [
+   "朋",
+   "服",
+   "脑",
+   "期",
+   "有"
+  ]
+ },
+ {
+  "radical": "木",
+  "hanViet": "mộc",
+  "meaning": "cây, gỗ",
+  "strokes": 4,
+  "examples": [
+   "本",
+   "桌",
+   "椅",
+   "机",
+   "校",
+   "杯"
+  ]
+ },
+ {
+  "radical": "灬",
+  "variantOf": "火",
+  "hanViet": "hỏa",
+  "meaning": "lửa",
+  "strokes": 4,
+  "examples": [
+   "热",
+   "点"
+  ]
+ },
+ {
+  "radical": "王",
+  "variantOf": "玉",
+  "hanViet": "ngọc",
+  "meaning": "ngọc",
+  "strokes": 4,
+  "examples": [
+   "玩",
+   "现"
+  ]
+ },
+ {
+  "radical": "贝",
+  "hanViet": "bối",
+  "meaning": "vỏ sò, tiền",
+  "strokes": 4,
+  "examples": [
+   "贵"
+  ]
+ },
+ {
+  "radical": "钅",
+  "variantOf": "金",
+  "hanViet": "kim",
+  "meaning": "kim loại",
+  "strokes": 5,
+  "examples": [
+   "钱",
+   "铅"
+  ]
+ },
+ {
+  "radical": "目",
+  "hanViet": "mục",
+  "meaning": "mắt",
+  "strokes": 5,
+  "examples": [
+   "看",
+   "眼",
+   "睛"
+  ]
+ },
+ {
+  "radical": "疒",
+  "hanViet": "nạch",
+  "meaning": "bệnh tật",
+  "strokes": 5,
+  "examples": [
+   "病"
+  ]
+ },
+ {
+  "radical": "页",
+  "hanViet": "hiệt",
+  "meaning": "đầu",
+  "strokes": 6,
+  "examples": [
+   "题",
+   "颜"
+  ]
+ },
+ {
+  "radical": "走",
+  "hanViet": "tẩu",
+  "meaning": "chạy, đi",
+  "strokes": 7,
+  "examples": [
+   "起"
+  ]
+ },
+ {
+  "radical": "𧾷",
+  "variantOf": "足",
+  "hanViet": "túc",
+  "meaning": "chân",
+  "strokes": 7,
+  "examples": [
+   "跑",
+   "跳",
+   "踢",
+   "路"
+  ]
+ },
+ {
+  "radical": "雨",
+  "hanViet": "vũ",
+  "meaning": "mưa",
+  "strokes": 8,
+  "examples": [
+   "雪"
+  ]
+ }
+]

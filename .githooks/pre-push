@@ -1,0 +1,5 @@
+#!/bin/sh
+# Trước khi push: lint toàn bộ + typecheck + kiểm tra dữ liệu + build.
+set -e
+echo "▶ npm run check…"
+npm run check

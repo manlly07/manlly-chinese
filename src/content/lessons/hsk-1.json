@@ -1,0 +1,462 @@
+{
+ "level": 1,
+ "lessons": [
+  {
+   "id": "hsk1-01",
+   "level": 1,
+   "title": "Xin chào!",
+   "goals": [
+    "Chào hỏi đơn giản",
+    "Nói mình là ai"
+   ],
+   "words": [
+    "你|ni",
+    "好|hao",
+    "我|wo",
+    "是|shi",
+    "老师|laoshi",
+    "学生|xuesheng",
+    "吗|ma",
+    "不|bu",
+    "很|hen",
+    "呢|ne"
+   ],
+   "grammar": [
+    "g-hsk1-shi",
+    "g-hsk1-ma",
+    "g-hsk1-ne"
+   ],
+   "dialogue": "d-hsk1-01"
+  },
+  {
+   "id": "hsk1-02",
+   "level": 1,
+   "title": "Cảm ơn và xin lỗi",
+   "goals": [
+    "Cảm ơn, xin lỗi lịch sự",
+    "Mời ngồi, chào tạm biệt"
+   ],
+   "words": [
+    "谢谢|xiexie",
+    "不客气|bukeqi",
+    "对不起|duibuqi",
+    "没关系|meiguanxi",
+    "再见|zaijian",
+    "请|qing",
+    "坐|zuo"
+   ],
+   "grammar": [
+    "g-hsk1-qing"
+   ],
+   "dialogue": "d-hsk1-02"
+  },
+  {
+   "id": "hsk1-03",
+   "level": 1,
+   "title": "Bạn tên là gì?",
+   "goals": [
+    "Hỏi và nói tên",
+    "Nói vui được làm quen"
+   ],
+   "words": [
+    "叫|jiao",
+    "什么|shenme",
+    "名字|mingzi",
+    "认识|renshi",
+    "高兴|gaoxing",
+    "的|de",
+    "他|ta",
+    "她|ta"
+   ],
+   "grammar": [
+    "g-hsk1-de",
+    "g-hsk1-hen"
+   ],
+   "dialogue": "d-hsk1-03"
+  },
+  {
+   "id": "hsk1-04",
+   "level": 1,
+   "title": "Bạn là người nước nào?",
+   "goals": [
+    "Hỏi quốc tịch",
+    "Nói mình biết nói tiếng gì"
+   ],
+   "words": [
+    "中国|zhongguo",
+    "人|ren",
+    "哪|na",
+    "汉语|hanyu",
+    "说|shuo",
+    "会|hui",
+    "我们|women",
+    "都|dou"
+   ],
+   "grammar": [
+    "g-hsk1-dou",
+    "g-hsk1-hui"
+   ],
+   "dialogue": "d-hsk1-04"
+  },
+  {
+   "id": "hsk1-05",
+   "level": 1,
+   "title": "Số đếm",
+   "goals": [
+    "Đếm từ 0 đến 10",
+    "Hỏi “mấy cái?”"
+   ],
+   "words": [
+    "一|yi",
+    "二|er",
+    "三|san",
+    "四|si",
+    "五|wu",
+    "六|liu",
+    "七|qi",
+    "八|ba",
+    "九|jiu",
+    "十|shi",
+    "零|ling",
+    "几|ji",
+    "个|ge"
+   ],
+   "grammar": [
+    "g-hsk1-numbers"
+   ],
+   "dialogue": "d-hsk1-05"
+  },
+  {
+   "id": "hsk1-06",
+   "level": 1,
+   "title": "Gia đình tôi",
+   "goals": [
+    "Giới thiệu thành viên gia đình",
+    "Hỏi nhà có mấy người"
+   ],
+   "words": [
+    "家|jia",
+    "有|you",
+    "爸爸|baba",
+    "妈妈|mama",
+    "儿子|erzi",
+    "女儿|nver",
+    "没|mei"
+   ],
+   "grammar": [
+    "g-hsk1-you",
+    "g-hsk1-measure"
+   ],
+   "dialogue": "d-hsk1-06"
+  },
+  {
+   "id": "hsk1-07",
+   "level": 1,
+   "title": "Bạn muốn ăn gì?",
+   "goals": [
+    "Nói muốn ăn, uống gì",
+    "Mời ăn uống"
+   ],
+   "words": [
+    "吃|chi",
+    "喝|he",
+    "菜|cai",
+    "米饭|mifan",
+    "茶|cha",
+    "水|shui",
+    "想|xiang",
+    "苹果|pingguo",
+    "水果|shuiguo"
+   ],
+   "grammar": [
+    "g-hsk1-xiang"
+   ],
+   "dialogue": "d-hsk1-07"
+  },
+  {
+   "id": "hsk1-08",
+   "level": 1,
+   "title": "Cái này bao nhiêu tiền?",
+   "goals": [
+    "Hỏi giá",
+    "Mua đồ ở cửa hàng"
+   ],
+   "words": [
+    "买|mai",
+    "东西|dongxi",
+    "多少|duoshao",
+    "钱|qian",
+    "块|kuai",
+    "商店|shangdian",
+    "这|zhe",
+    "那|na",
+    "些|xie"
+   ],
+   "grammar": [
+    "g-hsk1-question"
+   ],
+   "dialogue": "d-hsk1-08"
+  },
+  {
+   "id": "hsk1-09",
+   "level": 1,
+   "title": "Ở nhà hàng",
+   "goals": [
+    "Gọi phục vụ",
+    "Nói “nhiều quá, đắt quá”"
+   ],
+   "words": [
+    "饭店|fandian",
+    "杯子|beizi",
+    "太|tai",
+    "了|le",
+    "小姐|xiaojie",
+    "先生|xiansheng",
+    "能|neng"
+   ],
+   "grammar": [
+    "g-hsk1-tai",
+    "g-hsk1-le"
+   ],
+   "dialogue": "d-hsk1-09"
+  },
+  {
+   "id": "hsk1-10",
+   "level": 1,
+   "title": "Ở đâu?",
+   "goals": [
+    "Hỏi vị trí",
+    "Tả đồ vật ở đâu"
+   ],
+   "words": [
+    "在|zai",
+    "哪儿|nar",
+    "这儿|zher",
+    "那儿|nar",
+    "里|li",
+    "上|shang",
+    "下|xia",
+    "前面|qianmian",
+    "后面|houmian"
+   ],
+   "grammar": [
+    "g-hsk1-zai"
+   ],
+   "dialogue": "d-hsk1-10"
+  },
+  {
+   "id": "hsk1-11",
+   "level": 1,
+   "title": "Ở trường",
+   "goals": [
+    "Nói về việc học",
+    "Hỏi chữ đọc thế nào"
+   ],
+   "words": [
+    "学校|xuexiao",
+    "学习|xuexi",
+    "同学|tongxue",
+    "书|shu",
+    "字|zi",
+    "读|du",
+    "写|xie",
+    "本|ben"
+   ],
+   "grammar": [
+    "g-hsk1-zenme"
+   ],
+   "dialogue": "d-hsk1-11"
+  },
+  {
+   "id": "hsk1-12",
+   "level": 1,
+   "title": "Công việc",
+   "goals": [
+    "Hỏi làm nghề gì",
+    "Nói đi đâu, về đâu"
+   ],
+   "words": [
+    "工作|gongzuo",
+    "医生|yisheng",
+    "医院|yiyuan",
+    "做|zuo",
+    "住|zhu",
+    "来|lai",
+    "去|qu",
+    "回|hui"
+   ],
+   "grammar": [
+    "g-hsk1-lai-qu"
+   ],
+   "dialogue": "d-hsk1-12"
+  },
+  {
+   "id": "hsk1-13",
+   "level": 1,
+   "title": "Tuổi và ngày tháng",
+   "goals": [
+    "Hỏi tuổi",
+    "Nói ngày, tháng, năm"
+   ],
+   "words": [
+    "岁|sui",
+    "多|duo",
+    "年|nian",
+    "月|yue",
+    "号|hao",
+    "日|ri",
+    "今天|jintian",
+    "明天|mingtian",
+    "昨天|zuotian"
+   ],
+   "grammar": [
+    "g-hsk1-date"
+   ],
+   "dialogue": "d-hsk1-13"
+  },
+  {
+   "id": "hsk1-14",
+   "level": 1,
+   "title": "Bây giờ là mấy giờ?",
+   "goals": [
+    "Hỏi và nói giờ",
+    "Hẹn lịch trong ngày"
+   ],
+   "words": [
+    "现在|xianzai",
+    "点|dian",
+    "分钟|fenzhong",
+    "上午|shangwu",
+    "中午|zhongwu",
+    "下午|xiawu",
+    "时候|shihou",
+    "星期|xingqi"
+   ],
+   "grammar": [
+    "g-hsk1-time-order"
+   ],
+   "dialogue": "d-hsk1-14"
+  },
+  {
+   "id": "hsk1-15",
+   "level": 1,
+   "title": "Đi lại",
+   "goals": [
+    "Nói đi bằng phương tiện gì",
+    "Hỏi đường đến ga"
+   ],
+   "words": [
+    "出租车|chuzuche",
+    "飞机|feiji",
+    "火车站|huochezhan",
+    "北京|beijing",
+    "开|kai",
+    "看见|kanjian",
+    "怎么|zenme"
+   ],
+   "grammar": [
+    "g-hsk1-zuo"
+   ],
+   "dialogue": "d-hsk1-15"
+  },
+  {
+   "id": "hsk1-16",
+   "level": 1,
+   "title": "Thời tiết",
+   "goals": [
+    "Hỏi thời tiết",
+    "Tả nóng, lạnh, mưa"
+   ],
+   "words": [
+    "天气|tianqi",
+    "冷|leng",
+    "热|re",
+    "下雨|xiayu",
+    "怎么样|zenmeyang",
+    "少|shao",
+    "大|da",
+    "小|xiao"
+   ],
+   "grammar": [
+    "g-hsk1-zenmeyang"
+   ],
+   "dialogue": "d-hsk1-16"
+  },
+  {
+   "id": "hsk1-17",
+   "level": 1,
+   "title": "Sở thích",
+   "goals": [
+    "Nói mình thích gì",
+    "Rủ đi xem phim"
+   ],
+   "words": [
+    "喜欢|xihuan",
+    "看|kan",
+    "电影|dianying",
+    "电视|dianshi",
+    "听|ting",
+    "爱|ai",
+    "狗|gou",
+    "猫|mao"
+   ],
+   "grammar": [
+    "g-hsk1-xihuan"
+   ],
+   "dialogue": "d-hsk1-17"
+  },
+  {
+   "id": "hsk1-18",
+   "level": 1,
+   "title": "Gọi điện thoại",
+   "goals": [
+    "Nghe, gọi điện thoại",
+    "Hỏi ai đang gọi"
+   ],
+   "words": [
+    "打电话|dadianhua",
+    "喂|wei",
+    "电脑|diannao",
+    "谁|shei",
+    "和|he",
+    "朋友|pengyou"
+   ],
+   "grammar": [
+    "g-hsk1-he"
+   ],
+   "dialogue": "d-hsk1-18"
+  },
+  {
+   "id": "hsk1-19",
+   "level": 1,
+   "title": "Ở nhà",
+   "goals": [
+    "Tả đồ vật trong nhà",
+    "Khen đẹp"
+   ],
+   "words": [
+    "衣服|yifu",
+    "椅子|yizi",
+    "桌子|zhuozi",
+    "睡觉|shuijiao",
+    "漂亮|piaoliang"
+   ],
+   "grammar": [
+    "g-hsk1-bu-mei"
+   ],
+   "dialogue": "d-hsk1-19"
+  },
+  {
+   "id": "hsk1-20",
+   "level": 1,
+   "title": "Ôn tập HSK 1",
+   "goals": [
+    "Ôn lại toàn bộ HSK 1",
+    "Tự giới thiệu bản thân"
+   ],
+   "words": [],
+   "grammar": [],
+   "dialogue": "d-hsk1-20"
+  }
+ ]
+}

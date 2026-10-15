@@ -1,0 +1,1018 @@
+[
+ {
+  "id": "d-hsk1-01",
+  "level": 1,
+  "title": "Gặp thầy giáo",
+  "lines": [
+   {
+    "speaker": "Lan",
+    "zh": "你好！",
+    "py": "Nǐ hǎo!",
+    "vi": "Em chào thầy!"
+   },
+   {
+    "speaker": "Thầy Vương",
+    "zh": "你好！你是学生吗？",
+    "py": "Nǐ hǎo! Nǐ shì xuésheng ma?",
+    "vi": "Chào em! Em là học sinh à?"
+   },
+   {
+    "speaker": "Lan",
+    "zh": "是，我是学生。你呢？",
+    "py": "Shì, wǒ shì xuésheng. Nǐ ne?",
+    "vi": "Vâng, em là học sinh. Còn thầy?"
+   },
+   {
+    "speaker": "Thầy Vương",
+    "zh": "我不是学生，我是老师。",
+    "py": "Wǒ bù shì xuésheng, wǒ shì lǎoshī.",
+    "vi": "Thầy không phải học sinh, thầy là giáo viên."
+   },
+   {
+    "speaker": "Lan",
+    "zh": "老师好！",
+    "py": "Lǎoshī hǎo!",
+    "vi": "Em chào thầy ạ!"
+   },
+   {
+    "speaker": "Thầy Vương",
+    "zh": "你好吗？",
+    "py": "Nǐ hǎo ma?",
+    "vi": "Em khỏe không?"
+   },
+   {
+    "speaker": "Lan",
+    "zh": "我很好。老师呢？",
+    "py": "Wǒ hěn hǎo. Lǎoshī ne?",
+    "vi": "Em khỏe ạ. Còn thầy?"
+   },
+   {
+    "speaker": "Thầy Vương",
+    "zh": "我很好。",
+    "py": "Wǒ hěn hǎo.",
+    "vi": "Thầy khỏe."
+   }
+  ]
+ },
+ {
+  "id": "d-hsk1-02",
+  "level": 1,
+  "title": "Mời ngồi",
+  "lines": [
+   {
+    "speaker": "Thầy Vương",
+    "zh": "请坐！",
+    "py": "Qǐng zuò!",
+    "vi": "Mời em ngồi!"
+   },
+   {
+    "speaker": "Lan",
+    "zh": "谢谢老师！",
+    "py": "Xièxie lǎoshī!",
+    "vi": "Em cảm ơn thầy!"
+   },
+   {
+    "speaker": "Thầy Vương",
+    "zh": "不客气。",
+    "py": "Bù kèqi.",
+    "vi": "Không có gì."
+   },
+   {
+    "speaker": "Lan",
+    "zh": "对不起，老师！",
+    "py": "Duìbuqǐ, lǎoshī!",
+    "vi": "Em xin lỗi thầy!"
+   },
+   {
+    "speaker": "Thầy Vương",
+    "zh": "没关系。",
+    "py": "Méi guānxi.",
+    "vi": "Không sao đâu."
+   },
+   {
+    "speaker": "Lan",
+    "zh": "老师，再见！",
+    "py": "Lǎoshī, zàijiàn!",
+    "vi": "Em chào thầy ạ!"
+   },
+   {
+    "speaker": "Thầy Vương",
+    "zh": "再见！",
+    "py": "Zàijiàn!",
+    "vi": "Tạm biệt!"
+   }
+  ]
+ },
+ {
+  "id": "d-hsk1-03",
+  "level": 1,
+  "title": "Làm quen",
+  "lines": [
+   {
+    "speaker": "Minh",
+    "zh": "你好！你叫什么名字？",
+    "py": "Nǐ hǎo! Nǐ jiào shénme míngzi?",
+    "vi": "Chào bạn! Bạn tên là gì?"
+   },
+   {
+    "speaker": "Lan",
+    "zh": "我叫兰。你呢？",
+    "py": "Wǒ jiào Lán. Nǐ ne?",
+    "vi": "Mình tên Lan. Còn bạn?"
+   },
+   {
+    "speaker": "Minh",
+    "zh": "我叫明。认识你很高兴！",
+    "py": "Wǒ jiào Míng. Rènshi nǐ hěn gāoxìng!",
+    "vi": "Mình tên Minh. Rất vui được làm quen!"
+   },
+   {
+    "speaker": "Lan",
+    "zh": "认识你我很高兴。他是老师吗？",
+    "py": "Rènshi nǐ wǒ hěn gāoxìng. Tā shì lǎoshī ma?",
+    "vi": "Mình cũng rất vui. Anh ấy là thầy giáo à?"
+   },
+   {
+    "speaker": "Minh",
+    "zh": "他不是老师，他是学生。",
+    "py": "Tā bù shì lǎoshī, tā shì xuésheng.",
+    "vi": "Anh ấy không phải thầy, anh ấy là học sinh."
+   },
+   {
+    "speaker": "Lan",
+    "zh": "她呢？她叫什么名字？",
+    "py": "Tā ne? Tā jiào shénme míngzi?",
+    "vi": "Còn cô ấy? Cô ấy tên gì?"
+   },
+   {
+    "speaker": "Minh",
+    "zh": "她是王老师。",
+    "py": "Tā shì Wáng lǎoshī.",
+    "vi": "Cô ấy là cô Vương."
+   }
+  ]
+ },
+ {
+  "id": "d-hsk1-04",
+  "level": 1,
+  "title": "Bạn là người nước nào?",
+  "lines": [
+   {
+    "speaker": "Thầy Vương",
+    "zh": "你是哪国人？",
+    "py": "Nǐ shì nǎ guó rén?",
+    "vi": "Em là người nước nào?"
+   },
+   {
+    "speaker": "Lan",
+    "zh": "我是越南人。老师呢？",
+    "py": "Wǒ shì Yuènán rén. Lǎoshī ne?",
+    "vi": "Em là người Việt Nam. Còn thầy?"
+   },
+   {
+    "speaker": "Thầy Vương",
+    "zh": "我是中国人。你会说汉语吗？",
+    "py": "Wǒ shì Zhōngguó rén. Nǐ huì shuō Hànyǔ ma?",
+    "vi": "Thầy là người Trung Quốc. Em biết nói tiếng Trung không?"
+   },
+   {
+    "speaker": "Lan",
+    "zh": "我会说汉语。",
+    "py": "Wǒ huì shuō Hànyǔ.",
+    "vi": "Em biết nói tiếng Trung."
+   },
+   {
+    "speaker": "Thầy Vương",
+    "zh": "明呢？他是中国人吗？",
+    "py": "Míng ne? Tā shì Zhōngguó rén ma?",
+    "vi": "Còn Minh? Cậu ấy là người Trung Quốc à?"
+   },
+   {
+    "speaker": "Lan",
+    "zh": "不是，我们都是越南人。",
+    "py": "Bù shì, wǒmen dōu shì Yuènán rén.",
+    "vi": "Không ạ, chúng em đều là người Việt Nam."
+   }
+  ]
+ },
+ {
+  "id": "d-hsk1-05",
+  "level": 1,
+  "title": "Đếm số",
+  "lines": [
+   {
+    "speaker": "Thầy Vương",
+    "zh": "我们说汉语：一、二、三、四、五！",
+    "py": "Wǒmen shuō Hànyǔ: yī, èr, sān, sì, wǔ!",
+    "vi": "Chúng ta nói tiếng Trung nhé: một, hai, ba, bốn, năm!"
+   },
+   {
+    "speaker": "Lan",
+    "zh": "六、七、八、九、十！",
+    "py": "Liù, qī, bā, jiǔ, shí!",
+    "vi": "Sáu, bảy, tám, chín, mười!"
+   },
+   {
+    "speaker": "Thầy Vương",
+    "zh": "很好！“零”你会说吗？",
+    "py": "Hěn hǎo! “Líng” nǐ huì shuō ma?",
+    "vi": "Rất tốt! Em biết nói “số không” không?"
+   },
+   {
+    "speaker": "Lan",
+    "zh": "会，零！",
+    "py": "Huì, líng!",
+    "vi": "Biết ạ, líng!"
+   },
+   {
+    "speaker": "Thầy Vương",
+    "zh": "我们是几个人？",
+    "py": "Wǒmen shì jǐ gè rén?",
+    "vi": "Chúng ta có mấy người?"
+   },
+   {
+    "speaker": "Lan",
+    "zh": "一、二、三……我们是十个人！",
+    "py": "Yī, èr, sān…… wǒmen shì shí gè rén!",
+    "vi": "Một, hai, ba… chúng ta có mười người!"
+   }
+  ]
+ },
+ {
+  "id": "d-hsk1-06",
+  "level": 1,
+  "title": "Gia đình thầy Vương",
+  "lines": [
+   {
+    "speaker": "Minh",
+    "zh": "你家有几个人？",
+    "py": "Nǐ jiā yǒu jǐ gè rén?",
+    "vi": "Nhà bạn có mấy người?"
+   },
+   {
+    "speaker": "Lan",
+    "zh": "我家有三个人：爸爸、妈妈、我。",
+    "py": "Wǒ jiā yǒu sān gè rén: bàba, māma, wǒ.",
+    "vi": "Nhà mình có ba người: bố, mẹ và mình."
+   },
+   {
+    "speaker": "Lan",
+    "zh": "老师，你有儿子吗？",
+    "py": "Lǎoshī, nǐ yǒu érzi ma?",
+    "vi": "Thầy ơi, thầy có con trai không ạ?"
+   },
+   {
+    "speaker": "Thầy Vương",
+    "zh": "我没有儿子，我有一个女儿。",
+    "py": "Wǒ méiyǒu érzi, wǒ yǒu yī gè nǚ'ér.",
+    "vi": "Thầy không có con trai, thầy có một con gái."
+   },
+   {
+    "speaker": "Lan",
+    "zh": "你女儿是学生吗？",
+    "py": "Nǐ nǚ'ér shì xuésheng ma?",
+    "vi": "Con gái thầy là học sinh ạ?"
+   },
+   {
+    "speaker": "Thầy Vương",
+    "zh": "是，她是学生。",
+    "py": "Shì, tā shì xuésheng.",
+    "vi": "Ừ, con bé là học sinh."
+   }
+  ]
+ },
+ {
+  "id": "d-hsk1-07",
+  "level": 1,
+  "title": "Bữa cơm ở nhà",
+  "lines": [
+   {
+    "speaker": "Mẹ",
+    "zh": "兰，你想吃什么？",
+    "py": "Lán, nǐ xiǎng chī shénme?",
+    "vi": "Lan, con muốn ăn gì?"
+   },
+   {
+    "speaker": "Lan",
+    "zh": "我想吃米饭。",
+    "py": "Wǒ xiǎng chī mǐfàn.",
+    "vi": "Con muốn ăn cơm."
+   },
+   {
+    "speaker": "Mẹ",
+    "zh": "你想喝什么？喝茶吗？",
+    "py": "Nǐ xiǎng hē shénme? Hē chá ma?",
+    "vi": "Con muốn uống gì? Uống trà nhé?"
+   },
+   {
+    "speaker": "Lan",
+    "zh": "我不想喝茶，我想喝水。",
+    "py": "Wǒ bù xiǎng hē chá, wǒ xiǎng hē shuǐ.",
+    "vi": "Con không muốn uống trà, con muốn uống nước."
+   },
+   {
+    "speaker": "Mẹ",
+    "zh": "你吃苹果吗？",
+    "py": "Nǐ chī píngguǒ ma?",
+    "vi": "Con ăn táo không?"
+   },
+   {
+    "speaker": "Lan",
+    "zh": "吃！我很想吃水果。谢谢妈妈！",
+    "py": "Chī! Wǒ hěn xiǎng chī shuǐguǒ. Xièxie māma!",
+    "vi": "Có ạ! Con đang thèm hoa quả. Cảm ơn mẹ!"
+   },
+   {
+    "speaker": "Mẹ",
+    "zh": "爸爸想吃中国菜。",
+    "py": "Bàba xiǎng chī Zhōngguó cài.",
+    "vi": "Bố muốn ăn món Trung Quốc."
+   }
+  ]
+ },
+ {
+  "id": "d-hsk1-08",
+  "level": 1,
+  "title": "Ở cửa hàng",
+  "lines": [
+   {
+    "speaker": "Lan",
+    "zh": "你好！这个多少钱？",
+    "py": "Nǐ hǎo! Zhège duōshao qián?",
+    "vi": "Chào chị! Cái này bao nhiêu tiền?"
+   },
+   {
+    "speaker": "Nhân viên",
+    "zh": "这个三块钱。",
+    "py": "Zhège sān kuài qián.",
+    "vi": "Cái này ba tệ."
+   },
+   {
+    "speaker": "Lan",
+    "zh": "那个呢？",
+    "py": "Nàge ne?",
+    "vi": "Còn cái kia?"
+   },
+   {
+    "speaker": "Nhân viên",
+    "zh": "那个八块。",
+    "py": "Nàge bā kuài.",
+    "vi": "Cái kia tám tệ."
+   },
+   {
+    "speaker": "Lan",
+    "zh": "我买这个。我想买一些苹果。",
+    "py": "Wǒ mǎi zhège. Wǒ xiǎng mǎi yīxiē píngguǒ.",
+    "vi": "Em lấy cái này. Em muốn mua ít táo."
+   },
+   {
+    "speaker": "Nhân viên",
+    "zh": "你买几个？",
+    "py": "Nǐ mǎi jǐ gè?",
+    "vi": "Em mua mấy quả?"
+   },
+   {
+    "speaker": "Lan",
+    "zh": "我买四个。谢谢！再见！",
+    "py": "Wǒ mǎi sì gè. Xièxie! Zàijiàn!",
+    "vi": "Em mua bốn quả. Cảm ơn chị! Chào chị!"
+   }
+  ]
+ },
+ {
+  "id": "d-hsk1-09",
+  "level": 1,
+  "title": "Ở nhà hàng",
+  "lines": [
+   {
+    "speaker": "Phục vụ",
+    "zh": "先生，你好！请坐。",
+    "py": "Xiānsheng, nǐ hǎo! Qǐng zuò.",
+    "vi": "Chào anh! Mời anh ngồi."
+   },
+   {
+    "speaker": "Minh",
+    "zh": "谢谢！小姐，我想喝茶。",
+    "py": "Xièxie! Xiǎojiě, wǒ xiǎng hē chá.",
+    "vi": "Cảm ơn! Em ơi, cho anh uống trà."
+   },
+   {
+    "speaker": "Phục vụ",
+    "zh": "好。你想吃什么？",
+    "py": "Hǎo. Nǐ xiǎng chī shénme?",
+    "vi": "Vâng. Anh muốn ăn gì ạ?"
+   },
+   {
+    "speaker": "Minh",
+    "zh": "我想吃米饭。这个菜多少钱？",
+    "py": "Wǒ xiǎng chī mǐfàn. Zhège cài duōshao qián?",
+    "vi": "Anh muốn ăn cơm. Món này bao nhiêu tiền?"
+   },
+   {
+    "speaker": "Phục vụ",
+    "zh": "八十块。",
+    "py": "Bāshí kuài.",
+    "vi": "Tám mươi tệ ạ."
+   },
+   {
+    "speaker": "Minh",
+    "zh": "八十块？太多了！",
+    "py": "Bāshí kuài? Tài duō le!",
+    "vi": "Tám mươi tệ? Nhiều quá!"
+   },
+   {
+    "speaker": "Phục vụ",
+    "zh": "这个菜四十块。",
+    "py": "Zhège cài sìshí kuài.",
+    "vi": "Món này bốn mươi tệ ạ."
+   },
+   {
+    "speaker": "Minh",
+    "zh": "好，我吃这个。我能喝水吗？",
+    "py": "Hǎo, wǒ chī zhège. Wǒ néng hē shuǐ ma?",
+    "vi": "Được, anh ăn món này. Anh uống nước được không?"
+   },
+   {
+    "speaker": "Phục vụ",
+    "zh": "能。这个杯子是你的。",
+    "py": "Néng. Zhège bēizi shì nǐ de.",
+    "vi": "Được ạ. Cái cốc này là của anh."
+   }
+  ]
+ },
+ {
+  "id": "d-hsk1-10",
+  "level": 1,
+  "title": "Cái cốc ở đâu?",
+  "lines": [
+   {
+    "speaker": "Lan",
+    "zh": "妈妈，我的杯子在哪儿？",
+    "py": "Māma, wǒ de bēizi zài nǎr?",
+    "vi": "Mẹ ơi, cốc của con đâu rồi?"
+   },
+   {
+    "speaker": "Mẹ",
+    "zh": "在那儿，在你后面。",
+    "py": "Zài nàr, zài nǐ hòumiàn.",
+    "vi": "Ở đằng kia, sau lưng con đấy."
+   },
+   {
+    "speaker": "Lan",
+    "zh": "在这儿！谢谢妈妈！",
+    "py": "Zài zhèr! Xièxie māma!",
+    "vi": "Đây rồi! Cảm ơn mẹ!"
+   },
+   {
+    "speaker": "Mẹ",
+    "zh": "爸爸在哪儿？",
+    "py": "Bàba zài nǎr?",
+    "vi": "Bố đâu rồi?"
+   },
+   {
+    "speaker": "Lan",
+    "zh": "爸爸在商店里。",
+    "py": "Bàba zài shāngdiàn li.",
+    "vi": "Bố ở trong cửa hàng."
+   },
+   {
+    "speaker": "Mẹ",
+    "zh": "商店在哪儿？",
+    "py": "Shāngdiàn zài nǎr?",
+    "vi": "Cửa hàng ở đâu?"
+   },
+   {
+    "speaker": "Lan",
+    "zh": "商店在饭店前面。",
+    "py": "Shāngdiàn zài fàndiàn qiánmiàn.",
+    "vi": "Cửa hàng ở trước nhà hàng."
+   }
+  ]
+ },
+ {
+  "id": "d-hsk1-11",
+  "level": 1,
+  "title": "Học ở đâu?",
+  "lines": [
+   {
+    "speaker": "Minh",
+    "zh": "兰，你在哪儿学习汉语？",
+    "py": "Lán, nǐ zài nǎr xuéxí Hànyǔ?",
+    "vi": "Lan, bạn học tiếng Trung ở đâu?"
+   },
+   {
+    "speaker": "Lan",
+    "zh": "我在学校学习汉语。",
+    "py": "Wǒ zài xuéxiào xuéxí Hànyǔ.",
+    "vi": "Mình học tiếng Trung ở trường."
+   },
+   {
+    "speaker": "Minh",
+    "zh": "你的同学都是越南人吗？",
+    "py": "Nǐ de tóngxué dōu shì Yuènán rén ma?",
+    "vi": "Bạn học của bạn đều là người Việt à?"
+   },
+   {
+    "speaker": "Lan",
+    "zh": "不都是。我有中国同学。",
+    "py": "Bù dōu shì. Wǒ yǒu Zhōngguó tóngxué.",
+    "vi": "Không phải tất cả. Mình có bạn học người Trung Quốc."
+   },
+   {
+    "speaker": "Minh",
+    "zh": "这个字你会读吗？",
+    "py": "Zhège zì nǐ huì dú ma?",
+    "vi": "Chữ này bạn đọc được không?"
+   },
+   {
+    "speaker": "Lan",
+    "zh": "会，这个字读“学”。",
+    "py": "Huì, zhège zì dú “xué”.",
+    "vi": "Được, chữ này đọc là “xué”."
+   },
+   {
+    "speaker": "Minh",
+    "zh": "你会写吗？",
+    "py": "Nǐ huì xiě ma?",
+    "vi": "Bạn viết được không?"
+   },
+   {
+    "speaker": "Lan",
+    "zh": "会写。我有一本汉语书。",
+    "py": "Huì xiě. Wǒ yǒu yī běn Hànyǔ shū.",
+    "vi": "Viết được. Mình có một quyển sách tiếng Trung."
+   }
+  ]
+ },
+ {
+  "id": "d-hsk1-12",
+  "level": 1,
+  "title": "Bố bạn làm nghề gì?",
+  "lines": [
+   {
+    "speaker": "Lan",
+    "zh": "明，你爸爸做什么工作？",
+    "py": "Míng, nǐ bàba zuò shénme gōngzuò?",
+    "vi": "Minh, bố bạn làm nghề gì?"
+   },
+   {
+    "speaker": "Minh",
+    "zh": "他是医生。",
+    "py": "Tā shì yīshēng.",
+    "vi": "Bố mình là bác sĩ."
+   },
+   {
+    "speaker": "Lan",
+    "zh": "他在哪儿工作？",
+    "py": "Tā zài nǎr gōngzuò?",
+    "vi": "Bác làm việc ở đâu?"
+   },
+   {
+    "speaker": "Minh",
+    "zh": "他在医院工作。",
+    "py": "Tā zài yīyuàn gōngzuò.",
+    "vi": "Bố mình làm ở bệnh viện."
+   },
+   {
+    "speaker": "Lan",
+    "zh": "你家住在哪儿？",
+    "py": "Nǐ jiā zhù zài nǎr?",
+    "vi": "Nhà bạn ở đâu?"
+   },
+   {
+    "speaker": "Minh",
+    "zh": "我家住在医院后面。",
+    "py": "Wǒ jiā zhù zài yīyuàn hòumiàn.",
+    "vi": "Nhà mình ở sau bệnh viện."
+   },
+   {
+    "speaker": "Lan",
+    "zh": "我能去你家吗？",
+    "py": "Wǒ néng qù nǐ jiā ma?",
+    "vi": "Mình đến nhà bạn được không?"
+   },
+   {
+    "speaker": "Minh",
+    "zh": "能！请来我家！",
+    "py": "Néng! Qǐng lái wǒ jiā!",
+    "vi": "Được chứ! Mời bạn đến nhà mình!"
+   },
+   {
+    "speaker": "Lan",
+    "zh": "好，我回家了。再见！",
+    "py": "Hǎo, wǒ huí jiā le. Zàijiàn!",
+    "vi": "Ừ, mình về nhà đây. Tạm biệt!"
+   }
+  ]
+ },
+ {
+  "id": "d-hsk1-13",
+  "level": 1,
+  "title": "Hôm nay ngày mấy?",
+  "lines": [
+   {
+    "speaker": "Lan",
+    "zh": "老师，你女儿几岁了？",
+    "py": "Lǎoshī, nǐ nǚ'ér jǐ suì le?",
+    "vi": "Thầy ơi, con gái thầy mấy tuổi rồi ạ?"
+   },
+   {
+    "speaker": "Thầy Vương",
+    "zh": "她八岁了。",
+    "py": "Tā bā suì le.",
+    "vi": "Con bé tám tuổi rồi."
+   },
+   {
+    "speaker": "Lan",
+    "zh": "今天几月几号？",
+    "py": "Jīntiān jǐ yuè jǐ hào?",
+    "vi": "Hôm nay ngày mấy tháng mấy ạ?"
+   },
+   {
+    "speaker": "Thầy Vương",
+    "zh": "今天是二零二五年十月九号。",
+    "py": "Jīntiān shì èr líng èr wǔ nián shí yuè jiǔ hào.",
+    "vi": "Hôm nay là ngày 9 tháng 10 năm 2025."
+   },
+   {
+    "speaker": "Lan",
+    "zh": "明天我回越南。",
+    "py": "Míngtiān wǒ huí Yuènán.",
+    "vi": "Ngày mai em về Việt Nam."
+   },
+   {
+    "speaker": "Thầy Vương",
+    "zh": "你几月几号回来？",
+    "py": "Nǐ jǐ yuè jǐ hào huílai?",
+    "vi": "Em ngày mấy tháng mấy quay lại?"
+   },
+   {
+    "speaker": "Lan",
+    "zh": "十一月三号。",
+    "py": "Shíyī yuè sān hào.",
+    "vi": "Ngày 3 tháng 11 ạ."
+   },
+   {
+    "speaker": "Thầy Vương",
+    "zh": "好，十一月见！",
+    "py": "Hǎo, shíyī yuè jiàn!",
+    "vi": "Được, hẹn gặp em tháng 11!"
+   }
+  ]
+ },
+ {
+  "id": "d-hsk1-14",
+  "level": 1,
+  "title": "Hẹn ăn trưa",
+  "lines": [
+   {
+    "speaker": "Lan",
+    "zh": "现在几点？",
+    "py": "Xiànzài jǐ diǎn?",
+    "vi": "Bây giờ là mấy giờ?"
+   },
+   {
+    "speaker": "Minh",
+    "zh": "现在上午九点十分。",
+    "py": "Xiànzài shàngwǔ jiǔ diǎn shí fēn.",
+    "vi": "Bây giờ là chín giờ mười sáng."
+   },
+   {
+    "speaker": "Lan",
+    "zh": "今天星期几？",
+    "py": "Jīntiān xīngqī jǐ?",
+    "vi": "Hôm nay thứ mấy?"
+   },
+   {
+    "speaker": "Minh",
+    "zh": "今天星期五。",
+    "py": "Jīntiān xīngqīwǔ.",
+    "vi": "Hôm nay thứ Sáu."
+   },
+   {
+    "speaker": "Lan",
+    "zh": "你什么时候去医院？",
+    "py": "Nǐ shénme shíhou qù yīyuàn?",
+    "vi": "Khi nào bạn đi bệnh viện?"
+   },
+   {
+    "speaker": "Minh",
+    "zh": "我下午三点去。",
+    "py": "Wǒ xiàwǔ sān diǎn qù.",
+    "vi": "Ba giờ chiều mình đi."
+   },
+   {
+    "speaker": "Lan",
+    "zh": "中午我们去饭店吃饭，好吗？",
+    "py": "Zhōngwǔ wǒmen qù fàndiàn chī fàn, hǎo ma?",
+    "vi": "Trưa nay mình đi nhà hàng ăn nhé?"
+   },
+   {
+    "speaker": "Minh",
+    "zh": "好！十二点在学校前面。",
+    "py": "Hǎo! Shí'èr diǎn zài xuéxiào qiánmiàn.",
+    "vi": "Được! Mười hai giờ ở trước cổng trường."
+   }
+  ]
+ },
+ {
+  "id": "d-hsk1-15",
+  "level": 1,
+  "title": "Đi Bắc Kinh",
+  "lines": [
+   {
+    "speaker": "Lan",
+    "zh": "你明天去哪儿？",
+    "py": "Nǐ míngtiān qù nǎr?",
+    "vi": "Mai bạn đi đâu?"
+   },
+   {
+    "speaker": "Minh",
+    "zh": "我明天去北京。",
+    "py": "Wǒ míngtiān qù Běijīng.",
+    "vi": "Mai mình đi Bắc Kinh."
+   },
+   {
+    "speaker": "Lan",
+    "zh": "你怎么去？坐飞机吗？",
+    "py": "Nǐ zěnme qù? Zuò fēijī ma?",
+    "vi": "Bạn đi bằng gì? Máy bay à?"
+   },
+   {
+    "speaker": "Minh",
+    "zh": "不，我坐火车去。",
+    "py": "Bù, wǒ zuò huǒchē qù.",
+    "vi": "Không, mình đi tàu hỏa."
+   },
+   {
+    "speaker": "Lan",
+    "zh": "火车站在哪儿？",
+    "py": "Huǒchēzhàn zài nǎr?",
+    "vi": "Ga tàu ở đâu?"
+   },
+   {
+    "speaker": "Minh",
+    "zh": "在那儿。你看见了吗？",
+    "py": "Zài nàr. Nǐ kànjiàn le ma?",
+    "vi": "Ở đằng kia. Bạn thấy chưa?"
+   },
+   {
+    "speaker": "Lan",
+    "zh": "看见了。我们坐出租车去。",
+    "py": "Kànjiàn le. Wǒmen zuò chūzūchē qù.",
+    "vi": "Thấy rồi. Mình đi taxi đến đó."
+   },
+   {
+    "speaker": "Minh",
+    "zh": "好，出租车来了！",
+    "py": "Hǎo, chūzūchē lái le!",
+    "vi": "Được, taxi đến rồi!"
+   }
+  ]
+ },
+ {
+  "id": "d-hsk1-16",
+  "level": 1,
+  "title": "Thời tiết Bắc Kinh",
+  "lines": [
+   {
+    "speaker": "Lan",
+    "zh": "北京天气怎么样？",
+    "py": "Běijīng tiānqì zěnmeyàng?",
+    "vi": "Thời tiết Bắc Kinh thế nào?"
+   },
+   {
+    "speaker": "Minh",
+    "zh": "北京很冷。越南呢？",
+    "py": "Běijīng hěn lěng. Yuènán ne?",
+    "vi": "Bắc Kinh lạnh lắm. Còn Việt Nam?"
+   },
+   {
+    "speaker": "Lan",
+    "zh": "越南很热。今天北京下雨吗？",
+    "py": "Yuènán hěn rè. Jīntiān Běijīng xiàyǔ ma?",
+    "vi": "Việt Nam nóng lắm. Hôm nay Bắc Kinh có mưa không?"
+   },
+   {
+    "speaker": "Minh",
+    "zh": "今天不下雨，明天下雨。",
+    "py": "Jīntiān bù xiàyǔ, míngtiān xiàyǔ.",
+    "vi": "Hôm nay không mưa, mai mới mưa."
+   },
+   {
+    "speaker": "Lan",
+    "zh": "北京大吗？",
+    "py": "Běijīng dà ma?",
+    "vi": "Bắc Kinh có rộng không?"
+   },
+   {
+    "speaker": "Minh",
+    "zh": "很大，人很多。",
+    "py": "Hěn dà, rén hěn duō.",
+    "vi": "Rất rộng, người rất đông."
+   },
+   {
+    "speaker": "Lan",
+    "zh": "我家很小，人很少。",
+    "py": "Wǒ jiā hěn xiǎo, rén hěn shǎo.",
+    "vi": "Nhà mình nhỏ, ít người."
+   }
+  ]
+ },
+ {
+  "id": "d-hsk1-17",
+  "level": 1,
+  "title": "Đi xem phim nhé?",
+  "lines": [
+   {
+    "speaker": "Minh",
+    "zh": "你喜欢看电影吗？",
+    "py": "Nǐ xǐhuan kàn diànyǐng ma?",
+    "vi": "Bạn thích xem phim không?"
+   },
+   {
+    "speaker": "Lan",
+    "zh": "很喜欢！你呢？",
+    "py": "Hěn xǐhuan! Nǐ ne?",
+    "vi": "Thích lắm! Còn bạn?"
+   },
+   {
+    "speaker": "Minh",
+    "zh": "我喜欢看电视。明天我们去看电影，怎么样？",
+    "py": "Wǒ xǐhuan kàn diànshì. Míngtiān wǒmen qù kàn diànyǐng, zěnmeyàng?",
+    "vi": "Mình thích xem tivi. Mai mình đi xem phim nhé, thế nào?"
+   },
+   {
+    "speaker": "Lan",
+    "zh": "好！你家有狗吗？",
+    "py": "Hǎo! Nǐ jiā yǒu gǒu ma?",
+    "vi": "Được! Nhà bạn có chó không?"
+   },
+   {
+    "speaker": "Minh",
+    "zh": "没有，我家有猫。",
+    "py": "Méiyǒu, wǒ jiā yǒu māo.",
+    "vi": "Không, nhà mình nuôi mèo."
+   },
+   {
+    "speaker": "Lan",
+    "zh": "我很爱猫！",
+    "py": "Wǒ hěn ài māo!",
+    "vi": "Mình rất yêu mèo!"
+   },
+   {
+    "speaker": "Minh",
+    "zh": "我的猫喜欢听我说汉语。",
+    "py": "Wǒ de māo xǐhuan tīng wǒ shuō Hànyǔ.",
+    "vi": "Mèo của mình thích nghe mình nói tiếng Trung."
+   }
+  ]
+ },
+ {
+  "id": "d-hsk1-18",
+  "level": 1,
+  "title": "Gọi điện thoại",
+  "lines": [
+   {
+    "speaker": "Lan",
+    "zh": "喂，你好！",
+    "py": "Wèi, nǐ hǎo!",
+    "vi": "A lô, xin chào!"
+   },
+   {
+    "speaker": "Minh",
+    "zh": "喂，你是谁？",
+    "py": "Wèi, nǐ shì shéi?",
+    "vi": "A lô, ai đấy?"
+   },
+   {
+    "speaker": "Lan",
+    "zh": "我是兰。明，你在做什么？",
+    "py": "Wǒ shì Lán. Míng, nǐ zài zuò shénme?",
+    "vi": "Mình là Lan. Minh, bạn đang làm gì đấy?"
+   },
+   {
+    "speaker": "Minh",
+    "zh": "我在电脑上看电影。",
+    "py": "Wǒ zài diànnǎo shang kàn diànyǐng.",
+    "vi": "Mình đang xem phim trên máy tính."
+   },
+   {
+    "speaker": "Lan",
+    "zh": "下午我和朋友去商店，你去吗？",
+    "py": "Xiàwǔ wǒ hé péngyou qù shāngdiàn, nǐ qù ma?",
+    "vi": "Chiều nay mình với bạn đi cửa hàng, bạn đi không?"
+   },
+   {
+    "speaker": "Minh",
+    "zh": "我去！几点？",
+    "py": "Wǒ qù! Jǐ diǎn?",
+    "vi": "Mình đi! Mấy giờ?"
+   },
+   {
+    "speaker": "Lan",
+    "zh": "三点，在学校前面。",
+    "py": "Sān diǎn, zài xuéxiào qiánmiàn.",
+    "vi": "Ba giờ, ở trước cổng trường."
+   },
+   {
+    "speaker": "Minh",
+    "zh": "好，再见！",
+    "py": "Hǎo, zàijiàn!",
+    "vi": "Ok, hẹn gặp lại!"
+   }
+  ]
+ },
+ {
+  "id": "d-hsk1-19",
+  "level": 1,
+  "title": "Ở nhà buổi tối",
+  "lines": [
+   {
+    "speaker": "Mẹ",
+    "zh": "兰，你在做什么？",
+    "py": "Lán, nǐ zài zuò shénme?",
+    "vi": "Lan, con đang làm gì đấy?"
+   },
+   {
+    "speaker": "Lan",
+    "zh": "我在看衣服。妈妈，这个衣服漂亮吗？",
+    "py": "Wǒ zài kàn yīfu. Māma, zhège yīfu piàoliang ma?",
+    "vi": "Con đang xem quần áo. Mẹ ơi, bộ này đẹp không?"
+   },
+   {
+    "speaker": "Mẹ",
+    "zh": "很漂亮！你的书在桌子上。",
+    "py": "Hěn piàoliang! Nǐ de shū zài zhuōzi shang.",
+    "vi": "Đẹp lắm! Sách của con ở trên bàn đấy."
+   },
+   {
+    "speaker": "Lan",
+    "zh": "谢谢妈妈。椅子上的猫是谁的？",
+    "py": "Xièxie māma. Yǐzi shang de māo shì shéi de?",
+    "vi": "Cảm ơn mẹ. Con mèo trên ghế là của ai thế?"
+   },
+   {
+    "speaker": "Mẹ",
+    "zh": "是爸爸的。现在十点了，你想睡觉吗？",
+    "py": "Shì bàba de. Xiànzài shí diǎn le, nǐ xiǎng shuìjiào ma?",
+    "vi": "Của bố đấy. Mười giờ rồi, con buồn ngủ chưa?"
+   },
+   {
+    "speaker": "Lan",
+    "zh": "想。妈妈，我睡觉了！",
+    "py": "Xiǎng. Māma, wǒ shuìjiào le!",
+    "vi": "Rồi ạ. Mẹ ơi, con đi ngủ đây!"
+   }
+  ]
+ },
+ {
+  "id": "d-hsk1-20",
+  "level": 1,
+  "title": "Tự giới thiệu",
+  "lines": [
+   {
+    "speaker": "Lan",
+    "zh": "你们好！我叫兰，我是越南人。",
+    "py": "Nǐmen hǎo! Wǒ jiào Lán, wǒ shì Yuènán rén.",
+    "vi": "Chào các bạn! Mình tên Lan, mình là người Việt Nam."
+   },
+   {
+    "speaker": "Lan",
+    "zh": "我是学生，我在北京学习汉语。",
+    "py": "Wǒ shì xuésheng, wǒ zài Běijīng xuéxí Hànyǔ.",
+    "vi": "Mình là sinh viên, mình học tiếng Trung ở Bắc Kinh."
+   },
+   {
+    "speaker": "Lan",
+    "zh": "我家有三个人：爸爸、妈妈和我。",
+    "py": "Wǒ jiā yǒu sān gè rén: bàba, māma hé wǒ.",
+    "vi": "Nhà mình có ba người: bố, mẹ và mình."
+   },
+   {
+    "speaker": "Lan",
+    "zh": "我爸爸是医生，妈妈是老师。",
+    "py": "Wǒ bàba shì yīshēng, māma shì lǎoshī.",
+    "vi": "Bố mình là bác sĩ, mẹ mình là giáo viên."
+   },
+   {
+    "speaker": "Lan",
+    "zh": "我喜欢看电影，我很爱猫。",
+    "py": "Wǒ xǐhuan kàn diànyǐng, wǒ hěn ài māo.",
+    "vi": "Mình thích xem phim, mình rất yêu mèo."
+   },
+   {
+    "speaker": "Lan",
+    "zh": "认识你们很高兴！",
+    "py": "Rènshi nǐmen hěn gāoxìng!",
+    "vi": "Rất vui được làm quen với các bạn!"
+   },
+   {
+    "speaker": "Thầy Vương",
+    "zh": "很好！谢谢你，兰。",
+    "py": "Hěn hǎo! Xièxie nǐ, Lán.",
+    "vi": "Rất tốt! Cảm ơn em, Lan."
+   }
+  ]
+ }
+]

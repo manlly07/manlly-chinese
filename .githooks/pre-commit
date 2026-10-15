@@ -1,0 +1,12 @@
+#!/bin/sh
+# Lint các file TS/TSX đang được stage + kiểm tra dữ liệu học nếu có sửa src/content.
+set -e
+files=$(git diff --cached --name-only --diff-filter=ACMR | grep -E '\.(ts|tsx|js|mjs)$' || true)
+if [ -n "$files" ]; then
+  echo "▶ ESLint (file đã stage)…"
+  echo "$files" | xargs npx eslint --max-warnings 0
+fi
+if git diff --cached --name-only | grep -q '^src/content/'; then
+  echo "▶ Kiểm tra dữ liệu học…"
+  node scripts/validate-content.mjs
+fi
