@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { loadAllVocab, loadDialogues, loadGrammar, loadLessons, loadSyllables } from "@/lib/content";
+import { loadAllVocab, loadDialogues, loadGrammar, loadLessons, loadStrokes, loadSyllables } from "@/lib/content";
 import { loadHanziParts } from "@/lib/hanzi-parts";
 import type { Knowledge } from "@/lib/review-mix";
 
@@ -8,8 +8,8 @@ export function useKnowledge(): Knowledge | null {
   const [k, setK] = useState<Knowledge | null>(null);
   useEffect(() => {
     let alive = true;
-    void Promise.all([loadLessons(), loadAllVocab(), loadGrammar(), loadDialogues(), loadSyllables(), loadHanziParts()]).then(
-      ([lessons, words, grammar, dialogues, syllables, parts]) => {
+    void Promise.all([loadLessons(), loadAllVocab(), loadGrammar(), loadDialogues(), loadSyllables(), loadHanziParts(), loadStrokes()]).then(
+      ([lessons, words, grammar, dialogues, syllables, parts, strokes]) => {
         if (!alive) return;
         setK({
           lessons,
@@ -18,6 +18,7 @@ export function useKnowledge(): Knowledge | null {
           dialogues: new Map(dialogues.map((d) => [d.id, d])),
           syllables,
           parts,
+          strokes,
         });
       },
     );

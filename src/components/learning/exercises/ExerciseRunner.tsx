@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils";
 import { useProgress } from "@/store/progress";
 import { useSettings } from "@/store/settings";
 import { QuestionView } from "../QuizQuestionView";
+import { VoiceWarning } from "../VoiceWarning";
 import { ChoiceView } from "./ChoiceView";
 import { ComposeView } from "./ComposeView";
 import { ListenView } from "./ListenView";
@@ -112,6 +113,8 @@ export function ExerciseRunner({ exercises, onFinish, onExit, onAnswer, label }:
         return cur.q.options;
       case "grammar":
         return cur.ex.type === "order" ? [] : cur.ex.options;
+      case "stroke":
+        return cur.ex.options;
     }
   };
   const correctKey = (): string => {
@@ -124,6 +127,7 @@ export function ExerciseRunner({ exercises, onFinish, onExit, onAnswer, label }:
       case "listen":
         return cur.answer;
       case "grammar":
+      case "stroke":
         return cur.ex.answer;
     }
   };
@@ -146,9 +150,11 @@ export function ExerciseRunner({ exercises, onFinish, onExit, onAnswer, label }:
 
   if (!cur) return null;
   const showCombo = combo >= 3;
+  const needsAudio = exercises.some((e) => e.kind === "listen" || (e.kind === "pinyin" && e.q.type !== "spell") || (e.kind === "word" && e.q.type === "audio-hanzi"));
 
   return (
     <div className="mx-auto max-w-xl space-y-5">
+      {needsAudio && <VoiceWarning />}
       <div className="flex items-center gap-3">
         {onExit && (
           <Button variant="ghost" size="icon" onClick={onExit} aria-label="Thoát">
@@ -183,6 +189,8 @@ export function ExerciseRunner({ exercises, onFinish, onExit, onAnswer, label }:
           <PinyinView q={cur.q} chosen={chosen} onChoose={(g, c) => answer(c, g)} />
         ) : cur.kind === "compose" ? (
           <ComposeView q={cur.q} chosen={chosen} onChoose={(o) => answer(o === cur.q.answer, o)} />
+        ) : cur.kind === "stroke" ? (
+          <ChoiceView ex={cur.ex} chosen={chosen} onChoose={(o) => answer(o === cur.ex.answer, o)} />
         ) : cur.kind === "listen" ? (
           <ListenView line={cur.line} options={cur.options} answer={cur.answer} chosen={chosen} onChoose={(o) => answer(o === cur.answer, o)} />
         ) : cur.ex.type === "order" ? (

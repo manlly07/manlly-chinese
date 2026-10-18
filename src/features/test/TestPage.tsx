@@ -11,7 +11,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { useKnowledge } from "@/hooks/use-knowledge";
 import { usePath } from "@/hooks/use-path";
 import { type Exercise, pinyinExercise } from "@/lib/exercises";
-import { lastPinyinLesson, PASS_SCORE, placementAdvances } from "@/lib/path";
+import { lastIntroLesson, PASS_SCORE, placementAdvances } from "@/lib/path";
 import { buildPinyinReview } from "@/lib/pinyin-drill";
 import { buildCheckpointTest, buildWeeklyTest, learnedLessons, weeklyTestId } from "@/lib/review-mix";
 import { useProgress } from "@/store/progress";
@@ -61,7 +61,7 @@ export default function TestPage() {
   if (result) {
     const score = result.r.correct / result.r.total;
     const pass = score >= PASS_SCORE;
-    const lastPy = lastPinyinLesson(lessons);
+    const lastPy = lastIntroLesson(lessons);
     const nextL = cp
       ? lessons[lessons.findIndex((l) => l.id === cp.lessons.at(-1)!.id) + 1]
       : isPinyin && lastPy
@@ -116,7 +116,7 @@ export default function TestPage() {
         onFinish={(r) => {
           const score = r.correct / r.total;
           const xp = recordTest(testId, score, { seconds: r.seconds });
-          const lastPy = lastPinyinLesson(lessons);
+          const lastPy = lastIntroLesson(lessons);
           if (isPinyin && score >= PASS_SCORE && lastPy && placementAdvances(lessons, useProgress.getState().placement, lastPy.id)) setPlacement(lastPy.id);
           setResult({ r, xp });
           setRun(null);

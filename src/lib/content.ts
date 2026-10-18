@@ -152,6 +152,25 @@ export interface Lesson {
   dialogue: string | null;
   /** chỉ có ở bài Nhập môn pinyin (level 0) */
   pinyin?: PinyinSpec;
+  /** bài Nét cơ bản & thứ tự viết (level 0) — nội dung trong hanzi/strokes.json */
+  strokes?: boolean;
+}
+
+export interface StrokeInfo {
+  /** ký tự nét (khối CJK Strokes), vd "㇐" */
+  glyph: string;
+  name: string;
+  pinyin: string;
+  vi: string;
+  desc: string;
+  /** chữ ví dụ để xem hoạt ảnh nét */
+  example: string;
+}
+
+export interface StrokeData {
+  strokes: StrokeInfo[];
+  rules: { title: string; example: string; explain: string }[];
+  exercises: ChooseExercise[];
 }
 
 /** Quy tắc viết pinyin; mỗi ví dụ là một câu hỏi "ghép rồi viết đúng". `parts[0]` rỗng = không có phụ âm đầu. */
@@ -244,5 +263,7 @@ export const loadSyllables = () =>
 
 export const loadChars = () =>
   once("chars", () => import("../content/hanzi/chars.json").then((m) => new Map((m.default as CharEntry[]).map((c) => [c.char, c]))));
+
+export const loadStrokes = () => once("strokes", () => import("../content/hanzi/strokes.json").then((m) => m.default as StrokeData));
 
 export const loadComponents = () => once("components", () => import("../content/hanzi/components.json").then((m) => m.default as ComponentInfo[]));

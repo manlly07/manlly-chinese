@@ -1,4 +1,4 @@
-import type { DialogueLine, GrammarExercise, GrammarPoint, Word } from "./content";
+import type { ChooseExercise, DialogueLine, GrammarExercise, GrammarPoint, StrokeData, Word } from "./content";
 import { type ComposeQuestion, composeRef } from "./hanzi-parts";
 import { type PinyinQuestion, pinyinRef } from "./pinyin-drill";
 import { makeQuestion, type QuizQuestion, type QuizType } from "./quiz";
@@ -7,23 +7,28 @@ import { shuffle } from "./random";
 /**
  * Một câu bài tập. `ref` là khoá ổn định để ghi sổ lỗi sai:
  * "w:<wordId>" (từ vựng) · "g:<grammarId>#<i>" (bài tập ngữ pháp) · "l:<dialogueId>#<i>" (câu nghe)
- * · "p:<âm tiết>" (pinyin) · "c:<chữ>" (ghép chữ từ bộ).
+ * · "p:<âm tiết>" (pinyin) · "c:<chữ>" (ghép chữ từ bộ) · "s:#<i>" (nét & thứ tự viết).
  */
 export type Exercise =
   | { kind: "grammar"; ex: GrammarExercise; ref: string }
   | { kind: "word"; q: QuizQuestion; ref: string }
   | { kind: "listen"; line: DialogueLine; options: string[]; answer: string; ref: string }
   | { kind: "pinyin"; q: PinyinQuestion; ref: string }
-  | { kind: "compose"; q: ComposeQuestion; ref: string };
+  | { kind: "compose"; q: ComposeQuestion; ref: string }
+  | { kind: "stroke"; ex: ChooseExercise; ref: string };
 
-export type ExerciseCategory = "word" | "grammar" | "listen" | "pinyin" | "compose";
+export type ExerciseCategory = "word" | "grammar" | "listen" | "pinyin" | "compose" | "stroke";
 export const CATEGORY_LABELS: Record<ExerciseCategory, string> = {
   word: "Từ vựng",
   grammar: "Ngữ pháp",
   listen: "Nghe hiểu",
   pinyin: "Pinyin",
   compose: "Ghép chữ",
+  stroke: "Nét chữ",
 };
+
+/** Câu hỏi nét/thứ tự viết — khoá sổ lỗi "s:#<chỉ số>". */
+export const strokeExercises = (d: StrokeData): Exercise[] => d.exercises.map((ex, i) => ({ kind: "stroke", ex, ref: `s:#${i}` }));
 
 export const pinyinExercise = (q: PinyinQuestion): Exercise => ({ kind: "pinyin", q, ref: pinyinRef(q) });
 export const composeExercise = (q: ComposeQuestion): Exercise => ({ kind: "compose", q, ref: composeRef(q) });

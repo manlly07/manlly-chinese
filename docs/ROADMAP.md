@@ -44,7 +44,12 @@ Mỗi giai đoạn kết thúc bằng một bản build chạy được.
 - [x] “Kiểm tra nhanh pinyin” (`/test/pinyin`) để bỏ qua Chặng 0; người học trước đó không bị kéo về Chặng 0
 - [x] Cấu tạo chữ `hanzi/chars.json` (sinh từ Make Me a Hanzi) + `components.json`: bước “Bộ mới” trước “Từ mới”,
   tách chữ thành bộ (gợi nghĩa/gợi âm) trong thẻ từ, trang từ, trang chữ; câu “ghép chữ” (亻 + ? = 你) trong bài tập và ôn tập
-- [ ] Có thể thêm: bài nét cơ bản (横竖撇点折) trước bộ thủ; ghi âm so sánh khi ghép vần
+- [x] Bài “Nét cơ bản & thứ tự viết” (`nt-01`, cuối Chặng 0): 8 nét, 7 quy tắc, hoạt ảnh + tập viết, 12 câu hỏi (`hanzi/strokes.json`)
+- [x] “Đọc thử” trong bảng ghép vần: ghi âm → ước lượng thanh ngay trên máy (`TryTone`)
+- [x] Cảnh báo khi máy thiếu giọng đọc tiếng Trung (bài pinyin, bài tập có phần nghe, tab Ghép vần)
+- [x] Ôn hằng ngày/kiểm tra tuần trộn câu pinyin (âm trong sổ lỗi trước) sau khi đã sang HSK
+- [x] Tab “Ghép chữ” trong trang Chữ Hán; test tự động (Vitest) trong `npm run check`
+- [ ] Thu âm sẵn âm tiết (không phụ thuộc giọng máy); soát nội dung bởi người bản ngữ/giáo viên
 
 ## Giai đoạn 3 — Trung & cao cấp
 - [ ] Nội dung HSK 3–6 (từ vựng, ngữ pháp, bài học), gắn cấp HSK 3.0

@@ -1,4 +1,4 @@
-import { ArrowLeft, AudioLines, Blocks, BookOpen, Check, Combine, MessagesSquare, NotebookPen, Target, Trophy } from "lucide-react";
+import { ArrowLeft, AudioLines, Blocks, BookOpen, Brush, Check, Combine, MessagesSquare, NotebookPen, Target, Trophy } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { DialoguePlayer } from "@/components/learning/DialoguePlayer";
@@ -7,15 +7,17 @@ import { ExerciseRunner } from "@/components/learning/exercises/ExerciseRunner";
 import { GrammarCard } from "@/components/learning/GrammarCard";
 import { HanziText } from "@/components/learning/HanziText";
 import { useHanziParts } from "@/components/learning/use-hanzi-parts";
+import { VoiceWarning } from "@/components/learning/VoiceWarning";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { usePath } from "@/hooks/use-path";
 import { useVocab } from "@/hooks/use-vocab";
-import { type Dialogue, type GrammarPoint, loadDialogues, loadGrammar, loadPinyin, loadSyllables, type PinyinData, type Syllable } from "@/lib/content";
-import { buildLessonExercises, composeExercise, type Exercise, pinyinExercise } from "@/lib/exercises";
+import { type Dialogue, type GrammarPoint, loadDialogues, loadGrammar, loadPinyin, loadStrokes, loadSyllables, type PinyinData, type StrokeData, type Syllable } from "@/lib/content";
+import { buildLessonExercises, composeExercise, type Exercise, pinyinExercise, strokeExercises } from "@/lib/exercises";
 import { composeQuestionsFor, lessonChars, partsByLesson } from "@/lib/hanzi-parts";
 import { buildPinyinExercises } from "@/lib/pinyin-drill";
+import { shuffle } from "@/lib/random";
 import { charHint } from "@/lib/review-mix";
 import { pinyinScope } from "@/lib/syllables";
 import { cn } from "@/lib/utils";
@@ -25,13 +27,15 @@ import { BlendStep } from "./components/BlendStep";
 import { LessonSummary } from "./components/LessonSummary";
 import { PartsStep } from "./components/PartsStep";
 import { PinyinSoundsStep } from "./components/PinyinSoundsStep";
+import { StrokesStep } from "./components/StrokesStep";
 import { WordStep } from "./components/WordStep";
 
-type Step = "intro" | "sounds" | "blend" | "parts" | "words" | "grammar" | "dialogue" | "practice" | "summary";
+type Step = "intro" | "sounds" | "blend" | "strokes" | "parts" | "words" | "grammar" | "dialogue" | "practice" | "summary";
 const STEP_META: Record<Exclude<Step, "summary">, { label: string; icon: typeof Target }> = {
   intro: { label: "Mục tiêu", icon: Target },
   sounds: { label: "Âm mới", icon: AudioLines },
   blend: { label: "Ghép vần", icon: Combine },
+  strokes: { label: "Nét chữ", icon: Brush },
   parts: { label: "Bộ mới", icon: Blocks },
   words: { label: "Từ mới", icon: BookOpen },
   grammar: { label: "Ngữ pháp", icon: NotebookPen },
@@ -47,6 +51,7 @@ export default function LessonPage() {
   const [dialogues, setDialogues] = useState<Dialogue[]>([]);
   const [pinyinData, setPinyinData] = useState<PinyinData | null>(null);
   const [syllables, setSyllables] = useState<Syllable[]>([]);
+  const [strokeData, setStrokeData] = useState<StrokeData | null>(null);
   const hp = useHanziParts();
   const [step, setStep] = useState<Step>("intro");
   const [exercises, setExercises] = useState<Exercise[] | null>(null);
@@ -59,6 +64,7 @@ export default function LessonPage() {
     void loadDialogues().then(setDialogues);
     void loadPinyin().then(setPinyinData);
     void loadSyllables().then(setSyllables);
+    void loadStrokes().then(setStrokeData);
   }, []);
   useEffect(() => {
     setStep("intro");
@@ -83,11 +89,13 @@ export default function LessonPage() {
 
   const steps: Exclude<Step, "summary">[] = spec
     ? ["intro", "sounds", "blend", "practice"]
-    : (["intro", "parts", "words", "grammar", "dialogue", "practice"] as const).filter(
+    : lesson?.strokes
+      ? ["intro", "strokes", "practice"]
+      : (["intro", "parts", "words", "grammar", "dialogue", "practice"] as const).filter(
         (s) => (s !== "parts" || newParts.length) && (s !== "words" || words.length) && (s !== "grammar" || points.length) && (s !== "dialogue" || dialogue),
       );
 
-  if (!lessons || loading || (spec && (!pinyinData || !syllables.length))) return <Skeleton className="h-96 rounded-lg" />;
+  if (!lessons || loading || (spec && (!pinyinData || !syllables.length)) || (lesson?.strokes && !strokeData)) return <Skeleton className="h-96 rounded-lg" />;
   if (!lesson) return <EmptyState title="Không tìm thấy bài học" mood="sleepy" action={<Button asChild><Link to="/path">Về lộ trình</Link></Button>} />;
   if (states.get(lesson.id) === "locked")
     return (
@@ -98,7 +106,9 @@ export default function LessonPage() {
 
   const goNext = () => setStep(steps[steps.indexOf(step as (typeof steps)[number]) + 1] ?? "practice");
   const startPractice = () => {
-    if (spec && scope) {
+    if (lesson.strokes && strokeData) {
+      setExercises(shuffle(strokeExercises(strokeData)));
+    } else if (spec && scope) {
       const rules = spec.review ? lessons.slice(0, idx + 1).flatMap((l) => l.pinyin?.rules ?? []) : spec.rules;
       const qs = buildPinyinExercises(syllables, scope, { demo: spec.demo, tones: spec.tones, review: spec.review, rules });
       setExercises(qs.map(pinyinExercise));
@@ -123,7 +133,7 @@ export default function LessonPage() {
           </Link>
         </Button>
         <span className="truncate text-sm font-black text-muted-foreground">
-          {spec ? "Nhập môn pinyin" : `HSK ${lesson.level}`} · Bài {lesson.id.slice(-2)}
+          {lesson.level === 0 ? "Nhập môn" : `HSK ${lesson.level}`} · Bài {lesson.id.slice(-2)}
         </span>
       </div>
 
@@ -158,11 +168,14 @@ export default function LessonPage() {
 
       {step === "intro" && (
         <div className="mx-auto max-w-xl space-y-4">
+          {spec && <VoiceWarning />}
           <Card className="overflow-hidden">
             <div className="bg-gradient-to-br from-candy-pink via-candy-lilac to-candy-sky p-6">
               <h1 className="text-2xl font-black md:text-3xl">{lesson.title}</h1>
               <p className="font-bold text-foreground/70">
-                {spec
+                {lesson.strokes && strokeData
+                  ? `${strokeData.strokes.length} nét cơ bản · ${strokeData.rules.length} quy tắc viết · bài tập`
+                  : spec
                   ? spec.review
                     ? "Biến điệu · ghép vần · tổng ôn"
                     : `${spec.initials.length + spec.finals.length} âm mới · ghép vần · bài tập`
@@ -202,6 +215,8 @@ export default function LessonPage() {
       {step === "blend" && spec && scope && pinyinData && (
         <BlendStep spec={spec} scope={scope} data={pinyinData} syllables={syllables} onDone={startPractice} />
       )}
+
+      {step === "strokes" && strokeData && <StrokesStep data={strokeData} onDone={startPractice} />}
 
       {step === "parts" && hp && <PartsStep parts={newParts} chars={chars} hp={hp} onDone={goNext} />}
 

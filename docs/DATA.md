@@ -94,6 +94,11 @@ thông tin chữ (pinyin, Hán Việt, từ chứa chữ) suy ra từ từ vựn
 
 Danh sách thanh mẫu/vận mẫu, ví dụ (chữ + pinyin), mẹo so sánh tiếng Việt, và các nhóm luyện thanh (妈麻马骂…).
 
+## 7a. Nét cơ bản — `src/content/hanzi/strokes.json`
+`{ strokes: [{ glyph, name, pinyin, vi, desc, example }], rules: [{ title, example, explain }], exercises: [ChooseExercise] }` —
+dùng cho bài `nt-01` (`"strokes": true`). Chữ `example` của quy tắc phải có trong từ vựng (nút Tập viết mở trang chữ).
+Câu hỏi khoá sổ lỗi theo chỉ số (`s:#i`) — thêm câu mới vào **cuối** mảng, không chèn giữa.
+
 ## 7b. Bảng âm tiết — `src/content/syllables.json`
 
 `{ "s": "cha", "i": "ch", "f": "a", "t": ["插", "茶", "", "岔"] }` — `i` phụ âm đầu ("" nếu không có), `f` vần (tên trong

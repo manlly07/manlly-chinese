@@ -34,7 +34,8 @@ Mỗi bài có trường `pinyin`: `initials`/`finals` (mảnh MỚI của bài,
 bài tập cố ý hỏi âm tiết ngoài `demo` để luyện tự ghép), `rules` (quy tắc viết; mỗi ví dụ `{ parts, answer, wrong }` thành 1 câu hỏi),
 cờ `tones` / `zero` (y, w) / `review` / `sandhi`. Bài tập sinh tự động (`lib/pinyin-drill.ts`) từ `syllables.json`.
 Âm tiết mới → thêm vào `src/content/syllables.json` kèm chữ đại diện cho từng thanh (chữ thông dụng, tránh chữ đa âm — TTS đọc chữ đó).
-Nhập môn pinyin không có kiểm tra chặng; "Kiểm tra nhanh pinyin" (`/test/pinyin`) cho người đã biết bỏ qua.
+Nhập môn không có kiểm tra chặng; "Kiểm tra nhanh pinyin" (`/test/pinyin`) cho người đã biết bỏ qua (xếp lớp tới bài cấp 0 cuối).
+Bài cuối Chặng 0 là `nt-01` "Nét cơ bản & thứ tự viết" (`"strokes": true`, nội dung `hanzi/strokes.json`) — cầu nối sang bước "Bộ mới".
 
 ## Bộ thủ trong bài HSK
 Bước "Bộ mới" tự tính (`lib/hanzi-parts.ts#partsByLesson`): bộ xuất hiện lần đầu trong chữ của bài, tối đa 6, ưu tiên bộ dùng lại nhiều.

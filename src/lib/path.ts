@@ -54,21 +54,21 @@ export function checkpointState(cp: Checkpoint, lessons: Lesson[], states: Map<s
 
 /**
  * Việc nên làm tiếp trên lộ trình: bài mở đầu tiên chưa xong.
- * Bỏ qua bài Nhập môn pinyin nằm trước bài xa nhất đã học — người học từ trước khi có Chặng 0 không bị kéo về.
+ * Bỏ qua bài Nhập môn (cấp 0) nằm trước bài xa nhất đã học — người học từ trước khi có Chặng 0 không bị kéo về.
  */
 export function nextLesson(lessons: Lesson[], states: Map<string, LessonState>, progress: Pick<ProgressData, "lessons"> = { lessons: {} }): Lesson | undefined {
   let furthest = -1;
   lessons.forEach((l, i) => {
     if (progress.lessons[l.id]) furthest = i;
   });
-  const skip = (l: Lesson, i: number) => !!l.pinyin && i < furthest;
+  const skip = (l: Lesson, i: number) => l.level === 0 && i < furthest;
   return (
     lessons.find((l, i) => states.get(l.id) === "open" && !skip(l, i)) ?? lessons.find((l, i) => states.get(l.id) !== "done" && !skip(l, i))
   );
 }
 
-/** Bài pinyin cuối — đạt "Kiểm tra nhanh pinyin" thì xếp lớp tới bài này (mở thẳng HSK 1). */
-export const lastPinyinLesson = (lessons: Lesson[]) => lessons.filter((l) => l.pinyin).at(-1);
+/** Bài cuối của Nhập môn (cấp 0) — đạt "Kiểm tra nhanh pinyin" thì xếp lớp tới bài này (mở thẳng HSK 1). */
+export const lastIntroLesson = (lessons: Lesson[]) => lessons.filter((l) => l.level === 0).at(-1);
 
 /** Xếp lớp mới chỉ được tiến lên, không lùi lại kết quả xếp lớp cũ. */
 export function placementAdvances(lessons: Lesson[], current: ProgressData["placement"], lessonId: string): boolean {

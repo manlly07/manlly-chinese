@@ -16,7 +16,7 @@ import { useProgress } from "@/store/progress";
 // lệch ngang tạo đường uốn lượn
 const OFFSET = [0, 56, 84, 56, 0, -56, -84, -56];
 const LEVEL_INFO: Record<number, { name: string; cls: string }> = {
-  0: { name: "Chặng 0 · Nhập môn pinyin", cls: "from-candy-lilac to-candy-sky" },
+  0: { name: "Chặng 0 · Nhập môn: pinyin & nét chữ", cls: "from-candy-lilac to-candy-sky" },
   1: { name: "HSK 1 · Sơ cấp 1", cls: "from-candy-pink to-candy-yellow" },
   2: { name: "HSK 2 · Sơ cấp 2", cls: "from-candy-sky to-candy-mint" },
 };
@@ -79,7 +79,7 @@ export default function PathPage() {
               {lvl === 0 && (
                 <div className="mt-3 flex flex-wrap items-center gap-2">
                   <p className="flex-1 text-sm font-semibold text-foreground/80">
-                    Học từng phụ âm đầu và vần riêng lẻ, rồi tự ghép thành âm tiết — để đọc được mọi chữ về sau.
+                    Học từng phụ âm đầu và vần riêng lẻ rồi tự ghép thành âm tiết, sau đó làm quen nét chữ — nền móng để đọc và viết mọi chữ về sau.
                   </p>
                   {list.some((l) => states.get(l.id) !== "done") && (
                     <Button variant="secondary" size="sm" asChild>

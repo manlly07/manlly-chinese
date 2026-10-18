@@ -43,7 +43,8 @@ npm install
 npm run dev        # chạy dev
 npm run lint       # ESLint toàn bộ, 0 warning (lint:fix để tự sửa)
 npm run build      # lint → tsc -b → vite build → dist/
-npm run check      # validate-content + build (pre-push chạy lệnh này)
+npm test           # Vitest — logic thuần trong src/lib chạy trên dữ liệu thật (*.test.ts cạnh file nguồn)
+npm run check      # validate-content + test + build (pre-push chạy lệnh này)
 npm run preview
 node scripts/validate-content.mjs   # kiểm tra dữ liệu học (bắt buộc chạy sau khi sửa src/content)
 ```
@@ -52,10 +53,10 @@ Git hooks nằm ở `.githooks/` (bật qua `npm install` → script `prepare` �
 `pre-commit` lint file đã stage + validate-content nếu sửa `src/content/`; `pre-push` chạy `npm run check`.
 ESLint chặn `localStorage` ngoài `src/store/` và `src/lib/repository/`.
 
-> Trạng thái hiện tại: **xong Giai đoạn 0, 1, 2, 2b, 2c** — lộ trình Chặng 0 Nhập môn pinyin (9 bài, ghép vần) + 40 bài HSK 1–2
+> Trạng thái hiện tại: **xong Giai đoạn 0, 1, 2, 2b, 2c** — lộ trình Chặng 0 Nhập môn (9 bài pinyin ghép vần + 1 bài nét chữ) + 40 bài HSK 1–2
 > (có bước “Bộ mới” học bộ thủ trước khi học chữ), kiểm tra chặng, ôn tổng hợp hằng ngày, kiểm tra tuần, sổ lỗi sai, nhiệm vụ ngày;
 > progress schema **v3**, settings **v2**. Còn placeholder: đọc hiểu, thi thử, từ điển.
-> Nguyên tắc sư phạm: **học thành phần trước, ghép sau** — phụ âm đầu + vần → âm tiết; bộ → chữ. Khoá sổ lỗi: `w: g: l: p: c:`.
+> Nguyên tắc sư phạm: **học thành phần trước, ghép sau** — phụ âm đầu + vần → âm tiết; bộ → chữ. Khoá sổ lỗi: `w: g: l: p: c: s:`.
 > Trang mới phải đăng ký bằng `lazyPage()` (không dùng `React.lazy` trực tiếp) để tự phục hồi khi triển khai bản mới.
 > Toast: `import { toast } from "sonner"`; `<Toaster />` (`components/ui/sonner.tsx`) lấy theme từ `settings.theme`, không dùng next-themes.
 

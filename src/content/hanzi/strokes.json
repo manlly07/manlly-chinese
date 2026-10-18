@@ -1,0 +1,35 @@
+{
+  "strokes": [
+    { "glyph": "㇐", "name": "横", "pinyin": "héng", "vi": "Nét ngang", "desc": "Viết từ trái sang phải, hơi nhếch lên ở cuối.", "example": "一" },
+    { "glyph": "㇑", "name": "竖", "pinyin": "shù", "vi": "Nét sổ", "desc": "Viết thẳng từ trên xuống dưới.", "example": "十" },
+    { "glyph": "㇒", "name": "撇", "pinyin": "piě", "vi": "Nét phẩy", "desc": "Từ trên phải đi xuống dưới trái, nhẹ dần ở cuối.", "example": "八" },
+    { "glyph": "㇏", "name": "捺", "pinyin": "nà", "vi": "Nét mác", "desc": "Từ trên trái đi xuống dưới phải, đậm dần rồi thoát ngang.", "example": "人" },
+    { "glyph": "㇔", "name": "点", "pinyin": "diǎn", "vi": "Nét chấm", "desc": "Một nét ngắn, thường đi xuống sang phải.", "example": "六" },
+    { "glyph": "㇀", "name": "提", "pinyin": "tí", "vi": "Nét hất", "desc": "Từ dưới trái hất lên trên phải — hay gặp ở bộ 扌 氵.", "example": "我" },
+    { "glyph": "㇕", "name": "横折", "pinyin": "héngzhé", "vi": "Nét ngang gập", "desc": "Đi ngang rồi gập thẳng xuống, viết liền một nét.", "example": "口" },
+    { "glyph": "㇚", "name": "竖钩", "pinyin": "shùgōu", "vi": "Nét sổ móc", "desc": "Sổ thẳng xuống rồi móc nhẹ sang trái.", "example": "小" }
+  ],
+  "rules": [
+    { "title": "Ngang trước, sổ sau", "example": "十", "explain": "Chữ 十: viết nét ngang 一 trước, rồi mới đến nét sổ 丨." },
+    { "title": "Phẩy trước, mác sau", "example": "人", "explain": "Chữ 人: nét phẩy (xuống trái) trước, nét mác (xuống phải) sau." },
+    { "title": "Trên trước, dưới sau", "example": "三", "explain": "Chữ 三: ba nét ngang viết lần lượt từ trên xuống." },
+    { "title": "Trái trước, phải sau", "example": "你", "explain": "Chữ 你: viết bộ 亻 bên trái xong mới viết 尔 bên phải — đúng như tách bộ." },
+    { "title": "Ngoài trước, trong sau", "example": "月", "explain": "Chữ 月: viết khung ngoài trước, hai nét ngang bên trong sau." },
+    { "title": "Vào nhà rồi đóng cửa", "example": "国", "explain": "Chữ 国: viết khung (trừ đáy) → phần bên trong → cuối cùng mới đóng nét ngang đáy." },
+    { "title": "Giữa trước, hai bên sau", "example": "小", "explain": "Chữ 小: nét sổ móc ở giữa trước, rồi chấm trái, chấm phải." }
+  ],
+  "exercises": [
+    { "type": "choose", "prompt": "Nét ngang 一 viết theo hướng nào?", "options": ["Từ trái sang phải", "Từ phải sang trái", "Từ dưới lên trên"], "answer": "Từ trái sang phải" },
+    { "type": "choose", "prompt": "Chữ 十 viết nét nào trước?", "options": ["Nét ngang 一", "Nét sổ 丨"], "answer": "Nét ngang 一" },
+    { "type": "choose", "prompt": "Chữ 人 viết nét nào trước?", "options": ["Nét phẩy (xuống trái)", "Nét mác (xuống phải)"], "answer": "Nét phẩy (xuống trái)" },
+    { "type": "choose", "prompt": "Chữ 三 viết theo thứ tự nào?", "options": ["Từ trên xuống dưới", "Từ dưới lên trên", "Nét dài nhất trước"], "answer": "Từ trên xuống dưới" },
+    { "type": "choose", "prompt": "Chữ 你 viết phần nào trước?", "options": ["Bộ 亻 bên trái", "Phần 尔 bên phải"], "answer": "Bộ 亻 bên trái" },
+    { "type": "choose", "prompt": "Chữ 月 viết phần nào trước?", "options": ["Khung bên ngoài", "Hai nét ngang bên trong"], "answer": "Khung bên ngoài" },
+    { "type": "choose", "prompt": "Chữ 国: nét cuối cùng là nét nào?", "options": ["Nét ngang đóng đáy khung", "Nét chấm bên trong", "Nét sổ bên trái"], "answer": "Nét ngang đóng đáy khung" },
+    { "type": "choose", "prompt": "Chữ 小 viết nét nào trước?", "options": ["Nét sổ móc ở giữa", "Chấm bên trái", "Chấm bên phải"], "answer": "Nét sổ móc ở giữa" },
+    { "type": "choose", "prompt": "Nét ㇒ tên là gì?", "options": ["Nét phẩy", "Nét mác", "Nét hất"], "answer": "Nét phẩy" },
+    { "type": "choose", "prompt": "Nét ㇏ tên là gì?", "options": ["Nét mác", "Nét phẩy", "Nét chấm"], "answer": "Nét mác" },
+    { "type": "choose", "prompt": "Nét ㇀ (hay gặp ở bộ 扌, 氵) đi theo hướng nào?", "options": ["Từ dưới trái hất lên trên phải", "Từ trên phải xuống dưới trái", "Thẳng từ trên xuống"], "answer": "Từ dưới trái hất lên trên phải" },
+    { "type": "choose", "prompt": "Chữ 口 có mấy nét?", "options": ["3 nét", "4 nét", "2 nét"], "answer": "3 nét" }
+  ]
+}

@@ -1,4 +1,4 @@
-import { type Dialogue, type GrammarPoint, hanChars, type Lesson, type Syllable, type Word } from "./content";
+import { type Dialogue, type GrammarPoint, hanChars, type Lesson, type StrokeData, type Syllable, type Word } from "./content";
 import { DAY, dateKey, isoWeekKey } from "./date";
 import { composeExercise, type Exercise, grammarExercises, type LineRef, listenExercise, pinyinExercise, wordExercise } from "./exercises";
 import { composeQuestion, composeQuestionsFor, type HanziParts } from "./hanzi-parts";
@@ -19,6 +19,7 @@ export interface Knowledge {
   dialogues: Map<string, Dialogue>;
   syllables: Syllable[];
   parts: HanziParts;
+  strokes: StrokeData;
 }
 
 type Progress = Pick<ProgressData, "lessons" | "placement" | "cards" | "mistakes">;
@@ -99,26 +100,55 @@ function mix(k: Knowledge, scope: Lesson[], p: Progress, spec: MixSpec, now: num
   return [...words, ...grammar, ...listen, ...compose];
 }
 
-/** Chỉ mới học pinyin (chưa có bài HSK) → ôn/kiểm tra bằng câu pinyin. */
-const pinyinOnly = (scope: Lesson[]) => scope.length > 0 && scope.every((l) => l.pinyin);
+/** Chỉ mới học Nhập môn (cấp 0, chưa có bài HSK) → ôn/kiểm tra bằng câu pinyin. */
+const introOnly = (scope: Lesson[]) => scope.length > 0 && scope.every((l) => l.level === 0);
+
+/** Âm tiết đang nằm trong sổ lỗi (sai nhiều trước). */
+const weakSyllables = (mistakes: Record<string, MistakeEntry>) =>
+  Object.entries(mistakes)
+    .filter(([key]) => key.startsWith("p:"))
+    .sort((a, b) => b[1].count - a[1].count || b[1].last - a[1].last)
+    .map(([key]) => key);
+
+/**
+ * Câu pinyin để trộn vào ôn tập sau khi đã sang HSK: âm hay sai trước, còn lại ôn ngẫu nhiên phần đã học —
+ * để kỹ năng ghép vần không bị quên.
+ */
+export function pinyinMix(k: Knowledge, scope: Lesson[], mistakes: Record<string, MistakeEntry>, n: number): Exercise[] {
+  const learned = scope.filter((l) => l.pinyin);
+  if (!learned.length || n <= 0) return [];
+  const out = weakSyllables(mistakes)
+    .map((ref) => pinyinFromRef(ref, k.syllables, learned))
+    .filter((q) => q !== null)
+    .slice(0, n);
+  if (out.length < n) out.push(...buildPinyinReview(k.syllables, learned, n - out.length));
+  return out.slice(0, n).map(pinyinExercise);
+}
+
+/** Số câu pinyin trong ôn hằng ngày: 1 câu giữ nhịp, tới 3 câu khi có âm hay sai. */
+const dailyPinyinCount = (scope: Lesson[], mistakes: Record<string, MistakeEntry>) =>
+  scope.some((l) => l.pinyin) ? Math.max(1, Math.min(3, weakSyllables(mistakes).length)) : 0;
 
 /** Ôn tổng hợp hằng ngày: mọi kiến thức đã học, ưu tiên phần sắp quên / hay sai. */
 export function buildDailyReview(k: Knowledge, p: Progress, now = Date.now(), size = 15): Exercise[] {
   const scope = learnedLessons(k, p);
   if (!scope.length) return [];
-  if (pinyinOnly(scope)) return buildPinyinReview(k.syllables, scope, size).map(pinyinExercise);
+  if (introOnly(scope)) return buildPinyinReview(k.syllables, scope, size).map(pinyinExercise);
   const listen = Math.min(3, linesOf(k, scope).length);
   const grammar = Math.min(4, scope.flatMap((l) => l.grammar).length * 3);
   const compose = 2;
-  return shuffle(mix(k, scope, p, { words: size - listen - grammar - compose, grammar, listen, compose }, now));
+  const pinyin = pinyinMix(k, scope, p.mistakes, dailyPinyinCount(scope, p.mistakes));
+  const words = size - listen - grammar - compose - pinyin.length;
+  return shuffle([...mix(k, scope, p, { words, grammar, listen, compose }, now), ...pinyin]);
 }
 
 /** Kiểm tra tổng hợp tuần: phủ đều toàn bộ đã học (20 câu). */
 export function buildWeeklyTest(k: Knowledge, p: Progress, now = Date.now()): Exercise[] {
   const scope = learnedLessons(k, p);
   if (!scope.length) return [];
-  if (pinyinOnly(scope)) return buildPinyinReview(k.syllables, scope, 20).map(pinyinExercise);
-  return shuffle(mix(k, scope, p, { words: 9, grammar: 6, listen: 3, compose: 2 }, now));
+  if (introOnly(scope)) return buildPinyinReview(k.syllables, scope, 20).map(pinyinExercise);
+  const pinyin = pinyinMix(k, scope, p.mistakes, 2);
+  return shuffle([...mix(k, scope, p, { words: 9 - pinyin.length, grammar: 6, listen: 3, compose: 2 }, now), ...pinyin]);
 }
 
 // ---------- Kiểm tra chặng ----------
@@ -194,6 +224,10 @@ export function buildMistakeSession(k: Knowledge, mistakes: Record<string, Mista
     } else if (kind === "p") {
       const q = pinyinFromRef(key, k.syllables, k.lessons);
       if (q) out.push(pinyinExercise(q));
+    } else if (kind === "s") {
+      const i = Number(rest.slice(1));
+      const ex = k.strokes.exercises[i];
+      if (ex) out.push({ kind: "stroke", ex, ref: key });
     } else if (kind === "c") {
       const q = composeQuestion(rest, k.parts, charHint(all)(rest));
       if (q) out.push(composeExercise(q));

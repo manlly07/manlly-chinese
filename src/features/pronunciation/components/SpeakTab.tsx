@@ -27,7 +27,7 @@ import { playSfx } from "@/lib/sfx";
 import { cn } from "@/lib/utils";
 import { useProgress } from "@/store/progress";
 import { useSettings } from "@/store/settings";
-import { useRecorder } from "../use-recorder";
+import { useRecorder } from "@/components/learning/use-recorder";
 import { PitchChart } from "./PitchChart";
 
 type Mode = "tone" | "word" | "sentence";

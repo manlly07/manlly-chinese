@@ -270,6 +270,16 @@
         "demo": [],
         "rules": []
       }
+    },
+    {
+      "id": "nt-01",
+      "level": 0,
+      "title": "Nét cơ bản & thứ tự viết",
+      "goals": ["Nhận ra 8 nét cơ bản của chữ Hán", "Viết đúng thứ tự nét theo 7 quy tắc"],
+      "words": [],
+      "grammar": [],
+      "dialogue": null,
+      "strokes": true
     }
   ]
 }

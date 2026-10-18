@@ -144,7 +144,7 @@ export default function PlacementPage() {
               <Target className="size-7" aria-hidden />
             </span>
             <p className="font-semibold">
-              Bài kiểm tra có tối đa {Math.ceil(lessons.filter((l) => !l.pinyin).length / 10) * 5} câu, chia thành từng chặng theo lộ trình. Sai nhiều ở một chặng thì dừng —
+              Bài kiểm tra có tối đa {Math.ceil(lessons.filter((l) => l.level > 0).length / 10) * 5} câu, chia thành từng chặng theo lộ trình. Sai nhiều ở một chặng thì dừng —
               bạn sẽ bắt đầu từ chặng đó.
             </p>
           </div>

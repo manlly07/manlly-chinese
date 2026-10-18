@@ -262,6 +262,22 @@ for (const file of jsonFiles("lessons")) {
   }
 }
 
+// ---------- Nét cơ bản & thứ tự viết ----------
+const strokesFile = join(ROOT, "hanzi/strokes.json");
+if (existsSync(strokesFile)) {
+  const d = readJson(strokesFile);
+  const allChars = new Set([...wordChars.values()].flat());
+  (d?.strokes ?? []).forEach((s, k) => {
+    for (const f of ["glyph", "name", "pinyin", "vi", "desc", "example"]) if (!s?.[f]?.trim()) err(strokesFile, `strokes[${k}]: thiếu "${f}"`);
+  });
+  (d?.rules ?? []).forEach((r, k) => {
+    if (!r?.title?.trim() || !r.explain?.trim()) err(strokesFile, `rules[${k}]: thiếu "title"/"explain"`);
+    // nút "Tập viết" mở trang chữ — chữ phải có trong từ vựng
+    if (!allChars.has(r?.example)) err(strokesFile, `rules[${k}]: chữ ví dụ "${r?.example}" không có trong từ vựng (trang Tập viết sẽ trống)`);
+  });
+  (d?.exercises ?? []).forEach((ex, k) => checkExercise(strokesFile, `exercises[${k}]`, ex));
+}
+
 // ---------- Cấu tạo chữ ----------
 const charsFile = join(ROOT, "hanzi/chars.json");
 const compFile = join(ROOT, "hanzi/components.json");

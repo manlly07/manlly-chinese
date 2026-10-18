@@ -4,6 +4,7 @@ import type { Syllable } from "@/lib/content";
 import { TONE_CLASS, type Tone } from "@/lib/pinyin";
 import { hanziFor, indexSyllables, spellNote, syllableKey, withTone } from "@/lib/syllables";
 import { cn } from "@/lib/utils";
+import { TryTone } from "./TryTone";
 import { useSpeech } from "./use-speech";
 
 interface Props {
@@ -43,6 +44,8 @@ export function SyllableBlender({ syllables, initials, finals, zero, initial, cl
   const index = useMemo(() => indexSyllables(syllables), [syllables]);
   const [ini, setIni] = useState(initial?.[0] ?? initials[0] ?? NONE);
   const [fin, setFin] = useState(initial?.[1] ?? finals[0] ?? "");
+  // thanh vừa nghe — để "Đọc thử" chấm đúng thanh đó
+  const [tone, setTone] = useState<Tone | null>(null);
   const syl = index.get(syllableKey(ini, fin));
   const note = syl ? spellNote(ini, fin) : null;
   const iniList = zero ? [NONE, ...initials] : initials;
@@ -50,6 +53,7 @@ export function SyllableBlender({ syllables, initials, finals, zero, initial, cl
   const play = (s: Syllable, t: Tone) => {
     const h = hanziFor(s, t);
     if (h) void say(h);
+    setTone(t);
   };
   const pickIni = (x: string) => {
     setIni(x);
@@ -102,6 +106,11 @@ export function SyllableBlender({ syllables, initials, finals, zero, initial, cl
                 );
               })}
             </div>
+            {tone && hanziFor(syl, tone) && (
+              <div className="mt-4">
+                <TryTone key={`${syl.s}${tone}`} label={withTone(syl, tone)} tone={tone} />
+              </div>
+            )}
           </>
         ) : (
           <p className="mt-3 text-sm font-bold text-muted-foreground">Tiếng Trung phổ thông không có âm tiết này — thử ghép mảnh khác nhé.</p>
