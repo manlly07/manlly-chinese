@@ -150,6 +150,57 @@ export interface Lesson {
   words: string[];
   grammar: string[];
   dialogue: string | null;
+  /** chỉ có ở bài Nhập môn pinyin (level 0) */
+  pinyin?: PinyinSpec;
+}
+
+/** Quy tắc viết pinyin; mỗi ví dụ là một câu hỏi "ghép rồi viết đúng". `parts[0]` rỗng = không có phụ âm đầu. */
+export interface PinyinRule {
+  title: string;
+  explain: string;
+  examples: { parts: [string, string]; answer: string; wrong: string[] }[];
+}
+
+export interface PinyinSpec {
+  /** thanh mẫu / vận mẫu mới của bài */
+  initials: string[];
+  finals: string[];
+  /** âm tiết trình diễn trong bước ghép vần; phần còn lại dùng để kiểm tra khả năng tự ghép */
+  demo: string[];
+  rules: PinyinRule[];
+  /** bài dạy 4 thanh */
+  tones?: boolean;
+  /** từ bài này có âm tiết không phụ âm đầu (y, w) */
+  zero?: boolean;
+  /** bài tổng ôn: bài tập lấy từ mọi âm đã học */
+  review?: boolean;
+  /** dạy biến điệu */
+  sandhi?: boolean;
+}
+
+/** Một âm tiết: `i` phụ âm đầu ("" nếu không có), `f` vận mẫu, `t` chữ đại diện cho thanh 1–4 ("" = không có chữ phổ biến). */
+export interface Syllable {
+  s: string;
+  i: string;
+  f: string;
+  t: string[];
+}
+
+/** Cấu tạo chữ (sinh bởi scripts/build-chars.mjs). `semantic`/`phonetic`: phần gợi nghĩa/gợi âm của chữ hình thanh. */
+export interface CharEntry {
+  char: string;
+  radical: string;
+  parts: string[];
+  semantic?: string;
+  phonetic?: string;
+}
+
+/** Thành phần cấu tạo chữ (bộ thủ, bộ phận) có âm Hán Việt và nghĩa. */
+export interface ComponentInfo {
+  c: string;
+  hanViet: string;
+  meaning: string;
+  note?: string;
 }
 
 export interface Radical {
@@ -187,3 +238,11 @@ export const loadGrammar = () =>
 export const loadDialogues = () => once("dialogues", async () => (await Promise.all(byLevel(dialogueModules).map((l) => l()))).flat());
 
 export const loadRadicals = () => once("radicals", () => import("../content/hanzi/radicals.json").then((m) => m.default as Radical[]));
+
+export const loadSyllables = () =>
+  once("syllables", () => import("../content/syllables.json").then((m) => (m.default as { syllables: Syllable[] }).syllables));
+
+export const loadChars = () =>
+  once("chars", () => import("../content/hanzi/chars.json").then((m) => new Map((m.default as CharEntry[]).map((c) => [c.char, c]))));
+
+export const loadComponents = () => once("components", () => import("../content/hanzi/components.json").then((m) => m.default as ComponentInfo[]));

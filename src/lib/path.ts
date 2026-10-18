@@ -52,9 +52,28 @@ export function checkpointState(cp: Checkpoint, lessons: Lesson[], states: Map<s
   return cp.lessons.every((l) => states.get(l.id) === "done") ? "open" : "locked";
 }
 
-/** Việc nên làm tiếp trên lộ trình: kiểm tra chặng đang mở, hoặc bài mở đầu tiên chưa xong. */
-export function nextLesson(lessons: Lesson[], states: Map<string, LessonState>): Lesson | undefined {
-  return lessons.find((l) => states.get(l.id) === "open") ?? lessons.find((l) => states.get(l.id) !== "done");
+/**
+ * Việc nên làm tiếp trên lộ trình: bài mở đầu tiên chưa xong.
+ * Bỏ qua bài Nhập môn pinyin nằm trước bài xa nhất đã học — người học từ trước khi có Chặng 0 không bị kéo về.
+ */
+export function nextLesson(lessons: Lesson[], states: Map<string, LessonState>, progress: Pick<ProgressData, "lessons"> = { lessons: {} }): Lesson | undefined {
+  let furthest = -1;
+  lessons.forEach((l, i) => {
+    if (progress.lessons[l.id]) furthest = i;
+  });
+  const skip = (l: Lesson, i: number) => !!l.pinyin && i < furthest;
+  return (
+    lessons.find((l, i) => states.get(l.id) === "open" && !skip(l, i)) ?? lessons.find((l, i) => states.get(l.id) !== "done" && !skip(l, i))
+  );
+}
+
+/** Bài pinyin cuối — đạt "Kiểm tra nhanh pinyin" thì xếp lớp tới bài này (mở thẳng HSK 1). */
+export const lastPinyinLesson = (lessons: Lesson[]) => lessons.filter((l) => l.pinyin).at(-1);
+
+/** Xếp lớp mới chỉ được tiến lên, không lùi lại kết quả xếp lớp cũ. */
+export function placementAdvances(lessons: Lesson[], current: ProgressData["placement"], lessonId: string): boolean {
+  const cur = current ? lessons.findIndex((l) => l.id === current.lessonId) : -1;
+  return lessons.findIndex((l) => l.id === lessonId) > cur;
 }
 
 /** Số sao theo điểm cao nhất: ≥80% 1 sao, ≥90% 2 sao, 100% 3 sao. */

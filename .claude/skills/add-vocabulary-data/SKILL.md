@@ -8,7 +8,9 @@ description: Thêm, sửa hoặc mở rộng dữ liệu từ vựng / chữ Há
 Đọc trước: `docs/DATA.md` (schema) và skill `chinese-content-conventions` (quy ước pinyin/Hán Việt).
 
 ## Quy trình
-1. **Xác định file đích**: `src/content/vocab/hsk-<n>.json` theo cấp HSK 2.0 của từ. Chữ đơn → thêm cả vào `src/content/hanzi/chars.json` nếu chưa có.
+1. **Xác định file đích**: `src/content/vocab/hsk-<n>.json` theo cấp HSK 2.0 của từ. `src/content/hanzi/chars.json` (cấu tạo chữ) là file **sinh tự động** — sau khi thêm từ có chữ mới, chạy
+   `node scripts/build-chars.mjs <dictionary.txt của Make Me a Hanzi>`; sửa cấu tạo sai bằng `OVERRIDES` trong script, không sửa tay JSON.
+   Thành phần mới lặp lại nhiều → thêm Hán Việt + nghĩa vào `src/content/hanzi/components.json` (validate cảnh báo chữ thiếu cấu tạo).
 2. **Kiểm tra trùng**: tìm `"hanzi": "<từ>"` trong toàn bộ `src/content/vocab/`. Từ đã có ở cấp khác → không thêm lại; chữ đa âm khác nghĩa → thêm với `id` khác pinyin.
 3. **Soạn mục từ** đủ trường: `id`, `hanzi`, `pinyin`, `hanViet`, `meaning`, `pos`, `hsk2`, `hsk3`, `topics`, `examples` (≥ 1 câu, ưu tiên chỉ dùng từ cùng cấp hoặc thấp hơn).
    - `id` = `hanzi + "|" + pinyin bỏ dấu, bỏ cách, ü→v`: `"女儿|nver"`.

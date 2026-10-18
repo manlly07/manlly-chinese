@@ -9,8 +9,10 @@ import { useProgress } from "@/store/progress";
 import { useSettings } from "@/store/settings";
 import { QuestionView } from "../QuizQuestionView";
 import { ChoiceView } from "./ChoiceView";
+import { ComposeView } from "./ComposeView";
 import { ListenView } from "./ListenView";
 import { OrderView } from "./OrderView";
+import { PinyinView } from "./PinyinView";
 
 export interface RunnerResult {
   correct: number;
@@ -97,9 +99,34 @@ export function ExerciseRunner({ exercises, onFinish, onExit, onAnswer, label }:
     setOk(null);
   };
 
-  const options = (): string[] =>
-    !cur ? [] : cur.kind === "word" ? cur.q.options.map((o) => o.key) : cur.kind === "listen" ? cur.options : cur.ex.type === "order" ? [] : cur.ex.options;
-  const correctKey = (): string => (!cur ? "" : cur.kind === "word" ? cur.q.answer : cur.kind === "listen" ? cur.answer : cur.ex.answer);
+  const options = (): string[] => {
+    if (!cur) return [];
+    switch (cur.kind) {
+      case "word":
+        return cur.q.options.map((o) => o.key);
+      case "listen":
+        return cur.options;
+      case "pinyin":
+        return cur.q.type === "build" ? [] : cur.q.options;
+      case "compose":
+        return cur.q.options;
+      case "grammar":
+        return cur.ex.type === "order" ? [] : cur.ex.options;
+    }
+  };
+  const correctKey = (): string => {
+    if (!cur) return "";
+    switch (cur.kind) {
+      case "word":
+      case "pinyin":
+      case "compose":
+        return cur.q.answer;
+      case "listen":
+        return cur.answer;
+      case "grammar":
+        return cur.ex.answer;
+    }
+  };
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -152,6 +179,10 @@ export function ExerciseRunner({ exercises, onFinish, onExit, onAnswer, label }:
       <div key={i}>
         {cur.kind === "word" ? (
           <QuestionView q={cur.q} chosen={chosen} onChoose={(k) => answer(k === cur.q.answer, k)} />
+        ) : cur.kind === "pinyin" ? (
+          <PinyinView q={cur.q} chosen={chosen} onChoose={(g, c) => answer(c, g)} />
+        ) : cur.kind === "compose" ? (
+          <ComposeView q={cur.q} chosen={chosen} onChoose={(o) => answer(o === cur.q.answer, o)} />
         ) : cur.kind === "listen" ? (
           <ListenView line={cur.line} options={cur.options} answer={cur.answer} chosen={chosen} onChoose={(o) => answer(o === cur.answer, o)} />
         ) : cur.ex.type === "order" ? (

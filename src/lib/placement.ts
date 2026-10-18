@@ -9,8 +9,12 @@ export interface PlacementBlock {
   questions: QuizQuestion[];
 }
 
-/** Chia lộ trình thành các khối ~10 bài, mỗi khối 5 câu (Hán→nghĩa / nghe→Hán) từ từ của khối. */
-export function buildPlacement(lessons: Lesson[], words: Map<string, Word>, perBlock = 5, blockSize = 10): PlacementBlock[] {
+/**
+ * Chia lộ trình HSK thành các khối ~10 bài, mỗi khối 5 câu (Hán→nghĩa / nghe→Hán) từ từ của khối.
+ * Bài Nhập môn pinyin không có từ nên không tạo khối — đạt khối đầu là mở luôn Chặng 0.
+ */
+export function buildPlacement(allLessons: Lesson[], words: Map<string, Word>, perBlock = 5, blockSize = 10): PlacementBlock[] {
+  const lessons = allLessons.filter((l) => !l.pinyin);
   const blocks: PlacementBlock[] = [];
   const pool = [...words.values()];
   for (let i = 0; i < lessons.length; i += blockSize) {

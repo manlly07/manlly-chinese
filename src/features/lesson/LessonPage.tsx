@@ -1,4 +1,4 @@
-import { ArrowLeft, BookOpen, Check, MessagesSquare, NotebookPen, Target, Trophy } from "lucide-react";
+import { ArrowLeft, AudioLines, Blocks, BookOpen, Check, Combine, MessagesSquare, NotebookPen, Target, Trophy } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { DialoguePlayer } from "@/components/learning/DialoguePlayer";
@@ -6,22 +6,33 @@ import { EmptyState } from "@/components/learning/EmptyState";
 import { ExerciseRunner } from "@/components/learning/exercises/ExerciseRunner";
 import { GrammarCard } from "@/components/learning/GrammarCard";
 import { HanziText } from "@/components/learning/HanziText";
+import { useHanziParts } from "@/components/learning/use-hanzi-parts";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { usePath } from "@/hooks/use-path";
 import { useVocab } from "@/hooks/use-vocab";
-import { type Dialogue, type GrammarPoint, loadDialogues, loadGrammar } from "@/lib/content";
-import { buildLessonExercises, type Exercise } from "@/lib/exercises";
+import { type Dialogue, type GrammarPoint, loadDialogues, loadGrammar, loadPinyin, loadSyllables, type PinyinData, type Syllable } from "@/lib/content";
+import { buildLessonExercises, composeExercise, type Exercise, pinyinExercise } from "@/lib/exercises";
+import { composeQuestionsFor, lessonChars, partsByLesson } from "@/lib/hanzi-parts";
+import { buildPinyinExercises } from "@/lib/pinyin-drill";
+import { charHint } from "@/lib/review-mix";
+import { pinyinScope } from "@/lib/syllables";
 import { cn } from "@/lib/utils";
 import { lessonXp } from "@/lib/xp";
 import { useProgress } from "@/store/progress";
+import { BlendStep } from "./components/BlendStep";
 import { LessonSummary } from "./components/LessonSummary";
+import { PartsStep } from "./components/PartsStep";
+import { PinyinSoundsStep } from "./components/PinyinSoundsStep";
 import { WordStep } from "./components/WordStep";
 
-type Step = "intro" | "words" | "grammar" | "dialogue" | "practice" | "summary";
+type Step = "intro" | "sounds" | "blend" | "parts" | "words" | "grammar" | "dialogue" | "practice" | "summary";
 const STEP_META: Record<Exclude<Step, "summary">, { label: string; icon: typeof Target }> = {
   intro: { label: "Mục tiêu", icon: Target },
+  sounds: { label: "Âm mới", icon: AudioLines },
+  blend: { label: "Ghép vần", icon: Combine },
+  parts: { label: "Bộ mới", icon: Blocks },
   words: { label: "Từ mới", icon: BookOpen },
   grammar: { label: "Ngữ pháp", icon: NotebookPen },
   dialogue: { label: "Hội thoại", icon: MessagesSquare },
@@ -34,6 +45,9 @@ export default function LessonPage() {
   const { words: allWords, loading } = useVocab();
   const [grammar, setGrammar] = useState<GrammarPoint[]>([]);
   const [dialogues, setDialogues] = useState<Dialogue[]>([]);
+  const [pinyinData, setPinyinData] = useState<PinyinData | null>(null);
+  const [syllables, setSyllables] = useState<Syllable[]>([]);
+  const hp = useHanziParts();
   const [step, setStep] = useState<Step>("intro");
   const [exercises, setExercises] = useState<Exercise[] | null>(null);
   const [result, setResult] = useState<{ score: number; xp: number } | null>(null);
@@ -43,6 +57,8 @@ export default function LessonPage() {
   useEffect(() => {
     void loadGrammar().then(setGrammar);
     void loadDialogues().then(setDialogues);
+    void loadPinyin().then(setPinyinData);
+    void loadSyllables().then(setSyllables);
   }, []);
   useEffect(() => {
     setStep("intro");
@@ -57,12 +73,21 @@ export default function LessonPage() {
   const words = useMemo(() => (lesson?.words ?? []).map((w) => byId.get(w)).filter((w) => !!w), [lesson, byId]);
   const points = useMemo(() => grammar.filter((g) => lesson?.grammar.includes(g.id)), [grammar, lesson]);
   const dialogue = dialogues.find((d) => d.id === lesson?.dialogue);
+  const spec = lesson?.pinyin;
+  const scope = useMemo(() => (lessons && lesson?.pinyin ? pinyinScope(lessons, lesson.id) : null), [lessons, lesson]);
+  // bộ mới của từng bài theo thứ tự lộ trình; bộ đã dạy tới bài này làm phương án nhiễu cho câu ghép chữ
+  const partsPlan = useMemo(() => (lessons && hp ? partsByLesson(lessons, byId, hp) : null), [lessons, byId, hp]);
+  const newParts = useMemo(() => (lesson && partsPlan?.get(lesson.id)) || [], [lesson, partsPlan]);
+  const newPartSet = useMemo(() => new Set(newParts), [newParts]);
+  const chars = useMemo(() => (lesson ? lessonChars(lesson, byId) : []), [lesson, byId]);
 
-  const steps = (["intro", "words", "grammar", "dialogue", "practice"] as const).filter(
-    (s) => (s !== "words" || words.length) && (s !== "grammar" || points.length) && (s !== "dialogue" || dialogue),
-  );
+  const steps: Exclude<Step, "summary">[] = spec
+    ? ["intro", "sounds", "blend", "practice"]
+    : (["intro", "parts", "words", "grammar", "dialogue", "practice"] as const).filter(
+        (s) => (s !== "parts" || newParts.length) && (s !== "words" || words.length) && (s !== "grammar" || points.length) && (s !== "dialogue" || dialogue),
+      );
 
-  if (!lessons || loading) return <Skeleton className="h-96 rounded-lg" />;
+  if (!lessons || loading || (spec && (!pinyinData || !syllables.length))) return <Skeleton className="h-96 rounded-lg" />;
   if (!lesson) return <EmptyState title="Không tìm thấy bài học" mood="sleepy" action={<Button asChild><Link to="/path">Về lộ trình</Link></Button>} />;
   if (states.get(lesson.id) === "locked")
     return (
@@ -73,9 +98,18 @@ export default function LessonPage() {
 
   const goNext = () => setStep(steps[steps.indexOf(step as (typeof steps)[number]) + 1] ?? "practice");
   const startPractice = () => {
-    const levelPool = allWords.filter((w) => w.hsk2 === lesson.level);
-    const learnedBefore = lessons.slice(0, idx).flatMap((l) => l.words).map((w) => byId.get(w)!).filter(Boolean);
-    setExercises(buildLessonExercises(words, points, levelPool, learnedBefore.filter((w) => w.hsk2 === lesson.level)));
+    if (spec && scope) {
+      const rules = spec.review ? lessons.slice(0, idx + 1).flatMap((l) => l.pinyin?.rules ?? []) : spec.rules;
+      const qs = buildPinyinExercises(syllables, scope, { demo: spec.demo, tones: spec.tones, review: spec.review, rules });
+      setExercises(qs.map(pinyinExercise));
+    } else {
+      const levelPool = allWords.filter((w) => w.hsk2 === lesson.level);
+      const learnedBefore = lessons.slice(0, idx).flatMap((l) => l.words).map((w) => byId.get(w)!).filter(Boolean);
+      const base = buildLessonExercises(words, points, levelPool, learnedBefore.filter((w) => w.hsk2 === lesson.level));
+      const taught = lessons.slice(0, idx + 1).flatMap((l) => partsPlan?.get(l.id) ?? []);
+      const compose = hp ? composeQuestionsFor(chars, hp, charHint(words), taught, newParts.length ? 3 : 2).map(composeExercise) : [];
+      setExercises([...base, ...compose]);
+    }
     setResult(null);
     setStep("practice");
   };
@@ -89,7 +123,7 @@ export default function LessonPage() {
           </Link>
         </Button>
         <span className="truncate text-sm font-black text-muted-foreground">
-          HSK {lesson.level} · Bài {lesson.id.slice(-2)}
+          {spec ? "Nhập môn pinyin" : `HSK ${lesson.level}`} · Bài {lesson.id.slice(-2)}
         </span>
       </div>
 
@@ -128,7 +162,11 @@ export default function LessonPage() {
             <div className="bg-gradient-to-br from-candy-pink via-candy-lilac to-candy-sky p-6">
               <h1 className="text-2xl font-black md:text-3xl">{lesson.title}</h1>
               <p className="font-bold text-foreground/70">
-                {words.length} từ mới · {points.length} điểm ngữ pháp{dialogue && " · 1 hội thoại"}
+                {spec
+                  ? spec.review
+                    ? "Biến điệu · ghép vần · tổng ôn"
+                    : `${spec.initials.length + spec.finals.length} âm mới · ghép vần · bài tập`
+                  : `${newParts.length ? `${newParts.length} bộ mới · ` : ""}${words.length} từ mới · ${points.length} điểm ngữ pháp${dialogue ? " · 1 hội thoại" : ""}`}
               </p>
             </div>
             <CardContent className="space-y-4 p-6">
@@ -159,7 +197,23 @@ export default function LessonPage() {
         </div>
       )}
 
-      {step === "words" && <WordStep words={words} onDone={goNext} />}
+      {step === "sounds" && spec && pinyinData && <PinyinSoundsStep spec={spec} data={pinyinData} onDone={goNext} />}
+
+      {step === "blend" && spec && scope && pinyinData && (
+        <BlendStep spec={spec} scope={scope} data={pinyinData} syllables={syllables} onDone={startPractice} />
+      )}
+
+      {step === "parts" && hp && <PartsStep parts={newParts} chars={chars} hp={hp} onDone={goNext} />}
+
+      {step === "words" && (
+        <WordStep
+          words={words}
+          onDone={goNext}
+          hp={hp}
+          newParts={newPartSet}
+          doneLabel={points.length ? "Sang ngữ pháp" : dialogue ? "Sang hội thoại" : "Làm bài tập"}
+        />
+      )}
 
       {step === "grammar" && (
         <div className="mx-auto max-w-2xl space-y-4">

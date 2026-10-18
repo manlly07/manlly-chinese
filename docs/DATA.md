@@ -27,13 +27,18 @@ Sau mỗi lần sửa: `node scripts/validate-content.mjs`.
 }
 ```
 
-## 2. Chữ Hán — `src/content/hanzi/chars.json`
+## 2. Cấu tạo chữ — `src/content/hanzi/chars.json` (sinh tự động) + `components.json`
 
 ```jsonc
-{ "char": "学", "hanViet": ["học"], "pinyin": ["xué"], "strokes": 8,
-  "radical": "子", "components": ["⺍", "冖", "子"], "meaning": "học", "hsk2": 1 }
+// chars.json — KHÔNG sửa tay: node scripts/build-chars.mjs <dictionary.txt của Make Me a Hanzi>
+{ "char": "吗", "radical": "口", "parts": ["口", "马"], "semantic": "口", "phonetic": "马" }
+// parts: [] = chữ nguyên khối (tượng hình), dạy như một bộ. Sửa cấu tạo sai bằng OVERRIDES trong script.
+
+// components.json — Hán Việt + nghĩa cho bộ/thành phần (soạn tay)
+{ "c": "亻", "hanViet": "nhân", "meaning": "người", "note": "Nhân đứng — dạng của 人 khi đứng bên trái: 你, 他, 们." }
 ```
-Thứ tự nét lấy từ `hanzi-writer` lúc chạy, không lưu trong repo.
+Thông tin thành phần lấy theo thứ tự ưu tiên: `components.json` → `radicals.json` → từ một chữ trong từ vựng.
+Pinyin, Hán Việt của chữ vẫn suy ra từ từ vựng (`buildCharIndex`). Thứ tự nét lấy từ `hanzi-writer` lúc chạy.
 
 ## 3. Bộ thủ — `src/content/hanzi/radicals.json`
 
@@ -89,12 +94,24 @@ thông tin chữ (pinyin, Hán Việt, từ chứa chữ) suy ra từ từ vựn
 
 Danh sách thanh mẫu/vận mẫu, ví dụ (chữ + pinyin), mẹo so sánh tiếng Việt, và các nhóm luyện thanh (妈麻马骂…).
 
+## 7b. Bảng âm tiết — `src/content/syllables.json`
+
+`{ "s": "cha", "i": "ch", "f": "a", "t": ["插", "茶", "", "岔"] }` — `i` phụ âm đầu ("" nếu không có), `f` vần (tên trong
+`pinyin.json`; ju = j + ü, you = "" + iu), `t` chữ đại diện thanh 1–4 để TTS đọc ("" = không có chữ thông dụng).
+`s` phải bằng `spell(i, f)` (quy tắc viết: j q x + ü → u, i → y, u → w, ü → yu, iou/uei/uen → iu/ui/un).
+Chọn chữ thông dụng, **tránh chữ đa âm** (行, 长, 了…) — giọng máy đọc chữ một mình theo âm phổ biến nhất.
+
+## 7c. Bài Nhập môn pinyin — `src/content/lessons/hsk-0.json`
+Bài level 0, `words/grammar` rỗng, thêm trường `pinyin` (xem skill `write-lesson-content`). Validate kiểm tra mảnh có trong
+`pinyin.json`, âm tiết `demo` chỉ dùng mảnh đã học tới bài đó, và mọi ví dụ quy tắc viết khớp `spell`.
+
 ## 8. Nguồn & giấy phép (BẮT BUỘC ghi nhận trong trang "Giới thiệu")
 
 | Nguồn | Dùng cho | Giấy phép / lưu ý |
 |---|---|---|
 | CC-CEDICT | pinyin, nghĩa tham khảo (tiếng Anh) | CC BY-SA 4.0 — phải ghi nguồn, chia sẻ tương tự với phần dẫn xuất |
-| Make Me a Hanzi / hanzi-writer-data | thứ tự nét, cấu tạo chữ | Arphic Public License (dữ liệu nét) — ghi nguồn |
+| Make Me a Hanzi / hanzi-writer-data | thứ tự nét | Arphic Public License (dữ liệu nét) — ghi nguồn |
+| Make Me a Hanzi `dictionary.txt` | cấu tạo chữ, phần gợi nghĩa/gợi âm (`hanzi/chars.json`) | **LGPL-3.0** (dẫn xuất từ Unihan, CJKlib) — ghi nguồn; `chars.json` là phần dẫn xuất, phân phối theo LGPL |
 | Danh sách từ HSK | phân cấp từ | Danh sách công bố công khai; kiểm tra lại cấp khi đối chiếu |
 | Nghĩa tiếng Việt, Hán Việt, ví dụ | tự biên soạn | Không sao chép nguyên văn từ điển/giáo trình có bản quyền |
 

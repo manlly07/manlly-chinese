@@ -187,6 +187,100 @@ for (const file of lessonFiles) {
   }
 }
 
+// ---------- Pinyin: bảng âm tiết & bài Nhập môn ----------
+/** Cách viết chuẩn phụ âm đầu + vần — khớp `spell` trong src/lib/syllables.ts. */
+export function spell(initial, final) {
+  if (!initial) {
+    if (final === "i" || final === "in" || final === "ing") return "y" + final;
+    if (final === "u") return "wu";
+    if (final.startsWith("ü")) return "yu" + final.slice(1);
+    if (final === "iu") return "you";
+    if (final === "ui") return "wei";
+    if (final === "un") return "wen";
+    if (final.startsWith("i")) return "y" + final.slice(1);
+    if (final.startsWith("u")) return "w" + final.slice(1);
+    return final;
+  }
+  if ("jqx".includes(initial) && final.startsWith("ü")) return initial + "u" + final.slice(1);
+  return initial + final;
+}
+
+const pinyinFile = join(ROOT, "pinyin.json");
+const pinyinData = existsSync(pinyinFile) ? readJson(pinyinFile) : null;
+const INITIALS = new Set((pinyinData?.initials ?? []).map((x) => x.py));
+const FINALS = new Set((pinyinData?.finals ?? []).map((x) => x.py));
+const syllableFile = join(ROOT, "syllables.json");
+const syllables = new Map(); // s -> entry
+if (existsSync(syllableFile)) {
+  const data = readJson(syllableFile);
+  const charAt = new Map();
+  (data?.syllables ?? []).forEach((e, k) => {
+    const at = `syllables[${k}] ${e?.s ?? "?"}`;
+    if (syllables.has(e.s)) err(syllableFile, `${at}: trùng âm tiết`);
+    syllables.set(e.s, e);
+    if (e.i && !INITIALS.has(e.i)) err(syllableFile, `${at}: phụ âm đầu "${e.i}" không có trong pinyin.json`);
+    if (!FINALS.has(e.f)) err(syllableFile, `${at}: vần "${e.f}" không có trong pinyin.json`);
+    if (spell(e.i, e.f) !== e.s) err(syllableFile, `${at}: "${e.i}" + "${e.f}" viết là "${spell(e.i, e.f)}", không phải "${e.s}"`);
+    if (!Array.isArray(e.t) || e.t.length !== 4) return err(syllableFile, `${at}: "t" phải có đúng 4 ô (thanh 1–4)`);
+    if (!e.t.some(Boolean)) warn(syllableFile, `${at}: chưa có chữ đại diện nào — không đọc được`);
+    for (const c of e.t) {
+      if (!c) continue;
+      if ([...c].length !== 1 || !HAN.test(c)) err(syllableFile, `${at}: "${c}" phải là đúng 1 chữ Hán`);
+      if (charAt.has(c)) warn(syllableFile, `${at}: chữ ${c} đã dùng cho ${charAt.get(c)} — chữ đa âm dễ bị đọc sai`);
+      charAt.set(c, e.s);
+    }
+  });
+}
+
+for (const file of jsonFiles("lessons")) {
+  const data = readJson(file);
+  const items = Array.isArray(data) ? data : data?.lessons ?? [];
+  const knownI = new Set();
+  const knownF = new Set();
+  let zero = false;
+  for (const l of items) {
+    const p = l.pinyin;
+    if (!p) continue;
+    const at = `${l.id} pinyin`;
+    for (const x of p.initials ?? []) if (!INITIALS.has(x)) err(file, `${at}: phụ âm đầu "${x}" không có trong pinyin.json`);
+    for (const x of p.finals ?? []) if (!FINALS.has(x)) err(file, `${at}: vần "${x}" không có trong pinyin.json`);
+    (p.initials ?? []).forEach((x) => knownI.add(x));
+    (p.finals ?? []).forEach((x) => knownF.add(x));
+    if (p.zero) zero = true;
+    for (const s of p.demo ?? []) {
+      const e = syllables.get(s);
+      if (!e) err(file, `${at}: âm tiết mẫu "${s}" chưa có trong syllables.json`);
+      else if (!((e.i ? knownI.has(e.i) : zero) && knownF.has(e.f))) err(file, `${at}: âm tiết mẫu "${s}" dùng mảnh chưa học tới bài này`);
+    }
+    (p.rules ?? []).forEach((r, j) => {
+      if (!r.title?.trim() || !r.explain?.trim()) err(file, `${at} rules[${j}]: thiếu "title"/"explain"`);
+      for (const e of r.examples ?? []) {
+        if (spell(e.parts[0], e.parts[1]) !== e.answer) err(file, `${at} rules[${j}]: ${e.parts.join(" + ")} viết là "${spell(...e.parts)}", không phải "${e.answer}"`);
+        if (!e.wrong?.length || e.wrong.includes(e.answer)) err(file, `${at} rules[${j}]: "wrong" cần phương án sai, không chứa đáp án`);
+      }
+    });
+  }
+}
+
+// ---------- Cấu tạo chữ ----------
+const charsFile = join(ROOT, "hanzi/chars.json");
+const compFile = join(ROOT, "hanzi/components.json");
+if (existsSync(compFile)) {
+  const seenC = new Set();
+  (readJson(compFile) ?? []).forEach((c, k) => {
+    if (!c?.c) return err(compFile, `[${k}]: thiếu "c"`);
+    if (seenC.has(c.c)) err(compFile, `[${k}] ${c.c}: trùng`);
+    seenC.add(c.c);
+    if (typeof c.hanViet !== "string" || !c.meaning?.trim()) err(compFile, `[${k}] ${c.c}: cần "hanViet" (có thể rỗng) và "meaning"`);
+  });
+}
+if (existsSync(charsFile)) {
+  const chars = new Set((readJson(charsFile) ?? []).map((e) => e.char));
+  for (const cs of wordChars.values()) {
+    for (const c of cs) if (!chars.has(c)) warn(charsFile, `chưa có cấu tạo chữ ${c} — chạy lại scripts/build-chars.mjs`);
+  }
+}
+
 // ---------- Kết quả ----------
 if (!existsSync(ROOT)) console.log(`(Chưa có thư mục ${relative(process.cwd(), ROOT) || ROOT} — bỏ qua)`);
 for (const w of warnings) console.warn(`⚠  ${w}`);

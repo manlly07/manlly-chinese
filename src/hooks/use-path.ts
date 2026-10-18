@@ -29,7 +29,7 @@ export function usePath() {
       states,
       checkpoints,
       cpStates,
-      next: nextLesson(lessons, states),
+      next: nextLesson(lessons, states, p),
       nextCheckpoint: checkpoints.find((cp) => cpStates.get(cp.id) === "open"),
       needsReview: lessons.filter((l) => lessonNeedsReview(l, { cards, lessons: progressLessons }, now)),
       progress: progressLessons,

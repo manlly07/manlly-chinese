@@ -28,9 +28,17 @@ description: Soạn nội dung bài học, điểm ngữ pháp, hội thoại, b
   chuyển từ sang bài sớm hơn, hoặc thêm `"note"` vào dòng nếu cố ý. Tên riêng mới → thêm vào `NAMES` trong script.
 - Thêm/đổi thứ tự bài: giữ `id` cũ (tiến độ gắn vào `id`); bài mới thêm số tiếp theo, không đánh số lại.
 
-## Giai đoạn 0 (Pinyin)
-Thứ tự gợi ý: thanh điệu → nguyên âm đơn → thanh mẫu nhóm môi/đầu lưỡi → nhóm cuống lưỡi → j q x → zh ch sh r / z c s →
-vận mẫu kép & mũi → biến điệu → kiểm tra tổng. Bài tập chủ yếu là nghe-chọn.
+## Giai đoạn 0 (Pinyin) — `lessons/hsk-0.json`, level 0, id `py-NN`
+Nguyên tắc: **học từng mảnh rồi tự ghép** (ch + a = cha → tự đọc được chi, chu…), không học thuộc từng âm tiết.
+Mỗi bài có trường `pinyin`: `initials`/`finals` (mảnh MỚI của bài, phải có trong `pinyin.json`), `demo` (âm tiết trình diễn —
+bài tập cố ý hỏi âm tiết ngoài `demo` để luyện tự ghép), `rules` (quy tắc viết; mỗi ví dụ `{ parts, answer, wrong }` thành 1 câu hỏi),
+cờ `tones` / `zero` (y, w) / `review` / `sandhi`. Bài tập sinh tự động (`lib/pinyin-drill.ts`) từ `syllables.json`.
+Âm tiết mới → thêm vào `src/content/syllables.json` kèm chữ đại diện cho từng thanh (chữ thông dụng, tránh chữ đa âm — TTS đọc chữ đó).
+Nhập môn pinyin không có kiểm tra chặng; "Kiểm tra nhanh pinyin" (`/test/pinyin`) cho người đã biết bỏ qua.
+
+## Bộ thủ trong bài HSK
+Bước "Bộ mới" tự tính (`lib/hanzi-parts.ts#partsByLesson`): bộ xuất hiện lần đầu trong chữ của bài, tối đa 6, ưu tiên bộ dùng lại nhiều.
+Không cần soạn tay — chỉ cần `chars.json` + `components.json` đủ dữ liệu.
 
 ## Đề thi thử
 Mô phỏng cấu trúc phần (nghe/đọc/viết) và thời gian của cấp tương ứng, nhưng **câu hỏi tự soạn**; không sao chép đề thật.

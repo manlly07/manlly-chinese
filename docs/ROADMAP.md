@@ -37,6 +37,15 @@ Mỗi giai đoạn kết thúc bằng một bản build chạy được.
 - [x] Progress schema v3, settings v2; tự tải lại khi chunk cũ mất sau khi triển khai bản mới (`lib/lazy-page.ts`)
 - [ ] Có thể thêm: “tim” (giới hạn lỗi/ngày), rương thưởng, huy hiệu, bảng xếp hạng (cần server)
 
+## Giai đoạn 2c — Học từ thành phần (phản hồi “khó học”)
+- [x] Chặng 0 “Nhập môn pinyin” (9 bài `py-01..09`) trước HSK 1: Âm mới → Ghép vần → Bài tập. Bài tập nghe-chọn phụ âm đầu/vần/
+  âm tiết/thanh, **tự ghép** âm tiết, quy tắc viết; phần lớn câu dùng âm tiết chưa trình diễn để luyện tự ghép
+- [x] Bảng âm tiết `syllables.json` (377 âm, chữ đại diện từng thanh cho TTS), tab “Ghép vần” trong Phát âm
+- [x] “Kiểm tra nhanh pinyin” (`/test/pinyin`) để bỏ qua Chặng 0; người học trước đó không bị kéo về Chặng 0
+- [x] Cấu tạo chữ `hanzi/chars.json` (sinh từ Make Me a Hanzi) + `components.json`: bước “Bộ mới” trước “Từ mới”,
+  tách chữ thành bộ (gợi nghĩa/gợi âm) trong thẻ từ, trang từ, trang chữ; câu “ghép chữ” (亻 + ? = 你) trong bài tập và ôn tập
+- [ ] Có thể thêm: bài nét cơ bản (横竖撇点折) trước bộ thủ; ghi âm so sánh khi ghép vần
+
 ## Giai đoạn 3 — Trung & cao cấp
 - [ ] Nội dung HSK 3–6 (từ vựng, ngữ pháp, bài học), gắn cấp HSK 3.0
 - [ ] Đọc hiểu có popup từ điển + ruby pinyin; từ điển offline

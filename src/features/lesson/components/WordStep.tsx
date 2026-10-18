@@ -1,16 +1,28 @@
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useEffect, useState } from "react";
+import { CharParts } from "@/components/learning/CharParts";
 import { HanziText } from "@/components/learning/HanziText";
 import { PinyinText } from "@/components/learning/PinyinText";
 import { SpeakButton } from "@/components/learning/SpeakButton";
 import { useSpeech } from "@/components/learning/use-speech";
 import { Button } from "@/components/ui/button";
-import type { Word } from "@/lib/content";
+import { hanChars, type Word } from "@/lib/content";
+import type { HanziParts } from "@/lib/hanzi-parts";
 import { cn } from "@/lib/utils";
 import { useSettings } from "@/store/settings";
 
-/** Giới thiệu từng từ mới: nghe → nhắc lại. */
-export function WordStep({ words, onDone }: { words: Word[]; onDone: () => void }) {
+interface Props {
+  words: Word[];
+  onDone: () => void;
+  /** cấu tạo chữ — hiện "chữ = bộ + bộ" dưới mỗi từ */
+  hp?: HanziParts | null;
+  /** bộ vừa học ở bước trước — tô nổi */
+  newParts?: Set<string>;
+  doneLabel?: string;
+}
+
+/** Giới thiệu từng từ mới: nghe → nhắc lại, kèm cấu tạo từng chữ. */
+export function WordStep({ words, onDone, hp, newParts, doneLabel = "Sang ngữ pháp" }: Props) {
   const [i, setI] = useState(0);
   const { say } = useSpeech();
   const showHanViet = useSettings((s) => s.showHanViet);
@@ -43,6 +55,14 @@ export function WordStep({ words, onDone }: { words: Word[]; onDone: () => void 
         {showHanViet && w.hanViet && <p className="text-xs font-black uppercase tracking-widest text-muted-foreground">{w.hanViet}</p>}
         <p className="text-xl font-extrabold">{w.meaning.join("; ")}</p>
         <SpeakButton text={w.hanzi} size="default" variant="secondary" label="Nghe lại" />
+        {hp && hanChars(w.hanzi).some((c) => hp.chars.get(c)?.parts.length) && (
+          <div className="space-y-1.5 rounded-2xl border border-dashed border-border p-3 text-left">
+            <p className="text-xs font-black uppercase tracking-wide text-muted-foreground">Cấu tạo chữ</p>
+            {hanChars(w.hanzi).map((c, k) => (
+              <CharParts key={`${c}-${k}`} char={c} hp={hp} compact highlight={newParts} />
+            ))}
+          </div>
+        )}
         {ex && (
           <div className="flex items-start gap-2 rounded-2xl bg-muted/70 p-3 text-left">
             <div className="min-w-0 flex-1">
@@ -60,7 +80,7 @@ export function WordStep({ words, onDone }: { words: Word[]; onDone: () => void 
           <ChevronLeft />
         </Button>
         <Button size="lg" className="flex-1" onClick={() => (i + 1 < words.length ? setI(i + 1) : onDone())}>
-          {i + 1 < words.length ? "Từ tiếp theo" : "Sang ngữ pháp"} <ChevronRight />
+          {i + 1 < words.length ? "Từ tiếp theo" : doneLabel} <ChevronRight />
         </Button>
       </div>
     </div>

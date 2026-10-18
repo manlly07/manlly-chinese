@@ -1,7 +1,9 @@
 import { ArrowLeft, ChevronLeft, ChevronRight, Eye, PenLine, Play, RotateCcw, Sparkles } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { Link, useNavigate, useParams, useSearchParams } from "react-router-dom";
+import { CharParts } from "@/components/learning/CharParts";
 import { EmptyState } from "@/components/learning/EmptyState";
+import { useHanziParts } from "@/components/learning/use-hanzi-parts";
 import { HanziWriterBox, type HanziWriterHandle } from "@/components/learning/HanziWriterBox";
 import { PinyinText } from "@/components/learning/PinyinText";
 import { SpeakButton } from "@/components/learning/SpeakButton";
@@ -23,6 +25,7 @@ export default function HanziDetailPage() {
   const [params, setParams] = useSearchParams();
   const mode = (params.get("mode") ?? "watch") as Mode;
   const { index, list, loading } = useChars();
+  const hp = useHanziParts();
   const recordAnswer = useProgress((s) => s.recordAnswer);
   const writer = useRef<HanziWriterHandle>(null);
   const [strokes, setStrokes] = useState<number | null>(null);
@@ -176,6 +179,24 @@ export default function HanziDetailPage() {
                 <p className="rounded-2xl bg-candy-yellow p-3 font-bold text-candy-yellow-foreground">
                   Gợi ý: chữ trong từ “{info.words[0]?.meaning[0]}”
                 </p>
+              )}
+              {hp && !hideChar && (
+                <div className="space-y-1.5 border-t border-border/70 pt-3">
+                  <p className="text-xs font-black uppercase tracking-wide text-muted-foreground">Cấu tạo chữ</p>
+                  <CharParts char={char} hp={hp} />
+                  {(() => {
+                    const e = hp.chars.get(char);
+                    const sem = e?.semantic && hp.info.get(e.semantic);
+                    const pho = e?.phonetic && hp.info.get(e.phonetic);
+                    return sem || pho ? (
+                      <p className="text-sm font-semibold text-muted-foreground">
+                        Chữ hình thanh: {sem && <>bộ <span className="hanzi">{e!.semantic}</span> gợi nghĩa “{sem.meaning}”</>}
+                        {sem && pho && ", "}
+                        {e?.phonetic && <>phần <span className="hanzi">{e.phonetic}</span> gợi cách đọc</>}.
+                      </p>
+                    ) : null;
+                  })()}
+                </div>
               )}
             </CardContent>
           </Card>

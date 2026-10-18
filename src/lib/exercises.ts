@@ -1,18 +1,32 @@
 import type { DialogueLine, GrammarExercise, GrammarPoint, Word } from "./content";
+import { type ComposeQuestion, composeRef } from "./hanzi-parts";
+import { type PinyinQuestion, pinyinRef } from "./pinyin-drill";
 import { makeQuestion, type QuizQuestion, type QuizType } from "./quiz";
 import { shuffle } from "./random";
 
 /**
  * Một câu bài tập. `ref` là khoá ổn định để ghi sổ lỗi sai:
- * "w:<wordId>" (từ vựng) · "g:<grammarId>#<i>" (bài tập ngữ pháp) · "l:<dialogueId>#<i>" (câu nghe).
+ * "w:<wordId>" (từ vựng) · "g:<grammarId>#<i>" (bài tập ngữ pháp) · "l:<dialogueId>#<i>" (câu nghe)
+ * · "p:<âm tiết>" (pinyin) · "c:<chữ>" (ghép chữ từ bộ).
  */
 export type Exercise =
   | { kind: "grammar"; ex: GrammarExercise; ref: string }
   | { kind: "word"; q: QuizQuestion; ref: string }
-  | { kind: "listen"; line: DialogueLine; options: string[]; answer: string; ref: string };
+  | { kind: "listen"; line: DialogueLine; options: string[]; answer: string; ref: string }
+  | { kind: "pinyin"; q: PinyinQuestion; ref: string }
+  | { kind: "compose"; q: ComposeQuestion; ref: string };
 
-export type ExerciseCategory = "word" | "grammar" | "listen";
-export const CATEGORY_LABELS: Record<ExerciseCategory, string> = { word: "Từ vựng", grammar: "Ngữ pháp", listen: "Nghe hiểu" };
+export type ExerciseCategory = "word" | "grammar" | "listen" | "pinyin" | "compose";
+export const CATEGORY_LABELS: Record<ExerciseCategory, string> = {
+  word: "Từ vựng",
+  grammar: "Ngữ pháp",
+  listen: "Nghe hiểu",
+  pinyin: "Pinyin",
+  compose: "Ghép chữ",
+};
+
+export const pinyinExercise = (q: PinyinQuestion): Exercise => ({ kind: "pinyin", q, ref: pinyinRef(q) });
+export const composeExercise = (q: ComposeQuestion): Exercise => ({ kind: "compose", q, ref: composeRef(q) });
 
 const WORD_TYPES: QuizType[] = ["audio-hanzi", "hanzi-meaning", "tone", "meaning-hanzi", "pinyin-hanzi"];
 

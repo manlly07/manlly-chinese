@@ -1,0 +1,275 @@
+{
+  "level": 0,
+  "lessons": [
+    {
+      "id": "py-01",
+      "level": 0,
+      "title": "Bốn thanh điệu",
+      "goals": ["Nghe và phân biệt 4 thanh điệu", "Ghép b p m f với a, o thành âm tiết"],
+      "words": [],
+      "grammar": [],
+      "dialogue": null,
+      "pinyin": {
+        "tones": true,
+        "initials": ["b", "p", "m", "f"],
+        "finals": ["a", "o"],
+        "demo": ["ma", "ba", "pa", "fa", "bo", "po", "mo"],
+        "rules": [
+          {
+            "title": "Một âm tiết = phụ âm đầu + vần + thanh",
+            "explain": "Giống tiếng Việt: “m” + “a” + dấu sắc = “má”. Pinyin cũng vậy: m + a + thanh 2 = má. Học thuộc từng mảnh là bạn tự ghép được mọi âm tiết.",
+            "examples": [
+              { "parts": ["m", "a"], "answer": "ma", "wrong": ["am", "mo"] },
+              { "parts": ["b", "o"], "answer": "bo", "wrong": ["po", "ob"] }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "py-02",
+      "level": 0,
+      "title": "Nguyên âm e i u ü · d t n l",
+      "goals": ["Phát âm đúng e, i, u, ü", "Ghép d t n l với các nguyên âm đơn"],
+      "words": [],
+      "grammar": [],
+      "dialogue": null,
+      "pinyin": {
+        "initials": ["d", "t", "n", "l"],
+        "finals": ["e", "i", "u", "ü"],
+        "demo": ["da", "ta", "de", "te", "di", "ti", "ni", "li", "du", "tu", "nu", "nü", "lu", "lü", "bi", "mi", "fu"],
+        "rules": [
+          {
+            "title": "u và ü là hai âm khác nhau",
+            "explain": "u đọc như “u” tiếng Việt. ü: giữ môi tròn như u nhưng lưỡi đặt như i — gần “uy” nói nhanh thành một âm. Sau n và l phải giữ hai chấm: nǚ (phụ nữ) khác nǔ (cố gắng).",
+            "examples": [
+              { "parts": ["n", "ü"], "answer": "nü", "wrong": ["nu", "niu"] },
+              { "parts": ["l", "ü"], "answer": "lü", "wrong": ["lu", "lui"] }
+            ]
+          },
+          {
+            "title": "d t không giống d t tiếng Việt",
+            "explain": "d đọc gần “t” tiếng Việt (không bật hơi). t đọc như “th” tiếng Việt (bật hơi mạnh). Tương tự b — p: b gần “p” nhẹ, p bật hơi.",
+            "examples": []
+          }
+        ]
+      }
+    },
+    {
+      "id": "py-03",
+      "level": 0,
+      "title": "Cuống lưỡi g k h · vần ai ei ao ou",
+      "goals": ["Phân biệt g, k, h", "Đọc các vần kép ai, ei, ao, ou"],
+      "words": [],
+      "grammar": [],
+      "dialogue": null,
+      "pinyin": {
+        "initials": ["g", "k", "h"],
+        "finals": ["ai", "ei", "ao", "ou"],
+        "demo": ["ge", "ke", "he", "gu", "ku", "hu", "gai", "kai", "hai", "gao", "kao", "hao", "gou", "kou", "hou", "bai", "mei", "dao", "lou"],
+        "rules": [
+          {
+            "title": "Dấu thanh đặt ở đâu?",
+            "explain": "Có a hoặc e thì dấu đặt trên a/e (hǎo, gěi). Vần ou thì dấu đặt trên o (kǒu). Các trường hợp khác đặt trên nguyên âm cuối.",
+            "examples": []
+          },
+          {
+            "title": "ao và ou",
+            "explain": "ao đọc như “ao” tiếng Việt. ou đọc như “âu” — không phải “ô-u”.",
+            "examples": [
+              { "parts": ["h", "ao"], "answer": "hao", "wrong": ["hou", "hau"] },
+              { "parts": ["g", "ou"], "answer": "gou", "wrong": ["gao", "gau"] }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "py-04",
+      "level": 0,
+      "title": "j q x · vần ia ie iao iu",
+      "goals": ["Phát âm j, q, x", "Nhớ quy tắc j q x + ü viết thành u"],
+      "words": [],
+      "grammar": [],
+      "dialogue": null,
+      "pinyin": {
+        "initials": ["j", "q", "x"],
+        "finals": ["ia", "ie", "iao", "iu"],
+        "demo": ["ji", "qi", "xi", "ju", "qu", "xu", "jia", "xia", "jie", "xie", "jiao", "qiao", "xiao", "jiu", "qiu", "liu", "die"],
+        "rules": [
+          {
+            "title": "j q x chỉ đi với i và ü",
+            "explain": "Sau j q x, chữ u luôn là ü — nhưng viết bỏ hai chấm cho gọn: j + ü = ju, q + ü = qu, x + ü = xu. Đọc vẫn là ü!",
+            "examples": [
+              { "parts": ["j", "ü"], "answer": "ju", "wrong": ["jü", "jiu"] },
+              { "parts": ["q", "ü"], "answer": "qu", "wrong": ["qü", "qiu"] },
+              { "parts": ["x", "ü"], "answer": "xu", "wrong": ["xü", "xiu"] }
+            ]
+          },
+          {
+            "title": "iou viết gọn thành iu",
+            "explain": "Vần iu thực ra là “i-ou”, khi có phụ âm đầu thì viết gọn thành iu: j + iou = jiu, l + iou = liu. Dấu thanh đặt trên chữ sau: jiǔ, liù.",
+            "examples": [
+              { "parts": ["j", "iu"], "answer": "jiu", "wrong": ["jiou", "jou"] },
+              { "parts": ["l", "iu"], "answer": "liu", "wrong": ["liou", "lu"] }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "py-05",
+      "level": 0,
+      "title": "zh ch sh r · z c s",
+      "goals": ["Phân biệt âm uốn lưỡi zh ch sh r với z c s", "Đọc đúng zhi chi shi ri zi ci si"],
+      "words": [],
+      "grammar": [],
+      "dialogue": null,
+      "pinyin": {
+        "initials": ["zh", "ch", "sh", "r", "z", "c", "s"],
+        "finals": [],
+        "demo": ["zha", "cha", "sha", "zhe", "che", "she", "re", "zhi", "chi", "shi", "ri", "zi", "ci", "si", "zhu", "chu", "shu", "zao", "cao", "sao", "zhou", "shou"],
+        "rules": [
+          {
+            "title": "ch + a = cha, ch + i = chi",
+            "explain": "Học xong ch và các vần, bạn tự ghép được: cha, che, chu, chai, chao, chou… Không cần học thuộc từng âm tiết.",
+            "examples": [
+              { "parts": ["ch", "a"], "answer": "cha", "wrong": ["ca", "sha"] },
+              { "parts": ["ch", "ou"], "answer": "chou", "wrong": ["chao", "cou"] }
+            ]
+          },
+          {
+            "title": "“i” sau zh ch sh r z c s không đọc là i",
+            "explain": "Trong zhi chi shi ri zi ci si, chữ i chỉ để viết cho đủ: giữ nguyên vị trí lưỡi của phụ âm và kéo dài hơi. chī (吃) khác hẳn qī (七).",
+            "examples": [
+              { "parts": ["sh", "i"], "answer": "shi", "wrong": ["xi", "si"] },
+              { "parts": ["z", "i"], "answer": "zi", "wrong": ["zhi", "ji"] }
+            ]
+          },
+          {
+            "title": "Uốn lưỡi hay không?",
+            "explain": "zh ch sh r: cong đầu lưỡi lên (gần “tr”, “s” của giọng phân biệt tr/s). z c s: đầu lưỡi thẳng, chạm sau răng. c đọc gần “tx” bật hơi — không phải “k”.",
+            "examples": []
+          }
+        ]
+      }
+    },
+    {
+      "id": "py-06",
+      "level": 0,
+      "title": "Vần mũi -n và -ng",
+      "goals": ["Phân biệt -n và -ng ở cuối vần", "Ghép các vần an en in ian, ang eng ing ong iang iong"],
+      "words": [],
+      "grammar": [],
+      "dialogue": null,
+      "pinyin": {
+        "initials": [],
+        "finals": ["an", "en", "in", "ian", "ang", "eng", "ing", "ong", "iang", "iong"],
+        "demo": ["ban", "fang", "men", "deng", "lin", "ling", "dong", "tian", "jian", "liang", "xiang", "xiong", "chang", "zhong", "shan", "sheng"],
+        "rules": [
+          {
+            "title": "-n đầu lưỡi, -ng cuống lưỡi",
+            "explain": "an/ang, en/eng, in/ing giống “an/ang”, “ân/âng”, “in/inh” tiếng Việt. ian đọc gần “iên” (không phải “i-an”).",
+            "examples": [
+              { "parts": ["t", "ian"], "answer": "tian", "wrong": ["tan", "tiang"] },
+              { "parts": ["x", "iong"], "answer": "xiong", "wrong": ["xong", "xing"] }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "py-07",
+      "level": 0,
+      "title": "Vần u- và ü-",
+      "goals": ["Ghép các vần ua uo uai ui uan un uang", "Ghép üe üan ün với j q x"],
+      "words": [],
+      "grammar": [],
+      "dialogue": null,
+      "pinyin": {
+        "initials": [],
+        "finals": ["ua", "uo", "uai", "ui", "uan", "un", "uang", "üe", "üan", "ün"],
+        "demo": ["gua", "guo", "duo", "kuai", "gui", "dui", "guan", "chuan", "lun", "chun", "huang", "jue", "xue", "quan", "xuan", "jun", "lüe"],
+        "rules": [
+          {
+            "title": "uei → ui, uen → un",
+            "explain": "Có phụ âm đầu thì viết gọn: g + uei = gui, l + uen = lun. Dấu thanh của ui đặt trên i: guì.",
+            "examples": [
+              { "parts": ["g", "ui"], "answer": "gui", "wrong": ["guei", "gei"] },
+              { "parts": ["l", "un"], "answer": "lun", "wrong": ["luen", "len"] }
+            ]
+          },
+          {
+            "title": "j q x + üe, üan, ün",
+            "explain": "Như ju qu xu: bỏ hai chấm khi đi sau j q x. x + üe = xue, q + üan = quan, j + ün = jun. Sau n, l thì giữ: lüe, nüe.",
+            "examples": [
+              { "parts": ["x", "üe"], "answer": "xue", "wrong": ["xüe", "xie"] },
+              { "parts": ["q", "üan"], "answer": "quan", "wrong": ["qüan", "qian"] },
+              { "parts": ["j", "ün"], "answer": "jun", "wrong": ["jün", "jin"] }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "py-08",
+      "level": 0,
+      "title": "Âm tiết không có phụ âm đầu · y w",
+      "goals": ["Viết đúng âm tiết bắt đầu bằng i, u, ü", "Đọc được yi, wu, yu, ya, wo, yue…"],
+      "words": [],
+      "grammar": [],
+      "dialogue": null,
+      "pinyin": {
+        "zero": true,
+        "initials": [],
+        "finals": ["er"],
+        "demo": ["yi", "ya", "ye", "you", "yan", "yang", "wu", "wa", "wo", "wei", "wan", "wen", "yu", "yue", "yuan", "yun", "ai", "ao", "an", "er"],
+        "rules": [
+          {
+            "title": "i đứng đầu → viết y",
+            "explain": "i, in, ing đứng một mình thêm y: yi, yin, ying. Các vần bắt đầu bằng i khác thì đổi i thành y: ia → ya, ie → ye, iao → yao, iou → you, ian → yan.",
+            "examples": [
+              { "parts": ["", "i"], "answer": "yi", "wrong": ["i", "yii"] },
+              { "parts": ["", "ia"], "answer": "ya", "wrong": ["ia", "yia"] },
+              { "parts": ["", "iu"], "answer": "you", "wrong": ["yiu", "iu"] }
+            ]
+          },
+          {
+            "title": "u đứng đầu → viết w",
+            "explain": "u đứng một mình thành wu. Các vần bắt đầu bằng u thì đổi u thành w: ua → wa, uo → wo, uei → wei, uen → wen.",
+            "examples": [
+              { "parts": ["", "u"], "answer": "wu", "wrong": ["u", "wuu"] },
+              { "parts": ["", "ui"], "answer": "wei", "wrong": ["wui", "ui"] },
+              { "parts": ["", "un"], "answer": "wen", "wrong": ["wun", "un"] }
+            ]
+          },
+          {
+            "title": "ü đứng đầu → viết yu",
+            "explain": "ü, üe, üan, ün đứng một mình thêm y và bỏ hai chấm: yu, yue, yuan, yun. Đọc vẫn là ü.",
+            "examples": [
+              { "parts": ["", "ü"], "answer": "yu", "wrong": ["yü", "wu"] },
+              { "parts": ["", "üe"], "answer": "yue", "wrong": ["ye", "üe"] }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "py-09",
+      "level": 0,
+      "title": "Biến điệu & tổng ôn pinyin",
+      "goals": ["Biết 3 quy tắc biến điệu thường gặp", "Tự ghép và nghe được mọi âm tiết đã học"],
+      "words": [],
+      "grammar": [],
+      "dialogue": null,
+      "pinyin": {
+        "review": true,
+        "sandhi": true,
+        "initials": [],
+        "finals": [],
+        "demo": [],
+        "rules": []
+      }
+    }
+  ]
+}

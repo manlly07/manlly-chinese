@@ -52,8 +52,10 @@ Git hooks nằm ở `.githooks/` (bật qua `npm install` → script `prepare` �
 `pre-commit` lint file đã stage + validate-content nếu sửa `src/content/`; `pre-push` chạy `npm run check`.
 ESLint chặn `localStorage` ngoài `src/store/` và `src/lib/repository/`.
 
-> Trạng thái hiện tại: **xong Giai đoạn 0, 1, 2, 2b** — lộ trình 40 bài HSK 1–2 có kiểm tra chặng, ôn tổng hợp hằng ngày,
-> kiểm tra tuần, sổ lỗi sai, nhiệm vụ ngày; progress schema **v3**, settings **v2**. Còn placeholder: đọc hiểu, thi thử, từ điển.
+> Trạng thái hiện tại: **xong Giai đoạn 0, 1, 2, 2b, 2c** — lộ trình Chặng 0 Nhập môn pinyin (9 bài, ghép vần) + 40 bài HSK 1–2
+> (có bước “Bộ mới” học bộ thủ trước khi học chữ), kiểm tra chặng, ôn tổng hợp hằng ngày, kiểm tra tuần, sổ lỗi sai, nhiệm vụ ngày;
+> progress schema **v3**, settings **v2**. Còn placeholder: đọc hiểu, thi thử, từ điển.
+> Nguyên tắc sư phạm: **học thành phần trước, ghép sau** — phụ âm đầu + vần → âm tiết; bộ → chữ. Khoá sổ lỗi: `w: g: l: p: c:`.
 > Trang mới phải đăng ký bằng `lazyPage()` (không dùng `React.lazy` trực tiếp) để tự phục hồi khi triển khai bản mới.
 > Toast: `import { toast } from "sonner"`; `<Toaster />` (`components/ui/sonner.tsx`) lấy theme từ `settings.theme`, không dùng next-themes.
 

@@ -4,6 +4,7 @@ import { PageHeader } from "@/components/layout/PageHeader";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { loadPinyin, type PinyinData } from "@/lib/content";
+import { BlendTab } from "./components/BlendTab";
 import { ChartTab } from "./components/ChartTab";
 import { SandhiTab } from "./components/SandhiTab";
 import { SpeakTab } from "./components/SpeakTab";
@@ -30,6 +31,7 @@ export default function PronunciationPage() {
             <TabsList>
               <TabsTrigger value="tones">Thanh điệu</TabsTrigger>
               <TabsTrigger value="chart">Bảng pinyin</TabsTrigger>
+              <TabsTrigger value="blend">Ghép vần</TabsTrigger>
               <TabsTrigger value="drill">Luyện nghe</TabsTrigger>
               <TabsTrigger value="speak">Luyện nói</TabsTrigger>
               <TabsTrigger value="sandhi">Biến điệu</TabsTrigger>
@@ -40,6 +42,9 @@ export default function PronunciationPage() {
           </TabsContent>
           <TabsContent value="chart" className="mt-5">
             <ChartTab data={data} />
+          </TabsContent>
+          <TabsContent value="blend" className="mt-5">
+            <BlendTab data={data} />
           </TabsContent>
           <TabsContent value="drill" className="mt-5">
             <ToneDrill data={data} />
