@@ -11,11 +11,12 @@ import { pick } from "@/lib/random";
 import { foldVi } from "@/lib/search";
 import { cn } from "@/lib/utils";
 import { useSettings } from "@/store/settings";
+import { ComposeTab } from "./components/ComposeTab";
 import { RadicalsTab } from "./components/RadicalsTab";
 import { useChars } from "./use-chars";
 
 export default function HanziPage() {
-  const { list, loading } = useChars();
+  const { index, list, loading } = useChars();
   const [q, setQ] = useState("");
   const navigate = useNavigate();
   const showHanViet = useSettings((s) => s.showHanViet);
@@ -50,7 +51,11 @@ export default function HanziPage() {
         <TabsList>
           <TabsTrigger value="chars">Chữ Hán</TabsTrigger>
           <TabsTrigger value="radicals">Bộ thủ</TabsTrigger>
+          <TabsTrigger value="compose">Ghép chữ</TabsTrigger>
         </TabsList>
+        <TabsContent value="compose" className="mt-5">
+          {loading ? <Skeleton className="h-96 rounded-lg" /> : <ComposeTab index={index} />}
+        </TabsContent>
         <TabsContent value="radicals" className="mt-5">
           <RadicalsTab />
         </TabsContent>

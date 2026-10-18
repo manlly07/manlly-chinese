@@ -86,6 +86,9 @@ export default function PathPage() {
                       <Link to="/test/pinyin">Đã biết pinyin? Kiểm tra nhanh</Link>
                     </Button>
                   )}
+                  <Button variant="outline" size="sm" asChild>
+                    <Link to="/hanzi?tab=compose">Tò mò chữ Hán? Thử ghép chữ</Link>
+                  </Button>
                 </div>
               )}
             </div>
