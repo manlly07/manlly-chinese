@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { loadLessons, loadSyllables } from "./content";
 import { buildPinyinExercises, buildPinyinReview, pinyinFromRef, type PinyinQuestion } from "./pinyin-drill";
-import { inScope, pinyinScope } from "./syllables";
+import { canPlay, inScope, pinyinScope } from "./syllables";
 
 const lessons = await loadLessons();
 const syllables = await loadSyllables();
@@ -29,7 +29,7 @@ describe("bài tập pinyin của từng bài", () => {
           expect(q.options.length).toBeGreaterThanOrEqual(2);
         }
         if (q.type !== "spell") {
-          expect(q.syl.t[q.tone - 1], `${q.syl.s}${q.tone} phải có chữ để đọc`).toBeTruthy();
+          expect(canPlay(q.syl, q.tone), `${q.syl.s}${q.tone} phải phát được (file thu âm hoặc chữ)`).toBe(true);
           expect(inScope(q.syl, scope), `${id} hỏi âm ngoài phạm vi: ${q.syl.s}`).toBe(true);
         }
       }

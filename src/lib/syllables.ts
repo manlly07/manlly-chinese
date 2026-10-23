@@ -1,5 +1,15 @@
+import audioManifest from "@/content/syllable-audio.json";
 import type { Lesson, Syllable } from "./content";
 import { addTone, type Tone } from "./pinyin";
+
+// ---------- Âm thanh người thật (public/audio/syllables, sinh bởi scripts/fetch-syllable-audio.mjs) ----------
+const NO_AUDIO = new Set(audioManifest.missing);
+
+/** Có file thu âm cho âm tiết + thanh này không. */
+export const hasAudio = (syl: Syllable, tone: Tone) => !NO_AUDIO.has(`${syl.s}${tone}`);
+
+/** Đường dẫn file thu âm (ü → v), tương đối theo `base` của Vite để chạy được ở mọi host tĩnh. */
+export const audioUrl = (syl: Syllable, tone: Tone) => `${import.meta.env.BASE_URL}audio/syllables/${syl.s.replace("ü", "v")}${tone}.mp3`;
 
 /**
  * Cách viết chuẩn của phụ âm đầu + vần. `initial` rỗng = âm tiết không có phụ âm đầu.
@@ -25,8 +35,11 @@ export function spell(initial: string, final: string): string {
 /** Âm tiết có dấu thanh ("cha", 2 → "chá"). */
 export const withTone = (syl: Syllable, tone: Tone) => addTone(syl.s, tone);
 
-/** Các thanh có chữ đại diện để đọc được bằng giọng máy. */
-export const tonesOf = (syl: Syllable): Tone[] => syl.t.flatMap((c, i) => (c ? [(i + 1) as Tone] : []));
+/** Thanh phát được: có file thu âm, hoặc có chữ đại diện để giọng máy đọc. */
+export const canPlay = (syl: Syllable, tone: Tone) => hasAudio(syl, tone) || !!syl.t[tone - 1];
+
+/** Các thanh phát được của âm tiết. */
+export const tonesOf = (syl: Syllable): Tone[] => ([1, 2, 3, 4] as Tone[]).filter((t) => canPlay(syl, t));
 
 /** Chữ Hán để đọc âm tiết với thanh cho trước (TTS không đọc được pinyin trần). */
 export const hanziFor = (syl: Syllable, tone: Tone) => syl.t[tone - 1] || "";

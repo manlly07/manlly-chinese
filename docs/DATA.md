@@ -106,16 +106,23 @@ Câu hỏi khoá sổ lỗi theo chỉ số (`s:#i`) — thêm câu mới vào *
 `s` phải bằng `spell(i, f)` (quy tắc viết: j q x + ü → u, i → y, u → w, ü → yu, iou/uei/uen → iu/ui/un).
 Chọn chữ thông dụng, **tránh chữ đa âm** (行, 长, 了…) — giọng máy đọc chữ một mình theo âm phổ biến nhất.
 
+## 7b'. Âm thanh âm tiết — `public/audio/syllables/<pinyin, ü→v><thanh>.mp3`
+Giọng người bản ngữ từ dự án mở **audio-cmn** (Chen Wang, CC BY-SA). Tải bằng `node scripts/fetch-syllable-audio.mjs [24k-abr|64k]`
+(chỉ lấy âm tiết có trong `syllables.json`; file thiếu ghi vào `src/content/syllable-audio.json`). Phát qua `useSyllablePlayer`:
+có file → phát file, không có → đọc chữ đại diện bằng giọng máy. **Không** lấy âm thanh từ khoá học/trang thương mại (vd. Yoyo Chinese) —
+chỉ dùng nguồn có giấy phép mở hoặc tự thu.
+
 ## 7c. Bài Nhập môn pinyin — `src/content/lessons/hsk-0.json`
 Bài level 0, `words/grammar` rỗng, thêm trường `pinyin` (xem skill `write-lesson-content`). Validate kiểm tra mảnh có trong
 `pinyin.json`, âm tiết `demo` chỉ dùng mảnh đã học tới bài đó, và mọi ví dụ quy tắc viết khớp `spell`.
 
-## 8. Nguồn & giấy phép (BẮT BUỘC ghi nhận trong trang "Giới thiệu")
+## 8. Nguồn & giấy phép (BẮT BUỘC ghi nhận trong trang "Giới thiệu" — `src/features/about/AboutPage.tsx`, mảng `DATA_SOURCES`)
 
 | Nguồn | Dùng cho | Giấy phép / lưu ý |
 |---|---|---|
 | CC-CEDICT | pinyin, nghĩa tham khảo (tiếng Anh) | CC BY-SA 4.0 — phải ghi nguồn, chia sẻ tương tự với phần dẫn xuất |
 | Make Me a Hanzi / hanzi-writer-data | thứ tự nét | Arphic Public License (dữ liệu nét) — ghi nguồn |
+| audio-cmn (Chen Wang) | âm thanh âm tiết (`public/audio/syllables`) | **CC BY-SA** — ghi nguồn; giữ nguyên file, chỉ đổi tên |
 | Make Me a Hanzi `dictionary.txt` | cấu tạo chữ, phần gợi nghĩa/gợi âm (`hanzi/chars.json`) | **LGPL-3.0** (dẫn xuất từ Unihan, CJKlib) — ghi nguồn; `chars.json` là phần dẫn xuất, phân phối theo LGPL |
 | Danh sách từ HSK | phân cấp từ | Danh sách công bố công khai; kiểm tra lại cấp khi đối chiếu |
 | Nghĩa tiếng Việt, Hán Việt, ví dụ | tự biên soạn | Không sao chép nguyên văn từ điển/giáo trình có bản quyền |

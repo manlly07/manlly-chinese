@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { SyllableBlender } from "@/components/learning/SyllableBlender";
-import { VoiceWarning } from "@/components/learning/VoiceWarning";
 import { Card, CardContent } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { loadSyllables, type PinyinData, type Syllable } from "@/lib/content";
@@ -15,7 +14,6 @@ export function BlendTab({ data }: { data: PinyinData }) {
 
   return (
     <div className="grid gap-6 lg:grid-cols-[1fr_18rem]">
-      <VoiceWarning className="lg:col-span-2" />
       <SyllableBlender
         syllables={syllables}
         initials={data.initials.map((x) => x.py).filter((p) => p !== "y" && p !== "w")}

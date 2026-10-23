@@ -171,3 +171,65 @@
     transform: rotateY(180deg);
   }
 }
+
+/* ---------- Vở tập viết (features/worksheet) ----------
+   Giấy luôn trắng, mực đen — không đổi theo chế độ tối, để xem trước giống bản in. */
+.paper {
+  --paper-bg: #ffffff;
+  --paper-ink: #1f1f1f;
+  --paper-line: #e3a5b8;
+  --paper-guide: #f0c4d1;
+  --paper-trace: #d6d9de;
+  --paper-trace-line: #a9b0ba;
+  --paper-accent: #d6336c;
+  --paper-head: #fbdde7;
+  --paper-muted: #6b7280;
+  color: var(--paper-ink);
+  font-family: Nunito, system-ui, sans-serif;
+}
+.paper-page {
+  background: var(--paper-bg);
+  width: 210mm;
+  min-height: 297mm;
+  padding: 12mm;
+  box-sizing: border-box;
+}
+
+@page {
+  size: A4;
+  margin: 0;
+}
+@media print {
+  /* chỉ in tờ vở: ẩn toàn bộ app, hiện vùng in (gắn thẳng vào body qua portal) */
+  body > *:not(#worksheet-print) {
+    display: none !important;
+  }
+  #worksheet-print {
+    display: block !important;
+  }
+  html,
+  body {
+    background: #ffffff !important;
+  }
+  .paper-page {
+    break-after: page;
+    min-height: auto;
+  }
+  .paper-page:last-child {
+    break-after: auto;
+  }
+  .paper * {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}
+#worksheet-print {
+  display: none;
+}
+@media screen {
+  /* xem trước: các trang tách nhau như tờ giấy thật */
+  .paper-page {
+    margin-bottom: 6mm;
+    box-shadow: 0 2px 12px rgb(0 0 0 / 0.12);
+  }
+}

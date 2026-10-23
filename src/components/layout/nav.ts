@@ -17,6 +17,7 @@ export const NAV_ITEMS: NavItem[] = [
   { label: "Từ vựng", path: "/vocab", icon: "vocab" },
   { label: "Phát âm", path: "/pronunciation", icon: "pronunciation" },
   { label: "Chữ Hán", path: "/hanzi", icon: "hanzi" },
+  { label: "Vở tập viết", path: "/worksheet", icon: "note" },
   { label: "Ngữ pháp", path: "/grammar", icon: "grammar" },
   { label: "Nghe", path: "/listening", icon: "listening" },
   { label: "Đọc hiểu", path: "/reading", icon: "reading" },

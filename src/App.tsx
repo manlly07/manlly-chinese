@@ -24,6 +24,8 @@ const ListeningDetailPage = lazyPage(() => import("@/features/listening/Listenin
 const PracticePage = lazyPage(() => import("@/features/practice/PracticePage"));
 const PracticeSessionPage = lazyPage(() => import("@/features/practice/PracticeSessionPage"));
 const TestPage = lazyPage(() => import("@/features/test/TestPage"));
+const AboutPage = lazyPage(() => import("@/features/about/AboutPage"));
+const WorksheetPage = lazyPage(() => import("@/features/worksheet/WorksheetPage"));
 
 // Các module chưa làm — thay dần bằng page thật theo docs/ROADMAP.md
 const PLANNED = [
@@ -59,6 +61,8 @@ export default function App() {
             <Route path="/practice" element={<PracticePage />} />
             <Route path="/practice/:mode" element={<PracticeSessionPage />} />
             <Route path="/test/:id" element={<TestPage />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/worksheet" element={<WorksheetPage />} />
             {PLANNED.map((p) => (
               <Route key={p} path={p} element={<PlaceholderPage />} />
             ))}

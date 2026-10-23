@@ -8,6 +8,7 @@ import { BlendTab } from "./components/BlendTab";
 import { ChartTab } from "./components/ChartTab";
 import { SandhiTab } from "./components/SandhiTab";
 import { SpeakTab } from "./components/SpeakTab";
+import { SyllableChartTab } from "./components/SyllableChartTab";
 import { ToneDrill } from "./components/ToneDrill";
 import { TonesTab } from "./components/TonesTab";
 
@@ -31,6 +32,7 @@ export default function PronunciationPage() {
             <TabsList>
               <TabsTrigger value="tones">Thanh điệu</TabsTrigger>
               <TabsTrigger value="chart">Bảng pinyin</TabsTrigger>
+              <TabsTrigger value="table">Bảng âm tiết</TabsTrigger>
               <TabsTrigger value="blend">Ghép vần</TabsTrigger>
               <TabsTrigger value="drill">Luyện nghe</TabsTrigger>
               <TabsTrigger value="speak">Luyện nói</TabsTrigger>
@@ -42,6 +44,9 @@ export default function PronunciationPage() {
           </TabsContent>
           <TabsContent value="chart" className="mt-5">
             <ChartTab data={data} />
+          </TabsContent>
+          <TabsContent value="table" className="mt-5">
+            <SyllableChartTab data={data} />
           </TabsContent>
           <TabsContent value="blend" className="mt-5">
             <BlendTab data={data} />

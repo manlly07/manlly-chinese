@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { loadLessons, loadSyllables } from "./content";
-import { inScope, pinyinScope, spell, spellNote, tonesOf, withTone } from "./syllables";
+import { audioUrl, hasAudio, inScope, pinyinScope, spell, spellNote, tonesOf, withTone } from "./syllables";
 
 describe("spell — quy tắc viết pinyin", () => {
   it.each([
@@ -39,6 +39,15 @@ describe("bảng âm tiết", async () => {
       expect(spell(s.i, s.f), s.s).toBe(s.s);
       expect(tonesOf(s).length, s.s).toBeGreaterThan(0);
     }
+  });
+
+  it("âm thanh người thật: đủ cả 4 thanh trừ vài file thiếu; ü → v trong tên file", () => {
+    const get = (s: string) => syllables.find((x) => x.s === s)!;
+    // ge chỉ có chữ cho thanh 1, 2, 4 — thanh 3 vẫn phát được nhờ file thu âm
+    expect(get("ge").t[2]).toBe("");
+    expect(tonesOf(get("ge"))).toEqual([1, 2, 3, 4]);
+    expect(hasAudio(get("ju"), 4)).toBe(false);
+    expect(audioUrl(get("lü"), 4)).toMatch(/audio\/syllables\/lv4\.mp3$/);
   });
 
   it("dấu thanh đặt đúng chỗ", () => {

@@ -1,4 +1,6 @@
+import { ChevronRight } from "lucide-react";
 import type { ReactNode } from "react";
+import { Link } from "react-router-dom";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Switch } from "@/components/ui/switch";
@@ -134,6 +136,17 @@ export default function SettingsPage() {
           <DataSection />
         </div>
       </Section>
+
+      <Link
+        to="/about"
+        className="flex items-center justify-between rounded-lg border border-border/70 bg-card p-4 font-black shadow-soft transition-colors hover:bg-muted/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+      >
+        <span>
+          Giới thiệu
+          <span className="block text-sm font-semibold text-muted-foreground">Nguồn dữ liệu, giấy phép và quyền riêng tư</span>
+        </span>
+        <ChevronRight className="size-5 text-muted-foreground" aria-hidden />
+      </Link>
     </div>
   );
 }

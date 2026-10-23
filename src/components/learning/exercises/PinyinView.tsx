@@ -6,7 +6,7 @@ import { TONE_CLASS } from "@/lib/pinyin";
 import { hanziFor, spell, spellNote, withTone } from "@/lib/syllables";
 import { cn } from "@/lib/utils";
 import { HanziText } from "../HanziText";
-import { useSpeech } from "../use-speech";
+import { useSyllablePlayer } from "../use-syllable-player";
 
 interface Props {
   q: PinyinQuestion;
@@ -46,14 +46,18 @@ function OptionButton({ label, index, state, onClick, big }: { label: string; in
 
 /** Bài tập pinyin: nghe-chọn (phụ âm đầu / vần / âm tiết / thanh), tự ghép âm tiết, và viết đúng quy tắc. */
 export function PinyinView({ q, chosen, onChoose }: Props) {
-  const { say } = useSpeech();
+  const play = useSyllablePlayer();
   const hanzi = q.type === "spell" ? "" : hanziFor(q.syl, q.tone);
+  const listen = (slow = false) => {
+    if (q.type !== "spell") void play(q.syl, q.tone, { slow });
+  };
   const [ini, setIni] = useState<string | null>(null);
   const [fin, setFin] = useState<string | null>(null);
 
+  // phát một lần khi hiện câu (giọng người thật; thiếu file thì giọng máy)
   useEffect(() => {
-    if (hanzi) void say(hanzi);
-  }, [hanzi, say]);
+    if (q.type !== "spell") void play(q.syl, q.tone);
+  }, [q, play]);
 
   const stateOf = (o: string, answer: string) => (!chosen ? "idle" : o === answer ? "right" : o === chosen ? "wrong" : "dim");
 
@@ -73,13 +77,13 @@ export function PinyinView({ q, chosen, onChoose }: Props) {
           <>
             <button
               type="button"
-              onClick={() => void say(hanzi)}
+              onClick={() => listen()}
               aria-label="Nghe lại"
               className="btn-pop flex size-24 items-center justify-center rounded-full bg-candy-sky text-candy-sky-foreground [--btn-shadow:var(--candy-sky-foreground)]"
             >
               <Volume2 className="size-10" />
             </button>
-            <button type="button" onClick={() => void say(hanzi, { rate: 0.6 })} className="text-sm font-bold text-primary hover:underline">
+            <button type="button" onClick={() => listen(true)} className="text-sm font-bold text-primary hover:underline">
               🐢 Nghe chậm
             </button>
           </>
@@ -89,7 +93,7 @@ export function PinyinView({ q, chosen, onChoose }: Props) {
             <p className="font-pinyin text-xl font-black">
               <span className="text-candy-sky-foreground">{q.syl.i || "∅"}</span> + <span className="text-candy-pink-foreground">{q.syl.f}</span> →{" "}
               <span className={TONE_CLASS[q.tone]}>{withTone(q.syl, q.tone)}</span>
-              <HanziText className="ml-2 text-xl">{hanzi}</HanziText>
+              {hanzi && <HanziText className="ml-2 text-xl">{hanzi}</HanziText>}
             </p>
             {spellNote(q.syl.i, q.syl.f) && <p className="text-xs font-bold text-muted-foreground">💡 {spellNote(q.syl.i, q.syl.f)}</p>}
           </div>

@@ -278,6 +278,22 @@ if (existsSync(strokesFile)) {
   (d?.exercises ?? []).forEach((ex, k) => checkExercise(strokesFile, `exercises[${k}]`, ex));
 }
 
+// ---------- Âm thanh âm tiết (public/audio/syllables) ----------
+const audioManifestFile = join(ROOT, "syllable-audio.json");
+const audioDir = resolve(ROOT, "../../public/audio/syllables");
+if (existsSync(audioManifestFile) && existsSync(audioDir)) {
+  const missing = new Set(readJson(audioManifestFile)?.missing ?? []);
+  const files = new Set(readdirSync(audioDir));
+  const lacking = [];
+  for (const e of syllables.values()) {
+    for (const t of [1, 2, 3, 4]) {
+      if (!missing.has(`${e.s}${t}`) && !files.has(`${e.s.replace("ü", "v")}${t}.mp3`)) lacking.push(`${e.s}${t}`);
+      if (missing.has(`${e.s}${t}`) && !e.t[t - 1]) warn(audioManifestFile, `${e.s}${t}: không có file thu âm lẫn chữ đại diện — không phát được`);
+    }
+  }
+  if (lacking.length) err(audioManifestFile, `thiếu ${lacking.length} file âm thanh (${lacking.slice(0, 8).join(" ")}…) — chạy node scripts/fetch-syllable-audio.mjs`);
+}
+
 // ---------- Cấu tạo chữ ----------
 const charsFile = join(ROOT, "hanzi/chars.json");
 const compFile = join(ROOT, "hanzi/components.json");

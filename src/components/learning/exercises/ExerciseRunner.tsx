@@ -150,7 +150,8 @@ export function ExerciseRunner({ exercises, onFinish, onExit, onAnswer, label }:
 
   if (!cur) return null;
   const showCombo = combo >= 3;
-  const needsAudio = exercises.some((e) => e.kind === "listen" || (e.kind === "pinyin" && e.q.type !== "spell") || (e.kind === "word" && e.q.type === "audio-hanzi"));
+  // câu pinyin dùng file thu âm người thật — chỉ câu nghe hội thoại / nghe từ cần giọng máy
+  const needsAudio = exercises.some((e) => e.kind === "listen" || (e.kind === "word" && e.q.type === "audio-hanzi"));
 
   return (
     <div className="mx-auto max-w-xl space-y-5">

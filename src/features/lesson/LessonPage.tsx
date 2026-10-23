@@ -1,4 +1,4 @@
-import { ArrowLeft, AudioLines, Blocks, BookOpen, Brush, Check, Combine, MessagesSquare, NotebookPen, Target, Trophy } from "lucide-react";
+import { ArrowLeft, AudioLines, Blocks, BookOpen, Brush, Check, Combine, MessagesSquare, NotebookPen, Printer, Target, Trophy } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { DialoguePlayer } from "@/components/learning/DialoguePlayer";
@@ -7,7 +7,6 @@ import { ExerciseRunner } from "@/components/learning/exercises/ExerciseRunner";
 import { GrammarCard } from "@/components/learning/GrammarCard";
 import { HanziText } from "@/components/learning/HanziText";
 import { useHanziParts } from "@/components/learning/use-hanzi-parts";
-import { VoiceWarning } from "@/components/learning/VoiceWarning";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -168,7 +167,6 @@ export default function LessonPage() {
 
       {step === "intro" && (
         <div className="mx-auto max-w-xl space-y-4">
-          {spec && <VoiceWarning />}
           <Card className="overflow-hidden">
             <div className="bg-gradient-to-br from-candy-pink via-candy-lilac to-candy-sky p-6">
               <h1 className="text-2xl font-black md:text-3xl">{lesson.title}</h1>
@@ -205,6 +203,13 @@ export default function LessonPage() {
               <Button size="lg" className="w-full" onClick={goNext}>
                 Bắt đầu học
               </Button>
+              {words.length > 0 && (
+                <Button variant="outline" className="w-full" asChild>
+                  <Link to={`/worksheet?lesson=${lesson.id}`}>
+                    <Printer /> In vở tập viết bài này
+                  </Link>
+                </Button>
+              )}
             </CardContent>
           </Card>
         </div>

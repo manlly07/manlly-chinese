@@ -1,11 +1,9 @@
-import { Volume2 } from "lucide-react";
 import { useMemo, useState } from "react";
 import type { Syllable } from "@/lib/content";
-import { TONE_CLASS, type Tone } from "@/lib/pinyin";
-import { hanziFor, indexSyllables, spellNote, syllableKey, withTone } from "@/lib/syllables";
+import { indexSyllables, spellNote, syllableKey, tonesOf } from "@/lib/syllables";
 import { cn } from "@/lib/utils";
-import { TryTone } from "./TryTone";
-import { useSpeech } from "./use-speech";
+import { SyllableTones } from "./SyllableTones";
+import { useSyllablePlayer } from "./use-syllable-player";
 
 interface Props {
   syllables: Syllable[];
@@ -40,30 +38,26 @@ function Tile({ label, active, dim, onClick }: { label: string; active: boolean;
 
 /** Bảng ghép vần: chọn phụ âm đầu + vần → xem cách viết và nghe đủ 4 thanh. Ô mờ = không ghép được với lựa chọn hiện tại. */
 export function SyllableBlender({ syllables, initials, finals, zero, initial, className }: Props) {
-  const { say } = useSpeech();
+  const play = useSyllablePlayer();
   const index = useMemo(() => indexSyllables(syllables), [syllables]);
   const [ini, setIni] = useState(initial?.[0] ?? initials[0] ?? NONE);
   const [fin, setFin] = useState(initial?.[1] ?? finals[0] ?? "");
-  // thanh vừa nghe — để "Đọc thử" chấm đúng thanh đó
-  const [tone, setTone] = useState<Tone | null>(null);
   const syl = index.get(syllableKey(ini, fin));
   const note = syl ? spellNote(ini, fin) : null;
   const iniList = zero ? [NONE, ...initials] : initials;
 
-  const play = (s: Syllable, t: Tone) => {
-    const h = hanziFor(s, t);
-    if (h) void say(h);
-    setTone(t);
+  // chọn mảnh → nghe ngay thanh phát được đầu tiên của âm tiết vừa ghép
+  const hear = (s: Syllable | undefined) => {
+    const t = s && tonesOf(s)[0];
+    if (s && t) void play(s, t);
   };
   const pickIni = (x: string) => {
     setIni(x);
-    const s = index.get(syllableKey(x, fin));
-    if (s) play(s, ([1, 2, 3, 4] as Tone[]).find((t) => hanziFor(s, t)) ?? 1);
+    hear(index.get(syllableKey(x, fin)));
   };
   const pickFin = (x: string) => {
     setFin(x);
-    const s = index.get(syllableKey(ini, x));
-    if (s) play(s, ([1, 2, 3, 4] as Tone[]).find((t) => hanziFor(s, t)) ?? 1);
+    hear(index.get(syllableKey(ini, x)));
   };
 
   return (
@@ -79,38 +73,9 @@ export function SyllableBlender({ syllables, initials, finals, zero, initial, cl
         {syl ? (
           <>
             {note && <p className="mt-2 text-sm font-bold text-candy-yellow-foreground">💡 {note}</p>}
-            <div className="mt-4 grid grid-cols-4 gap-2">
-              {([1, 2, 3, 4] as Tone[]).map((t) => {
-                const h = hanziFor(syl, t);
-                return (
-                  <button
-                    key={t}
-                    type="button"
-                    disabled={!h}
-                    onClick={() => play(syl, t)}
-                    aria-label={h ? `Nghe ${withTone(syl, t)}` : `${withTone(syl, t)} — không có chữ thông dụng`}
-                    className={cn(
-                      "flex min-h-20 flex-col items-center justify-center rounded-2xl border-2 border-border/70 bg-background p-2 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
-                      h ? "hover:-translate-y-0.5 hover:border-primary/50" : "opacity-40",
-                    )}
-                  >
-                    <span className={cn("font-pinyin text-2xl font-black", TONE_CLASS[t])}>{withTone(syl, t)}</span>
-                    {h ? (
-                      <span className="flex items-center gap-1 text-sm text-muted-foreground">
-                        <span className="hanzi">{h}</span> <Volume2 className="size-3.5" aria-hidden />
-                      </span>
-                    ) : (
-                      <span className="text-xs font-bold text-muted-foreground">—</span>
-                    )}
-                  </button>
-                );
-              })}
+            <div className="mt-4">
+              <SyllableTones key={syl.s} syl={syl} />
             </div>
-            {tone && hanziFor(syl, tone) && (
-              <div className="mt-4">
-                <TryTone key={`${syl.s}${tone}`} label={withTone(syl, tone)} tone={tone} />
-              </div>
-            )}
           </>
         ) : (
           <p className="mt-3 text-sm font-bold text-muted-foreground">Tiếng Trung phổ thông không có âm tiết này — thử ghép mảnh khác nhé.</p>

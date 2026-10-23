@@ -1,4 +1,4 @@
-import { ArrowLeft, ChevronLeft, ChevronRight, Eye, PenLine, Play, RotateCcw, Sparkles } from "lucide-react";
+import { ArrowLeft, ChevronLeft, ChevronRight, Eye, PenLine, Play, Printer, RotateCcw, Sparkles } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { Link, useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { CharParts } from "@/components/learning/CharParts";
@@ -174,6 +174,11 @@ export default function HanziDetailPage() {
                   </p>
                 </div>
                 <SpeakButton text={info.words.find((w) => w.hanzi === char)?.hanzi ?? info.words[0]?.hanzi ?? char} />
+                <Button variant="ghost" size="icon" asChild>
+                  <Link to={`/worksheet?words=${encodeURIComponent(char)}`} aria-label={`In vở tập viết chữ ${char}`} title="In vở tập viết">
+                    <Printer />
+                  </Link>
+                </Button>
               </div>
               {mode === "recall" && (
                 <p className="rounded-2xl bg-candy-yellow p-3 font-bold text-candy-yellow-foreground">

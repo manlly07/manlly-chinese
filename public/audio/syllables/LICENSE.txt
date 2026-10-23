@@ -1,0 +1,4 @@
+Âm thanh âm tiết tiếng Trung trong thư mục này lấy nguyên bản từ dự án audio-cmn:
+  https://github.com/hugolpz/audio-cmn  (thư mục 24k-abr/syllabs)
+Người đọc: Chen Wang. Giấy phép: Creative Commons Attribution-ShareAlike (CC BY-SA).
+Tên file được đổi từ cmn-<pinyin><thanh>.mp3 thành <pinyin><thanh>.mp3; nội dung âm thanh giữ nguyên.

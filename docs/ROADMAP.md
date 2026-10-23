@@ -49,7 +49,10 @@ Mỗi giai đoạn kết thúc bằng một bản build chạy được.
 - [x] Cảnh báo khi máy thiếu giọng đọc tiếng Trung (bài pinyin, bài tập có phần nghe, tab Ghép vần)
 - [x] Ôn hằng ngày/kiểm tra tuần trộn câu pinyin (âm trong sổ lỗi trước) sau khi đã sang HSK
 - [x] Tab “Ghép chữ” trong trang Chữ Hán; test tự động (Vitest) trong `npm run check`
-- [ ] Thu âm sẵn âm tiết (không phụ thuộc giọng máy); soát nội dung bởi người bản ngữ/giáo viên
+- [x] Âm thanh âm tiết người thật (audio-cmn, CC BY-SA) + tab “Bảng âm tiết” kiểu bảng pinyin của các khoá học
+- [x] Vở tập viết in được (`/worksheet`): chọn từ (cả bài / tìm / tự gõ) → trang từ mới + mỗi chữ một trang A4:
+  thứ tự nét, chữ to (2 tô · 1 tự viết), chữ nhỏ (3 tô · 2 tự viết), ô 米/田; nét vẽ SVG từ hanzi-writer-data
+- [ ] Soát nội dung bởi người bản ngữ/giáo viên
 
 ## Giai đoạn 3 — Trung & cao cấp
 - [ ] Nội dung HSK 3–6 (từ vựng, ngữ pháp, bài học), gắn cấp HSK 3.0
