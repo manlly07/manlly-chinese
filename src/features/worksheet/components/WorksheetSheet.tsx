@@ -40,7 +40,7 @@ interface Props {
 const BIG = { size: 22, perRow: 8 }; // 180,2 mm
 const SMALL = { size: 12.5, perRow: 14 }; // 182,8 mm
 const STEP = { size: 14.5, perRow: 12 }; // 180,6 mm
-const BLANK_ROWS = 11; // 11 × 22,6 mm + tiêu đề ≈ 265 mm ≤ 273 mm
+const BLANK_ROWS = 19; // ô cỡ chữ nhỏ: 19 × 13,1 mm + tiêu đề ≈ 262 mm ≤ 273 mm
 
 const countOf = (strokes: Map<string, StrokeData | null>, c: string) => strokes.get(c)?.strokes.length ?? 0;
 
@@ -198,8 +198,8 @@ function BlankPage({ title, grid }: { title: string; grid: GridStyle }) {
       <div style={{ display: "grid", gap: "0.6mm" }}>
         {Array.from({ length: BLANK_ROWS }, (_, k) => (
           <Row key={k}>
-            {Array.from({ length: BIG.perRow }, (_, i) => (
-              <GridCell key={i} size={BIG.size} grid={grid} mode="blank" />
+            {Array.from({ length: SMALL.perRow }, (_, i) => (
+              <GridCell key={i} size={SMALL.size} grid={grid} mode="blank" />
             ))}
           </Row>
         ))}
