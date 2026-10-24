@@ -33,15 +33,22 @@ export function matchWord(w: Word, query: string): number {
   if (/[āáǎàēéěèīíǐìōóǒòūúǔùǖǘǚǜ]/.test(qMarked) && w.pinyin.toLowerCase().replace(/\s/g, "").includes(qMarked.replace(/\s/g, "")))
     score = Math.max(score, 95);
 
-  const fq = foldVi(q);
-  const meanings = w.meaning.map(foldVi);
+  // gõ có dấu ("tôi") thì so có dấu — tránh khớp nhầm "tới", "đen"; gõ không dấu ("toi") thì so lỏng
+  const accented = q.toLowerCase() !== foldVi(q);
+  const norm = (s: string) => (accented ? s.toLowerCase().trim() : foldVi(s));
+  const fq = norm(q);
+  const tokens = (s: string) => s.split(/[\s,;()/]+/).filter(Boolean);
+  const meanings = w.meaning.map(norm);
   if (meanings.some((m) => m === fq)) score = Math.max(score, 85);
-  else if (meanings.some((m) => m.split(/[\s,;()]+/).includes(fq))) score = Math.max(score, 70);
-  else if (fq.length >= 2 && meanings.some((m) => m.includes(fq))) score = Math.max(score, 40);
+  else if (meanings.some((m) => tokens(m).includes(fq) || ` ${m} `.includes(` ${fq} `))) score = Math.max(score, 70);
+  // khớp đầu một chữ trong nghĩa ("chao" → "chào mừng"), không khớp giữa chữ ("hao" ≠ "chào")
+  else if (fq.length >= 2 && meanings.some((m) => tokens(m).some((t) => t.startsWith(fq)) || (fq.includes(" ") && m.includes(fq)))) score = Math.max(score, 40);
 
-  const hv = foldVi(w.hanViet);
+  const hv = norm(w.hanViet);
+  const hvSyl = tokens(hv);
   if (hv && hv === fq) score = Math.max(score, 80);
-  else if (hv && fq.length >= 2 && hv.includes(fq)) score = Math.max(score, 35);
+  else if (hvSyl.includes(fq)) score = Math.max(score, 45);
+  else if (fq.length >= 3 && hvSyl.some((t) => t.startsWith(fq))) score = Math.max(score, 30);
 
   // ưu tiên nghĩa Việt có dấu khớp chính xác
   if (w.meaning.some((m) => m.toLowerCase() === q.toLowerCase())) score += 5;

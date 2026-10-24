@@ -24,6 +24,8 @@ export interface SheetOptions {
   bigTrace: number;
   smallRows: number;
   smallTrace: number;
+  /** thêm một trang toàn ô trống ở cuối vở */
+  blankPage: boolean;
 }
 
 interface Props {
@@ -38,6 +40,7 @@ interface Props {
 const BIG = { size: 22, perRow: 8 }; // 180,2 mm
 const SMALL = { size: 12.5, perRow: 14 }; // 182,8 mm
 const STEP = { size: 14.5, perRow: 12 }; // 180,6 mm
+const BLANK_ROWS = 11; // 11 × 22,6 mm + tiêu đề ≈ 265 mm ≤ 273 mm
 
 const countOf = (strokes: Map<string, StrokeData | null>, c: string) => strokes.get(c)?.strokes.length ?? 0;
 
@@ -49,12 +52,11 @@ function SectionTitle({ children }: { children: ReactNode }) {
   return <p style={{ fontSize: "3.4mm", fontWeight: 800, margin: "4mm 0 1.5mm", color: "var(--paper-accent)" }}>{children}</p>;
 }
 
-function Header({ title, sub }: { title: string; sub: string }) {
+/** Đầu trang: chỉ tên bài. */
+function Header({ title }: { title: string }) {
   return (
     <div style={{ borderBottom: "0.3mm solid var(--paper-line)", paddingBottom: "2mm", marginBottom: "3mm" }}>
-      <p style={{ fontSize: "2.8mm", letterSpacing: "0.4mm", color: "var(--paper-muted)", fontWeight: 700 }}>VỞ TẬP VIẾT TIẾNG TRUNG · MANLLY 中文</p>
-      <p style={{ fontSize: "6mm", fontWeight: 900, marginTop: "1mm" }}>{title}</p>
-      <p style={{ fontSize: "3.2mm", color: "var(--paper-muted)", fontWeight: 600 }}>{sub}</p>
+      <p style={{ fontSize: "6mm", fontWeight: 900 }}>{title}</p>
     </div>
   );
 }
@@ -72,7 +74,7 @@ function VocabPage({ title, words, strokes }: Pick<Props, "title" | "words" | "s
   const cell = { border: "0.25mm solid var(--paper-line)", padding: "2mm 2.5mm", fontSize: "3.6mm" } as const;
   return (
     <section className="paper-page">
-      <Header title={title} sub="Từ mới hôm nay · Nhìn chữ, đọc phiên âm, hiểu nghĩa rồi luyện viết." />
+      <Header title={title} />
       <p style={{ fontSize: "3.4mm", fontWeight: 700, margin: "2mm 0 4mm" }}>
         Họ tên: ____________________________ &nbsp;&nbsp;&nbsp; Ngày: ____ / ____ / ______
       </p>
@@ -95,10 +97,7 @@ function VocabPage({ title, words, strokes }: Pick<Props, "title" | "words" | "s
                   {w.hanzi}
                 </td>
                 <td style={{ ...cell, fontFamily: "Mali, Nunito, sans-serif", fontWeight: 700 }}>{w.pinyin}</td>
-                <td style={cell}>
-                  {w.meaning}
-                  {w.hanViet && <span style={{ display: "block", fontSize: "2.8mm", color: "var(--paper-muted)", textTransform: "uppercase", fontWeight: 700 }}>{w.hanViet}</span>}
-                </td>
+                <td style={cell}>{w.meaning}</td>
                 <td style={{ ...cell, whiteSpace: "nowrap" }}>
                   {cs.length === 1 ? `${countOf(strokes, cs[0]) || "?"} nét` : cs.map((c) => `${c}: ${countOf(strokes, c) || "?"}`).join(" · ")}
                 </td>
@@ -115,7 +114,7 @@ function VocabPage({ title, words, strokes }: Pick<Props, "title" | "words" | "s
 }
 
 /** Trang luyện một chữ: đầu trang → thứ tự nét → chữ to → chữ nhỏ. */
-function CharPage({ meta, data, options, index, title }: { meta: CharMeta; data: StrokeData | null; options: SheetOptions; index: number; title: string }) {
+function CharPage({ meta, data, options, title }: { meta: CharMeta; data: StrokeData | null; options: SheetOptions; title: string }) {
   const n = data?.strokes.length ?? 0;
   const practice = (rows: number, trace: number, { size, perRow }: typeof BIG) =>
     practiceRows(rows, trace).map((r, k) => (
@@ -136,7 +135,7 @@ function CharPage({ meta, data, options, index, title }: { meta: CharMeta; data:
 
   return (
     <section className="paper-page">
-      <Header title={`${title} · Chữ ${index + 1}: ${meta.char}`} sub={[meta.pinyin, meta.meaning].filter(Boolean).join(" · ")} />
+      <Header title={title} />
 
       <div className="flex" style={{ gap: "4mm", alignItems: "stretch" }}>
         <div style={{ background: "var(--paper-head)", padding: "1.5mm", borderRadius: "1.5mm" }}>
@@ -191,14 +190,33 @@ function CharPage({ meta, data, options, index, title }: { meta: CharMeta; data:
   );
 }
 
-/** Toàn bộ vở: trang từ mới + một trang cho mỗi chữ. Kích thước theo mm để in A4 đúng tỉ lệ. */
+/** Trang cuối: toàn ô trống để luyện thêm chữ bất kỳ. */
+function BlankPage({ title, grid }: { title: string; grid: GridStyle }) {
+  return (
+    <section className="paper-page">
+      <Header title={title} />
+      <div style={{ display: "grid", gap: "0.6mm" }}>
+        {Array.from({ length: BLANK_ROWS }, (_, k) => (
+          <Row key={k}>
+            {Array.from({ length: BIG.perRow }, (_, i) => (
+              <GridCell key={i} size={BIG.size} grid={grid} mode="blank" />
+            ))}
+          </Row>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+/** Toàn bộ vở: trang từ mới + một trang cho mỗi chữ (+ trang trắng). Kích thước theo mm để in A4 đúng tỉ lệ. */
 export function WorksheetSheet({ title, words, chars, strokes, options }: Props) {
   return (
     <div className="paper">
       <VocabPage title={title} words={words} strokes={strokes} />
-      {chars.map((m, i) => (
-        <CharPage key={m.char} meta={m} data={strokes.get(m.char) ?? null} options={options} index={i} title={title} />
+      {chars.map((m) => (
+        <CharPage key={m.char} meta={m} data={strokes.get(m.char) ?? null} options={options} title={title} />
       ))}
+      {options.blankPage && <BlankPage title={title} grid={options.grid} />}
     </div>
   );
 }

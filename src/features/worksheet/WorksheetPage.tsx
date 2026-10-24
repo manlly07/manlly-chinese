@@ -1,4 +1,4 @@
-import { Printer, Trash2, X } from "lucide-react";
+import { Printer, Trash2 } from "lucide-react";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { useSearchParams } from "react-router-dom";
@@ -14,6 +14,7 @@ import { buildCharIndex, type Lesson, loadLessons } from "@/lib/content";
 import { loadStrokeMap, type StrokeData } from "@/lib/stroke-data";
 import { cn } from "@/lib/utils";
 import { addWords, charMeta, fromWord, parseCustom, sheetChars, type SheetWord } from "@/lib/worksheet";
+import { SortableWordList } from "./components/SortableWordList";
 import { WordPicker } from "./components/WordPicker";
 import { type SheetOptions, WorksheetSheet } from "./components/WorksheetSheet";
 
@@ -75,7 +76,7 @@ export default function WorksheetPage() {
   const [params] = useSearchParams();
   const [list, setList] = useState<SheetWord[]>([]);
   const [title, setTitle] = useState("Bài luyện viết");
-  const [options, setOptions] = useState<SheetOptions>({ grid: "mi", traceStyle: "fill", bigRows: 3, bigTrace: 2, smallRows: 5, smallTrace: 3 });
+  const [options, setOptions] = useState<SheetOptions>({ grid: "mi", traceStyle: "fill", bigRows: 3, bigTrace: 2, smallRows: 5, smallTrace: 3, blankPage: true });
   const [strokes, setStrokes] = useState<Map<string, StrokeData | null>>(new Map());
   const [loadingStrokes, setLoadingStrokes] = useState(false);
   const printRoot = usePrintRoot();
@@ -94,7 +95,7 @@ export default function WorksheetPage() {
     if (l) {
       const byId = new Map(vocab.map((w) => [w.id, w]));
       setList(l.words.map((id) => byId.get(id)).filter((w) => !!w).map((w) => fromWord(w!)));
-      setTitle(`HSK ${l.level} · Bài ${l.id.slice(-2)} · ${l.title}`);
+      setTitle(l.title);
     } else if (params.get("words")) {
       setList(parseCustom(params.get("words")!, vocab));
     }
@@ -121,7 +122,6 @@ export default function WorksheetPage() {
 
   if (loading) return <Skeleton className="h-96 rounded-lg" />;
 
-  const update = (i: number, patch: Partial<SheetWord>) => setList((l) => l.map((w, k) => (k === i ? { ...w, ...patch } : w)));
   const sheet = <WorksheetSheet title={title} words={list} chars={metas} strokes={strokes} options={options} />;
 
   return (
@@ -147,6 +147,7 @@ export default function WorksheetPage() {
               <WordPicker
                 vocab={vocab}
                 lessons={lessons}
+                added={new Set(list.map((w) => w.hanzi))}
                 onAdd={(ws, t) => {
                   setList((l) => addWords(l, ws));
                   if (t && !list.length) setTitle(t);
@@ -172,20 +173,10 @@ export default function WorksheetPage() {
               {!list.length ? (
                 <p className="text-sm font-semibold text-muted-foreground">Chưa có từ nào — thêm từ ở bước 1.</p>
               ) : (
-                <ul className="space-y-2">
-                  {list.map((w, i) => (
-                    <li key={w.hanzi} className="flex items-start gap-2 rounded-2xl bg-muted/60 p-2">
-                      <span className="hanzi w-14 shrink-0 pt-1 text-center text-2xl">{w.hanzi}</span>
-                      <div className="grid min-w-0 flex-1 gap-1">
-                        <Input value={w.pinyin} onChange={(e) => update(i, { pinyin: e.target.value })} placeholder="pinyin (nǐ hǎo)" className="font-pinyin h-8 text-sm" aria-label={`Pinyin của ${w.hanzi}`} />
-                        <Input value={w.meaning} onChange={(e) => update(i, { meaning: e.target.value })} placeholder="nghĩa tiếng Việt" className="h-8 text-sm" aria-label={`Nghĩa của ${w.hanzi}`} />
-                      </div>
-                      <Button variant="ghost" size="icon" onClick={() => setList((l) => l.filter((_, k) => k !== i))} aria-label={`Bỏ ${w.hanzi}`}>
-                        <X />
-                      </Button>
-                    </li>
-                  ))}
-                </ul>
+                <>
+                  <p className="text-xs font-semibold text-muted-foreground">Kéo ⋮⋮ để đổi thứ tự — các trang chữ trong vở xếp theo thứ tự này.</p>
+                  <SortableWordList words={list} onChange={setList} />
+                </>
               )}
             </CardContent>
           </Card>
@@ -208,6 +199,12 @@ export default function WorksheetPage() {
                 onChange={(bigRows) => setOptions((o) => ({ ...o, bigRows, bigTrace: bigRows - 1 }))}
                 options={[[3, "3 dòng (2 tô · 1 tự viết)"], [2, "2 dòng (1 tô · 1 tự viết)"]]}
               />
+              <Toggle
+                label="Trang trắng cuối vở"
+                value={options.blankPage ? "on" : "off"}
+                onChange={(v) => setOptions((o) => ({ ...o, blankPage: v === "on" }))}
+                options={[["on", "Có — toàn ô trống"], ["off", "Không"]]}
+              />
             </CardContent>
           </Card>
         </div>
@@ -215,7 +212,7 @@ export default function WorksheetPage() {
         <div className="min-w-0 space-y-3">
           <div className="flex flex-wrap items-center justify-between gap-2">
             <p className="font-black">
-              Xem trước · {list.length ? `${chars.length + 1} trang A4` : "chưa có từ"}
+              Xem trước · {list.length ? `${chars.length + 1 + (options.blankPage ? 1 : 0)} trang A4` : "chưa có từ"}
               {loadingStrokes && <span className="ml-2 text-sm font-semibold text-muted-foreground">đang tải thứ tự nét…</span>}
             </p>
             <p className="text-xs font-semibold text-muted-foreground">Khi in: chọn khổ A4, tỉ lệ 100%; muốn có file thì chọn “Lưu dưới dạng PDF”.</p>
