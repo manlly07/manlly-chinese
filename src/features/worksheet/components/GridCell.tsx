@@ -22,9 +22,11 @@ interface Props {
 export function GridCell({ size, grid, char, data, mode, step = 0, traceStyle = "fill" }: Props) {
   const guide = { stroke: "var(--paper-guide)", strokeWidth: 6, strokeDasharray: "24 18" };
   const strokes = data?.strokes ?? [];
+  // viền dày cố định 0,3 mm dù ô to hay nhỏ — tính theo tỉ lệ thì ô nhỏ chỉ còn ~0,12 mm, mảnh hơn 1 điểm ảnh nên có cạnh bị mất
+  const border = (1024 * 0.3) / size;
   return (
     <svg viewBox="0 0 1024 1024" width={`${size}mm`} height={`${size}mm`} className="block shrink-0" aria-hidden>
-      <rect x="4" y="4" width="1016" height="1016" fill="var(--paper-bg)" stroke="var(--paper-line)" strokeWidth="10" />
+      <rect x={border / 2} y={border / 2} width={1024 - border} height={1024 - border} fill="var(--paper-bg)" stroke="var(--paper-line)" strokeWidth={border} />
       <line x1="512" y1="4" x2="512" y2="1020" {...guide} />
       <line x1="4" y1="512" x2="1020" y2="512" {...guide} />
       {grid === "mi" && (
