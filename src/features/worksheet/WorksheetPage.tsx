@@ -168,8 +168,9 @@ export default function WorksheetPage() {
         }
       />
 
-      <div className="grid gap-5 lg:grid-cols-[22rem_1fr]">
-        <div className="space-y-5">
+      {/* minmax(0,…) + min-w-0: cột được co hẹp hơn nội dung (ô chọn bài dài) — không làm tràn ngang trên điện thoại */}
+      <div className="grid grid-cols-[minmax(0,1fr)] gap-5 lg:grid-cols-[22rem_minmax(0,1fr)]">
+        <div className="min-w-0 space-y-5">
           <Card>
             <CardHeader className="pb-2">
               <CardTitle className="text-lg">1. Chọn từ</CardTitle>
