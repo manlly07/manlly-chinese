@@ -24,8 +24,8 @@ export interface SheetOptions {
   bigTrace: number;
   smallRows: number;
   smallTrace: number;
-  /** thêm một trang toàn ô trống ở cuối vở */
-  blankPage: boolean;
+  /** số trang toàn ô trống ở cuối vở (0 = không thêm) */
+  blankPages: number;
 }
 
 interface Props {
@@ -216,7 +216,9 @@ export function WorksheetSheet({ title, words, chars, strokes, options }: Props)
       {chars.map((m) => (
         <CharPage key={m.char} meta={m} data={strokes.get(m.char) ?? null} options={options} title={title} />
       ))}
-      {options.blankPage && <BlankPage title={title} grid={options.grid} />}
+      {Array.from({ length: options.blankPages }, (_, i) => (
+        <BlankPage key={`blank-${i}`} title={title} grid={options.grid} />
+      ))}
     </div>
   );
 }

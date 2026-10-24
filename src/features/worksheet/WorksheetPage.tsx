@@ -1,4 +1,4 @@
-import { Printer, Trash2 } from "lucide-react";
+import { Minus, Plus, Printer, Trash2 } from "lucide-react";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { useSearchParams } from "react-router-dom";
@@ -47,6 +47,37 @@ function useFitScale() {
   return { ref, scale };
 }
 
+const MAX_BLANK = 20;
+
+/** Chọn số nguyên trong [min, max] bằng nút − / + hoặc gõ trực tiếp. */
+function Stepper({ value, onChange, label, min, max, unit }: { value: number; onChange: (v: number) => void; label: string; min: number; max: number; unit: string }) {
+  const set = (v: number) => onChange(Math.min(max, Math.max(min, Number.isFinite(v) ? Math.round(v) : min)));
+  return (
+    <div className="space-y-1.5">
+      <p className="text-sm font-black">{label}</p>
+      <div className="flex items-center gap-2">
+        <Button variant="outline" size="icon" onClick={() => set(value - 1)} disabled={value <= min} aria-label={`Bớt 1 ${unit}`}>
+          <Minus />
+        </Button>
+        <Input
+          type="number"
+          inputMode="numeric"
+          min={min}
+          max={max}
+          value={value}
+          onChange={(e) => set(e.target.valueAsNumber)}
+          className="h-10 w-16 text-center font-bold"
+          aria-label={label}
+        />
+        <Button variant="outline" size="icon" onClick={() => set(value + 1)} disabled={value >= max} aria-label={`Thêm 1 ${unit}`}>
+          <Plus />
+        </Button>
+        <span className="text-sm font-semibold text-muted-foreground">{value ? `${unit} toàn ô trống` : "không thêm"}</span>
+      </div>
+    </div>
+  );
+}
+
 function Toggle<T extends string | number>({ value, options, onChange, label }: { value: T; options: [T, string][]; onChange: (v: T) => void; label: string }) {
   return (
     <div className="space-y-1.5">
@@ -76,7 +107,7 @@ export default function WorksheetPage() {
   const [params] = useSearchParams();
   const [list, setList] = useState<SheetWord[]>([]);
   const [title, setTitle] = useState("Bài luyện viết");
-  const [options, setOptions] = useState<SheetOptions>({ grid: "mi", traceStyle: "fill", bigRows: 3, bigTrace: 2, smallRows: 5, smallTrace: 3, blankPage: true });
+  const [options, setOptions] = useState<SheetOptions>({ grid: "mi", traceStyle: "fill", bigRows: 3, bigTrace: 2, smallRows: 5, smallTrace: 3, blankPages: 1 });
   const [strokes, setStrokes] = useState<Map<string, StrokeData | null>>(new Map());
   const [loadingStrokes, setLoadingStrokes] = useState(false);
   const printRoot = usePrintRoot();
@@ -199,11 +230,13 @@ export default function WorksheetPage() {
                 onChange={(bigRows) => setOptions((o) => ({ ...o, bigRows, bigTrace: bigRows - 1 }))}
                 options={[[3, "3 dòng (2 tô · 1 tự viết)"], [2, "2 dòng (1 tô · 1 tự viết)"]]}
               />
-              <Toggle
+              <Stepper
                 label="Trang trắng cuối vở"
-                value={options.blankPage ? "on" : "off"}
-                onChange={(v) => setOptions((o) => ({ ...o, blankPage: v === "on" }))}
-                options={[["on", "Có — toàn ô trống"], ["off", "Không"]]}
+                unit="trang"
+                min={0}
+                max={MAX_BLANK}
+                value={options.blankPages}
+                onChange={(blankPages) => setOptions((o) => ({ ...o, blankPages }))}
               />
             </CardContent>
           </Card>
@@ -212,7 +245,7 @@ export default function WorksheetPage() {
         <div className="min-w-0 space-y-3">
           <div className="flex flex-wrap items-center justify-between gap-2">
             <p className="font-black">
-              Xem trước · {list.length ? `${chars.length + 1 + (options.blankPage ? 1 : 0)} trang A4` : "chưa có từ"}
+              Xem trước · {list.length ? `${chars.length + 1 + options.blankPages} trang A4` : "chưa có từ"}
               {loadingStrokes && <span className="ml-2 text-sm font-semibold text-muted-foreground">đang tải thứ tự nét…</span>}
             </p>
             <p className="text-xs font-semibold text-muted-foreground">Khi in: chọn khổ A4, tỉ lệ 100%; muốn có file thì chọn “Lưu dưới dạng PDF”.</p>
