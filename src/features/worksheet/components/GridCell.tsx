@@ -1,7 +1,5 @@
 import type { StrokeData } from "@/lib/stroke-data";
-
-export type GridStyle = "mi" | "tian";
-export type TraceStyle = "fill" | "dashed";
+import type { GridStyle, TraceStyle } from "@/lib/worksheet";
 
 interface Props {
   /** cạnh ô, đơn vị mm (in ra đúng kích thước) */

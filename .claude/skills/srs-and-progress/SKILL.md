@@ -69,4 +69,6 @@ Còn lại:
   Migrate v1→v2: giữ nguyên dữ liệu, không có `placement`. Gộp khi nhập: lấy `placement` có `at` mới hơn.
 - v3 — thêm `tests: Record<id, { best, last, attempts, at }>` và `mistakes: Record<khoá, { count, last }>`.
   Migrate v2→v3: thêm hai object rỗng. Gộp: tests lấy best max / last theo `at` mới hơn; mistakes lấy bản `last` mới hơn.
+- v4 — thêm `worksheets: Record<id, SavedWorksheet>` (vở tập viết đã lưu: title, words, options, createdAt, updatedAt).
+  Migrate v3→v4: thêm object rỗng. Gộp: trùng id lấy bản `updatedAt` mới hơn. Bản nháp chưa lưu nằm ở `store/session` (không persist).
 - Settings v2 — thêm `soundEffects` (mặc định bật); migrate gộp với giá trị mặc định.

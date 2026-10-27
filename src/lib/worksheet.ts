@@ -9,6 +9,24 @@ export interface SheetWord {
   hanViet?: string;
 }
 
+export type GridStyle = "mi" | "tian";
+export type TraceStyle = "fill" | "dashed";
+
+/** Kiểu vở (lưu cùng vở). */
+export interface SheetOptions {
+  grid: GridStyle;
+  traceStyle: TraceStyle;
+  /** số dòng chữ to / số dòng trong đó để tô */
+  bigRows: number;
+  bigTrace: number;
+  smallRows: number;
+  smallTrace: number;
+  /** số trang toàn ô trống ở cuối vở (0 = không thêm) */
+  blankPages: number;
+}
+
+export const DEFAULT_SHEET_OPTIONS: SheetOptions = { grid: "mi", traceStyle: "fill", bigRows: 3, bigTrace: 2, smallRows: 5, smallTrace: 3, blankPages: 1 };
+
 export const fromWord = (w: Word): SheetWord => ({ hanzi: w.hanzi, pinyin: w.pinyin, meaning: w.meaning.slice(0, 2).join("; "), hanViet: w.hanViet });
 
 /**
@@ -100,3 +118,9 @@ export const practiceRows = (total: number, trace: number): PracticeRow[] =>
 
 /** Chia mảng thành các hàng `size` phần tử (hàng thứ tự nét dài thì xuống dòng). */
 export const chunk = <T,>(xs: T[], size: number): T[][] => Array.from({ length: Math.ceil(xs.length / size) }, (_, i) => xs.slice(i * size, (i + 1) * size));
+
+/** Số từ mỗi trang bảng từ (hàng cao ~14,5 mm) — nhiều hơn thì sang trang sau. */
+export const VOCAB_ROWS = 13;
+
+/** Số trang của vở: bảng từ (chia trang) + mỗi chữ một trang + trang trắng. */
+export const sheetPageCount = (words: number, chars: number, blankPages: number) => Math.max(1, Math.ceil(words / VOCAB_ROWS)) + chars + blankPages;

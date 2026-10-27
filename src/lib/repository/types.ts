@@ -1,13 +1,14 @@
 import type { DateKey } from "@/lib/date";
 import type { CardState } from "@/lib/srs";
 import type { DayStat } from "@/lib/streak";
+import type { SheetOptions, SheetWord } from "@/lib/worksheet";
 
 export type WordId = string;
 export type LessonId = string;
 
 export const APP_ID = "hoc-tieng-trung";
 /** Phiên bản schema dữ liệu người dùng (khớp version của store progress). */
-export const PROGRESS_SCHEMA = 3;
+export const PROGRESS_SCHEMA = 4;
 
 export interface LessonProgress {
   best: number;
@@ -27,6 +28,18 @@ export interface ProgressData {
   tests: Record<string, TestProgress>;
   /** v3: sổ lỗi sai — khoá "w:<wordId>" hoặc "g:<grammarId>#<chỉ số bài tập>" */
   mistakes: Record<string, MistakeEntry>;
+  /** v4: vở tập viết đã lưu, theo id */
+  worksheets: Record<string, SavedWorksheet>;
+}
+
+export interface SavedWorksheet {
+  id: string;
+  title: string;
+  words: SheetWord[];
+  options: SheetOptions;
+  createdAt: number;
+  /** lần sửa cuối — gộp khi nhập file lấy bản mới hơn */
+  updatedAt: number;
 }
 
 export interface TestProgress {

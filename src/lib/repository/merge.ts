@@ -15,7 +15,7 @@ function mergeBy<T>(a: Record<string, T> = {}, b: Record<string, T> = {}, pick: 
   return out;
 }
 
-/** Gộp: thẻ lấy bản có updatedAt mới hơn; lịch sử lấy max theo ngày; XP lấy max. */
+/** Gộp: thẻ và vở tập viết lấy bản có updatedAt mới hơn; lịch sử lấy max theo ngày; XP lấy max. */
 export function mergeProgress(a: ProgressData, b: ProgressData): ProgressData {
   const cards = { ...a.cards };
   for (const [id, card] of Object.entries(b.cards)) {
@@ -50,6 +50,7 @@ export function mergeProgress(a: ProgressData, b: ProgressData): ProgressData {
       at: Math.max(x.at, y.at),
     })),
     mistakes: mergeBy(a.mistakes, b.mistakes, (x, y) => (x.last >= y.last ? x : y)),
+    worksheets: mergeBy(a.worksheets, b.worksheets, (x, y) => (x.updatedAt >= y.updatedAt ? x : y)),
     placement: [a.placement, b.placement].filter(Boolean).sort((x, y) => y!.at - x!.at)[0],
   };
 }

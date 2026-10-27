@@ -1,8 +1,8 @@
 import type { ReactNode } from "react";
 import { hanChars } from "@/lib/content";
 import type { StrokeData } from "@/lib/stroke-data";
-import { chunk, practiceRows, type SheetWord } from "@/lib/worksheet";
-import { GridCell, type GridStyle, type TraceStyle } from "./GridCell";
+import { chunk, type GridStyle, practiceRows, type SheetOptions, sheetPageCount, type SheetWord, VOCAB_ROWS } from "@/lib/worksheet";
+import { GridCell } from "./GridCell";
 
 /** Thông tin hiển thị ở đầu trang luyện một chữ. */
 export interface CharMeta {
@@ -14,18 +14,6 @@ export interface CharMeta {
   radical: string;
   /** từ có chứa chữ (组词) */
   words: string[];
-}
-
-export interface SheetOptions {
-  grid: GridStyle;
-  traceStyle: TraceStyle;
-  /** số dòng chữ to / số dòng trong đó để tô */
-  bigRows: number;
-  bigTrace: number;
-  smallRows: number;
-  smallTrace: number;
-  /** số trang toàn ô trống ở cuối vở (0 = không thêm) */
-  blankPages: number;
 }
 
 interface Props {
@@ -61,6 +49,17 @@ function Header({ title }: { title: string }) {
   );
 }
 
+/** Chân trang: số trang. Trang là cột flex nên chân luôn nằm sát đáy tờ. */
+function Footer({ page, total }: { page: number; total: number }) {
+  return (
+    <p style={{ marginTop: "auto", paddingTop: "3mm", textAlign: "center", fontSize: "3mm", fontWeight: 700, color: "var(--paper-muted)" }}>
+      Trang {page} / {total}
+    </p>
+  );
+}
+
+type PageNo = { page: number; total: number };
+
 function SelfCheck() {
   return (
     <p style={{ fontSize: "3mm", color: "var(--paper-muted)", fontWeight: 700, marginTop: "4mm" }}>
@@ -69,15 +68,17 @@ function SelfCheck() {
   );
 }
 
-/** Trang 1: bảng từ mới. */
-function VocabPage({ title, words, strokes }: Pick<Props, "title" | "words" | "strokes">) {
+/** Bảng từ mới (một trang tối đa VOCAB_ROWS từ): trang đầu có dòng họ tên, trang cuối có lời dặn. */
+function VocabPage({ title, words, strokes, first, last, no }: Pick<Props, "title" | "words" | "strokes"> & { first: boolean; last: boolean; no: PageNo }) {
   const cell = { border: "0.25mm solid var(--paper-line)", padding: "2mm 2.5mm", fontSize: "3.6mm" } as const;
   return (
     <section className="paper-page">
       <Header title={title} />
-      <p style={{ fontSize: "3.4mm", fontWeight: 700, margin: "2mm 0 4mm" }}>
-        Họ tên: ____________________________ &nbsp;&nbsp;&nbsp; Ngày: ____ / ____ / ______
-      </p>
+      {first && (
+        <p style={{ fontSize: "3.4mm", fontWeight: 700, margin: "2mm 0 4mm" }}>
+          Họ tên: ____________________________ &nbsp;&nbsp;&nbsp; Ngày: ____ / ____ / ______
+        </p>
+      )}
       <table style={{ width: "100%", borderCollapse: "collapse" }}>
         <thead>
           <tr style={{ background: "var(--paper-head)" }}>
@@ -106,15 +107,18 @@ function VocabPage({ title, words, strokes }: Pick<Props, "title" | "words" | "s
           })}
         </tbody>
       </table>
-      <p style={{ fontSize: "3.2mm", color: "var(--paper-muted)", fontWeight: 600, marginTop: "5mm" }}>
-        Mỗi trang sau luyện một chữ: xem thứ tự nét → tô theo chữ mờ → tự viết. Chữ xuất hiện trong nhiều từ chỉ luyện một lần.
-      </p>
+      {last && (
+        <p style={{ fontSize: "3.2mm", color: "var(--paper-muted)", fontWeight: 600, marginTop: "5mm" }}>
+          Mỗi trang sau luyện một chữ: xem thứ tự nét → tô theo chữ mờ → tự viết. Chữ xuất hiện trong nhiều từ chỉ luyện một lần.
+        </p>
+      )}
+      <Footer {...no} />
     </section>
   );
 }
 
 /** Trang luyện một chữ: đầu trang → thứ tự nét → chữ to → chữ nhỏ. */
-function CharPage({ meta, data, options, title }: { meta: CharMeta; data: StrokeData | null; options: SheetOptions; title: string }) {
+function CharPage({ meta, data, options, title, no }: { meta: CharMeta; data: StrokeData | null; options: SheetOptions; title: string; no: PageNo }) {
   const n = data?.strokes.length ?? 0;
   const practice = (rows: number, trace: number, { size, perRow }: typeof BIG) =>
     practiceRows(rows, trace).map((r, k) => (
@@ -186,12 +190,13 @@ function CharPage({ meta, data, options, title }: { meta: CharMeta; data: Stroke
       <div style={{ display: "grid", gap: "0.6mm" }}>{practice(options.smallRows, options.smallTrace, SMALL)}</div>
 
       <SelfCheck />
+      <Footer {...no} />
     </section>
   );
 }
 
 /** Trang cuối: toàn ô trống để luyện thêm chữ bất kỳ. */
-function BlankPage({ title, grid }: { title: string; grid: GridStyle }) {
+function BlankPage({ title, grid, no }: { title: string; grid: GridStyle; no: PageNo }) {
   return (
     <section className="paper-page">
       <Header title={title} />
@@ -204,20 +209,28 @@ function BlankPage({ title, grid }: { title: string; grid: GridStyle }) {
           </Row>
         ))}
       </div>
+      <Footer {...no} />
     </section>
   );
 }
 
 /** Toàn bộ vở: trang từ mới + một trang cho mỗi chữ (+ trang trắng). Kích thước theo mm để in A4 đúng tỉ lệ. */
 export function WorksheetSheet({ title, words, chars, strokes, options }: Props) {
+  const vocabPages = chunk(words, VOCAB_ROWS);
+  if (!vocabPages.length) vocabPages.push([]);
+  const total = sheetPageCount(words.length, chars.length, options.blankPages);
+  const no = (page: number) => ({ page, total });
+  const afterVocab = vocabPages.length;
   return (
     <div className="paper">
-      <VocabPage title={title} words={words} strokes={strokes} />
-      {chars.map((m) => (
-        <CharPage key={m.char} meta={m} data={strokes.get(m.char) ?? null} options={options} title={title} />
+      {vocabPages.map((ws, i) => (
+        <VocabPage key={`vocab-${i}`} title={title} words={ws} strokes={strokes} first={i === 0} last={i === vocabPages.length - 1} no={no(i + 1)} />
+      ))}
+      {chars.map((m, i) => (
+        <CharPage key={m.char} meta={m} data={strokes.get(m.char) ?? null} options={options} title={title} no={no(afterVocab + i + 1)} />
       ))}
       {Array.from({ length: options.blankPages }, (_, i) => (
-        <BlankPage key={`blank-${i}`} title={title} grid={options.grid} />
+        <BlankPage key={`blank-${i}`} title={title} grid={options.grid} no={no(afterVocab + chars.length + i + 1)} />
       ))}
     </div>
   );

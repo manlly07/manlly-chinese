@@ -9,6 +9,7 @@ import {
   migrateProgress,
   PROGRESS_SCHEMA,
   type ProgressData,
+  type SavedWorksheet,
   type WordId,
 } from "@/lib/repository";
 import { type Grade, newCard, schedule } from "@/lib/srs";
@@ -31,6 +32,9 @@ interface ProgressActions {
   /** Trả lời đúng một lỗi cũ: giảm đếm, về 0 thì xoá khỏi sổ. */
   resolveMistake: (key: string) => void;
   addBadge: (badge: string) => void;
+  /** Lưu (thêm hoặc ghi đè) một vở tập viết; giữ `createdAt` cũ. */
+  saveWorksheet: (ws: Omit<SavedWorksheet, "createdAt" | "updatedAt">, now?: number) => void;
+  deleteWorksheet: (id: string) => void;
   importData: (data: ProgressData, mode: ImportMode) => void;
   resetAll: () => void;
 }
@@ -135,6 +139,16 @@ export const useProgress = create<ProgressStore>()(
 
       addBadge: (badge) => set((s) => (s.badges.includes(badge) ? s : { badges: [...s.badges, badge] })),
 
+      saveWorksheet: (ws, now = Date.now()) =>
+        set((s) => ({ worksheets: { ...s.worksheets, [ws.id]: { ...ws, createdAt: s.worksheets[ws.id]?.createdAt ?? now, updatedAt: now } } })),
+
+      deleteWorksheet: (id) =>
+        set((s) => {
+          const worksheets = { ...s.worksheets };
+          delete worksheets[id];
+          return { worksheets };
+        }),
+
       importData: (data, mode) => set(mode === "replace" ? data : mergeProgress(progressSnapshot(get()), data)),
 
       resetAll: () => set(emptyProgress()),
@@ -161,5 +175,6 @@ export function progressSnapshot(s: ProgressData = useProgress.getState()): Prog
     placement: s.placement,
     tests: s.tests,
     mistakes: s.mistakes,
+    worksheets: s.worksheets,
   };
 }

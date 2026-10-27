@@ -193,6 +193,9 @@
   min-height: 297mm;
   padding: 12mm;
   box-sizing: border-box;
+  /* cột flex: chân trang (số trang) đẩy xuống đáy tờ */
+  display: flex;
+  flex-direction: column;
 }
 
 @page {
@@ -213,7 +216,8 @@
   }
   .paper-page {
     break-after: page;
-    min-height: auto;
+    /* thấp hơn A4 1 mm: số trang vẫn ở đáy tờ mà làm tròn không đẩy sinh thêm trang trống */
+    min-height: 296mm;
   }
   .paper-page:last-child {
     break-after: auto;

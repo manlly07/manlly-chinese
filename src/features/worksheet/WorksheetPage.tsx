@@ -13,10 +13,15 @@ import { useVocab } from "@/hooks/use-vocab";
 import { buildCharIndex, type Lesson, loadLessons } from "@/lib/content";
 import { loadStrokeMap, type StrokeData } from "@/lib/stroke-data";
 import { cn } from "@/lib/utils";
-import { addWords, charMeta, fromWord, parseCustom, sheetChars, type SheetWord } from "@/lib/worksheet";
+import { buildWordPractice, DEFAULT_SKILLS, type PracticeSkill, practiceWords } from "@/lib/word-practice";
+import { addWords, charMeta, fromWord, parseCustom, sheetChars, sheetPageCount } from "@/lib/worksheet";
+import { useProgress } from "@/store/progress";
+import { SavedWorksheets } from "./components/SavedWorksheets";
 import { SortableWordList } from "./components/SortableWordList";
+import { PracticeSession, PracticeSetup } from "./components/WordPractice";
 import { WordPicker } from "./components/WordPicker";
-import { type SheetOptions, WorksheetSheet } from "./components/WorksheetSheet";
+import { WorksheetSheet } from "./components/WorksheetSheet";
+import { useWorksheetDoc } from "./use-worksheet-doc";
 
 const PAGE_PX = 794; // 210 mm ở 96 dpi
 
@@ -104,12 +109,15 @@ export default function WorksheetPage() {
   const { words: vocab, loading } = useVocab();
   const hp = useHanziParts();
   const [lessons, setLessons] = useState<Lesson[]>([]);
-  const [params] = useSearchParams();
-  const [list, setList] = useState<SheetWord[]>([]);
-  const [title, setTitle] = useState("Bài luyện viết");
-  const [options, setOptions] = useState<SheetOptions>({ grid: "mi", traceStyle: "fill", bigRows: 3, bigTrace: 2, smallRows: 5, smallTrace: 3, blankPages: 1 });
+  const [params, setParams] = useSearchParams();
+  const { doc, setList, setTitle, setOptions, start, save, open, remove } = useWorksheetDoc();
+  const { words: list, title, options } = doc;
+  const savedMap = useProgress((s) => s.worksheets);
+  const saved = useMemo(() => Object.values(savedMap), [savedMap]);
   const [strokes, setStrokes] = useState<Map<string, StrokeData | null>>(new Map());
   const [loadingStrokes, setLoadingStrokes] = useState(false);
+  const [skills, setSkills] = useState<PracticeSkill[]>(DEFAULT_SKILLS);
+  const [practicing, setPracticing] = useState(false);
   const printRoot = usePrintRoot();
   const { ref: previewRef, scale } = useFitScale();
 
@@ -117,20 +125,20 @@ export default function WorksheetPage() {
     void loadLessons().then(setLessons);
   }, []);
 
-  // mở từ bài học (?lesson=hsk1-01) hoặc từ danh sách chữ (?words=你好,老师)
+  // mở từ bài học (?lesson=hsk1-01) hoặc từ danh sách chữ (?words=你好,老师) → vở mới chưa lưu;
+  // xoá tham số khỏi URL để quay lại trang (nút Back) không tạo lại vở đè lên vở đang soạn
   const seeded = useRef(false);
   useEffect(() => {
     if (seeded.current || loading || !lessons.length) return;
     seeded.current = true;
     const l = lessons.find((x) => x.id === params.get("lesson"));
+    const ws = params.get("words");
     if (l) {
       const byId = new Map(vocab.map((w) => [w.id, w]));
-      setList(l.words.map((id) => byId.get(id)).filter((w) => !!w).map((w) => fromWord(w!)));
-      setTitle(l.title);
-    } else if (params.get("words")) {
-      setList(parseCustom(params.get("words")!, vocab));
-    }
-  }, [loading, lessons, vocab, params]);
+      start({ title: l.title, words: l.words.map((id) => byId.get(id)).filter((w) => !!w).map((w) => fromWord(w!)) });
+    } else if (ws) start({ words: parseCustom(ws, vocab) });
+    if (l || ws) setParams({}, { replace: true });
+  }, [loading, lessons, vocab, params, start, setParams]);
 
   const chars = useMemo(() => sheetChars(list), [list]);
   useEffect(() => {
@@ -150,8 +158,11 @@ export default function WorksheetPage() {
   const index = useMemo(() => buildCharIndex(vocab), [vocab]);
   const metas = useMemo(() => chars.map((c) => charMeta(c, list, index, vocab, hp)), [chars, list, index, vocab, hp]);
   const offline = chars.filter((c) => strokes.has(c) && !strokes.get(c));
+  const practice = useMemo(() => practiceWords(list, vocab), [list, vocab]);
 
   if (loading) return <Skeleton className="h-96 rounded-lg" />;
+  // luyện ngay trong trang (không đổi route) để quay lại vẫn còn nguyên danh sách từ
+  if (practicing) return <PracticeSession build={() => buildWordPractice(practice.words, vocab, hp, skills)} onExit={() => setPracticing(false)} />;
 
   const sheet = <WorksheetSheet title={title} words={list} chars={metas} strokes={strokes} options={options} />;
 
@@ -171,6 +182,15 @@ export default function WorksheetPage() {
       {/* minmax(0,…) + min-w-0: cột được co hẹp hơn nội dung (ô chọn bài dài) — không làm tràn ngang trên điện thoại */}
       <div className="grid grid-cols-[minmax(0,1fr)] gap-5 lg:grid-cols-[22rem_minmax(0,1fr)]">
         <div className="min-w-0 space-y-5">
+          <Card>
+            <CardHeader className="pb-2">
+              <CardTitle className="text-lg">Vở của bạn</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <SavedWorksheets doc={doc} saved={saved} onSave={save} onNew={() => start()} onOpen={open} onDelete={remove} />
+            </CardContent>
+          </Card>
+
           <Card>
             <CardHeader className="pb-2">
               <CardTitle className="text-lg">1. Chọn từ</CardTitle>
@@ -241,12 +261,33 @@ export default function WorksheetPage() {
               />
             </CardContent>
           </Card>
+
+          <Card>
+            <CardHeader className="pb-2">
+              <CardTitle className="text-lg">4. Luyện trên app</CardTitle>
+              <p className="text-sm font-semibold text-muted-foreground">Làm bài tập với chính các từ trong vở — chấm ngay, câu sai vào Sổ lỗi sai.</p>
+            </CardHeader>
+            <CardContent>
+              <PracticeSetup
+                words={practice.words}
+                skipped={practice.skipped}
+                skills={skills}
+                onSkills={setSkills}
+                vocab={vocab}
+                hp={hp}
+                onStart={() => {
+                  setPracticing(true);
+                  window.scrollTo({ top: 0 });
+                }}
+              />
+            </CardContent>
+          </Card>
         </div>
 
         <div className="min-w-0 space-y-3">
           <div className="flex flex-wrap items-center justify-between gap-2">
             <p className="font-black">
-              Xem trước · {list.length ? `${chars.length + 1 + options.blankPages} trang A4` : "chưa có từ"}
+              Xem trước · {list.length ? `${sheetPageCount(list.length, chars.length, options.blankPages)} trang A4` : "chưa có từ"}
               {loadingStrokes && <span className="ml-2 text-sm font-semibold text-muted-foreground">đang tải thứ tự nét…</span>}
             </p>
             <p className="text-xs font-semibold text-muted-foreground">Khi in: chọn khổ A4, tỉ lệ 100%; muốn có file thì chọn “Lưu dưới dạng PDF”.</p>

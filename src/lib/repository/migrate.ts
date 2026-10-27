@@ -9,6 +9,7 @@ export const emptyProgress = (): ProgressData => ({
   favorites: [],
   tests: {},
   mistakes: {},
+  worksheets: {},
 });
 
 /**
@@ -24,5 +25,7 @@ export function migrateProgress(persisted: unknown, fromVersion: number): Progre
     data.tests = data.tests ?? {};
     data.mistakes = data.mistakes ?? {};
   }
+  // v3 → v4: thêm `worksheets` (vở tập viết đã lưu, rỗng).
+  if (fromVersion < 4) data.worksheets = data.worksheets ?? {};
   return data;
 }

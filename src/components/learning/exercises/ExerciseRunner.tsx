@@ -64,7 +64,7 @@ export function ExerciseRunner({ exercises, onFinish, onExit, onAnswer, label }:
     if (correct) {
       a.correct++;
       a.cats[cat].correct++;
-      resolveMistake(cur.ref);
+      if (cur.ref) resolveMistake(cur.ref);
       if (cur.kind === "word") a.rightWords.push(cur.q.word.id);
       const c = combo + 1;
       setCombo(c);
@@ -72,8 +72,11 @@ export function ExerciseRunner({ exercises, onFinish, onExit, onAnswer, label }:
       if (sfxOn) playSfx(COMBO_AT.includes(c) ? "combo" : "correct");
     } else {
       setCombo(0);
-      logMistake(cur.ref);
-      a.wrongRefs.push(cur.ref);
+      // ref rỗng = câu không dựng lại được (vd. từ tự thêm ngoài từ vựng) → không ghi sổ lỗi sai
+      if (cur.ref) {
+        logMistake(cur.ref);
+        a.wrongRefs.push(cur.ref);
+      }
       if (cur.kind === "word") a.wrongWords.push(cur.q.word.id);
       if (sfxOn) playSfx("wrong");
     }
