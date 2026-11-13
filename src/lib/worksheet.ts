@@ -11,9 +11,13 @@ export interface SheetWord {
 
 export type GridStyle = "mi" | "tian";
 export type TraceStyle = "fill" | "dashed";
+/** "pages": bảng từ + mỗi chữ một trang · "list": danh sách gọn — chữ + nghĩa bên trái, dòng ô tập viết bên phải */
+export type SheetLayout = "pages" | "list";
+export type CellSize = "small" | "big";
 
 /** Kiểu vở (lưu cùng vở). */
 export interface SheetOptions {
+  layout: SheetLayout;
   grid: GridStyle;
   traceStyle: TraceStyle;
   /** số dòng chữ to / số dòng trong đó để tô */
@@ -21,11 +25,27 @@ export interface SheetOptions {
   bigTrace: number;
   smallRows: number;
   smallTrace: number;
+  /** bố cục danh sách gọn: cỡ ô, số dòng mỗi chữ, số dòng đầu có nét mờ để tô (0 = toàn ô trống) */
+  listSize: CellSize;
+  listRows: number;
+  listTrace: number;
   /** số trang toàn ô trống ở cuối vở (0 = không thêm) */
   blankPages: number;
 }
 
-export const DEFAULT_SHEET_OPTIONS: SheetOptions = { grid: "mi", traceStyle: "fill", bigRows: 3, bigTrace: 2, smallRows: 5, smallTrace: 3, blankPages: 1 };
+export const DEFAULT_SHEET_OPTIONS: SheetOptions = {
+  layout: "pages",
+  grid: "mi",
+  traceStyle: "fill",
+  bigRows: 3,
+  bigTrace: 2,
+  smallRows: 5,
+  smallTrace: 3,
+  listSize: "small",
+  listRows: 5,
+  listTrace: 4,
+  blankPages: 1,
+};
 
 export const fromWord = (w: Word): SheetWord => ({ hanzi: w.hanzi, pinyin: w.pinyin, meaning: w.meaning.slice(0, 2).join("; "), hanViet: w.hanViet });
 
@@ -122,5 +142,36 @@ export const chunk = <T,>(xs: T[], size: number): T[][] => Array.from({ length: 
 /** Số từ mỗi trang bảng từ (hàng cao ~14,5 mm) — nhiều hơn thì sang trang sau. */
 export const VOCAB_ROWS = 13;
 
-/** Số trang của vở: bảng từ (chia trang) + mỗi chữ một trang + trang trắng. */
-export const sheetPageCount = (words: number, chars: number, blankPages: number) => Math.max(1, Math.ceil(words / VOCAB_ROWS)) + chars + blankPages;
+/** Kích thước ô (mm) và số ô mỗi dòng. Khổ A4 trừ lề 12 mm = 186 × 273 mm; khe giữa các ô 0,6 mm. */
+export const CELL_GAP = 0.6;
+export const CELLS = {
+  big: { size: 22, perRow: 8 }, // 180,2 mm
+  small: { size: 12.5, perRow: 14 }, // 182,8 mm
+} as const;
+
+/**
+ * Bố cục danh sách gọn: cột trái (chữ + nghĩa) rộng LIST_LEFT, khe LIST_GAP, còn lại ~145 mm cho ô
+ * (ô nhỏ 11 ô, ô to 6 ô mỗi dòng). Mỗi trang có ~248 mm cho các khối chữ (đã trừ tiêu đề + số trang).
+ */
+export const LIST_LEFT = 38;
+export const LIST_GAP = 3;
+export const LIST_MIN_H = 36; // cột trái cần ~36 mm (chữ, pinyin, Hán Việt, 3 dòng nghĩa)
+export const LIST_BLOCK_GAP = 4;
+const LIST_AVAIL = 248;
+export const MAX_LIST_ROWS = 10;
+
+export const listPerRow = (size: CellSize) => Math.floor((186 - LIST_LEFT - LIST_GAP + CELL_GAP) / (CELLS[size].size + CELL_GAP));
+export const listBlockHeight = (o: Pick<SheetOptions, "listSize" | "listRows">) =>
+  Math.max(LIST_MIN_H, o.listRows * (CELLS[o.listSize].size + CELL_GAP) - CELL_GAP);
+/** Số chữ mỗi trang ở bố cục danh sách gọn (ít nhất 1). */
+export const listPerPage = (o: Pick<SheetOptions, "listSize" | "listRows">) =>
+  Math.max(1, Math.floor((LIST_AVAIL + LIST_BLOCK_GAP) / (listBlockHeight(o) + LIST_BLOCK_GAP)));
+
+/**
+ * Số trang của vở. "pages": bảng từ (chia trang) + mỗi chữ một trang; "list": các chữ xếp liền nhau.
+ * Cộng thêm trang trắng cuối vở.
+ */
+export function sheetPageCount(words: number, chars: number, o: Pick<SheetOptions, "layout" | "listSize" | "listRows" | "blankPages">) {
+  const body = o.layout === "list" ? Math.max(1, Math.ceil(chars / listPerPage(o))) : Math.max(1, Math.ceil(words / VOCAB_ROWS)) + chars;
+  return body + o.blankPages;
+}

@@ -57,7 +57,7 @@ ESLint chặn `localStorage` ngoài `src/store/` và `src/lib/repository/`.
 > (có bước “Bộ mới” học bộ thủ trước khi học chữ), kiểm tra chặng, ôn tổng hợp hằng ngày, kiểm tra tuần, sổ lỗi sai, nhiệm vụ ngày;
 > progress schema **v4**, settings **v2**. Còn placeholder: đọc hiểu, thi thử, từ điển.
 > Có thêm: Bảng âm tiết (âm thanh người thật `public/audio/syllables`, audio-cmn CC BY-SA), Vở tập viết in A4 (`/worksheet`, CSS in trong `index.css`;
-> vở lưu trong `progress.worksheets`, có đánh số trang, luyện các từ trong vở ngay trên app — `lib/word-practice.ts`, câu có `ref` rỗng thì không ghi sổ lỗi sai),
+> vở lưu trong `progress.worksheets`, có đánh số trang, 2 bố cục: mỗi chữ một trang / danh sách gọn (chữ + nghĩa trái, dòng ô phải — `SheetOptions.layout`), luyện các từ trong vở ngay trên app — `lib/word-practice.ts`, câu có `ref` rỗng thì không ghi sổ lỗi sai),
 > trang Giới thiệu ghi nguồn (`/about`). Không lấy âm thanh/nội dung từ khoá học thương mại.
 > Nguyên tắc sư phạm: **học thành phần trước, ghép sau** — phụ âm đầu + vần → âm tiết; bộ → chữ. Khoá sổ lỗi: `w: g: l: p: c: s:`.
 > Trang mới phải đăng ký bằng `lazyPage()` (không dùng `React.lazy` trực tiếp) để tự phục hồi khi triển khai bản mới.

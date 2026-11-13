@@ -14,7 +14,7 @@ import { buildCharIndex, type Lesson, loadLessons } from "@/lib/content";
 import { loadStrokeMap, type StrokeData } from "@/lib/stroke-data";
 import { cn } from "@/lib/utils";
 import { buildWordPractice, DEFAULT_SKILLS, type PracticeSkill, practiceWords } from "@/lib/word-practice";
-import { addWords, charMeta, fromWord, parseCustom, sheetChars, sheetPageCount } from "@/lib/worksheet";
+import { addWords, charMeta, fromWord, MAX_LIST_ROWS, parseCustom, sheetChars, sheetPageCount } from "@/lib/worksheet";
 import { useProgress } from "@/store/progress";
 import { SavedWorksheets } from "./components/SavedWorksheets";
 import { SortableWordList } from "./components/SortableWordList";
@@ -55,7 +55,23 @@ function useFitScale() {
 const MAX_BLANK = 20;
 
 /** Chọn số nguyên trong [min, max] bằng nút − / + hoặc gõ trực tiếp. */
-function Stepper({ value, onChange, label, min, max, unit }: { value: number; onChange: (v: number) => void; label: string; min: number; max: number; unit: string }) {
+function Stepper({
+  value,
+  onChange,
+  label,
+  min,
+  max,
+  unit,
+  hint,
+}: {
+  value: number;
+  onChange: (v: number) => void;
+  label: string;
+  min: number;
+  max: number;
+  unit: string;
+  hint: string;
+}) {
   const set = (v: number) => onChange(Math.min(max, Math.max(min, Number.isFinite(v) ? Math.round(v) : min)));
   return (
     <div className="space-y-1.5">
@@ -77,7 +93,7 @@ function Stepper({ value, onChange, label, min, max, unit }: { value: number; on
         <Button variant="outline" size="icon" onClick={() => set(value + 1)} disabled={value >= max} aria-label={`Thêm 1 ${unit}`}>
           <Plus />
         </Button>
-        <span className="text-sm font-semibold text-muted-foreground">{value ? `${unit} toàn ô trống` : "không thêm"}</span>
+        <span className="text-sm font-semibold text-muted-foreground">{hint}</span>
       </div>
     </div>
   );
@@ -238,6 +254,16 @@ export default function WorksheetPage() {
               <CardTitle className="text-lg">3. Kiểu vở</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
+              <Toggle
+                label="Bố cục"
+                value={options.layout}
+                // danh sách gọn mặc định tô theo viền nét đứt
+                onChange={(layout) => setOptions((o) => ({ ...o, layout, ...(layout === "list" && o.layout !== "list" ? { traceStyle: "dashed" as const } : {}) }))}
+                options={[["pages", "Mỗi chữ một trang"], ["list", "Danh sách gọn"]]}
+              />
+              {options.layout === "list" && (
+                <p className="-mt-2 text-xs font-semibold text-muted-foreground">Chữ + nghĩa bên trái, dòng ô tập viết bên phải — nhiều chữ trên một trang.</p>
+              )}
               <Toggle label="Ô kẻ" value={options.grid} onChange={(grid) => setOptions((o) => ({ ...o, grid }))} options={[["mi", "米 chéo"], ["tian", "田 ô vuông"]]} />
               <Toggle
                 label="Chữ mờ để tô"
@@ -245,12 +271,47 @@ export default function WorksheetPage() {
                 onChange={(traceStyle) => setOptions((o) => ({ ...o, traceStyle }))}
                 options={[["fill", "Tô màu nhạt"], ["dashed", "Viền nét đứt"]]}
               />
-              <Toggle
-                label="Chữ to"
-                value={options.bigRows}
-                onChange={(bigRows) => setOptions((o) => ({ ...o, bigRows, bigTrace: bigRows - 1 }))}
-                options={[[3, "3 dòng (2 tô · 1 tự viết)"], [2, "2 dòng (1 tô · 1 tự viết)"]]}
-              />
+              {options.layout === "list" ? (
+                <>
+                  <Toggle
+                    label="Cỡ ô"
+                    value={options.listSize}
+                    onChange={(listSize) => setOptions((o) => ({ ...o, listSize }))}
+                    options={[["small", "Ô nhỏ"], ["big", "Ô to"]]}
+                  />
+                  <Stepper
+                    label="Số dòng mỗi chữ"
+                    unit="dòng"
+                    min={1}
+                    max={MAX_LIST_ROWS}
+                    value={options.listRows}
+                    onChange={(listRows) => setOptions((o) => ({ ...o, listRows, listTrace: Math.min(o.listTrace, listRows) }))}
+                    hint="dòng"
+                  />
+                  <Stepper
+                    label="Dòng có nét mờ để tô"
+                    unit="dòng tô"
+                    min={0}
+                    max={options.listRows}
+                    value={options.listTrace}
+                    onChange={(listTrace) => setOptions((o) => ({ ...o, listTrace }))}
+                    hint={
+                      options.listTrace === 0
+                        ? "toàn ô trống"
+                        : options.listTrace === options.listRows
+                          ? "tô hết, không có dòng trống"
+                          : `tô · ${options.listRows - options.listTrace} dòng trống tự viết`
+                    }
+                  />
+                </>
+              ) : (
+                <Toggle
+                  label="Chữ to"
+                  value={options.bigRows}
+                  onChange={(bigRows) => setOptions((o) => ({ ...o, bigRows, bigTrace: bigRows - 1 }))}
+                  options={[[3, "3 dòng (2 tô · 1 tự viết)"], [2, "2 dòng (1 tô · 1 tự viết)"]]}
+                />
+              )}
               <Stepper
                 label="Trang trắng cuối vở"
                 unit="trang"
@@ -258,6 +319,7 @@ export default function WorksheetPage() {
                 max={MAX_BLANK}
                 value={options.blankPages}
                 onChange={(blankPages) => setOptions((o) => ({ ...o, blankPages }))}
+                hint={options.blankPages ? "trang toàn ô trống" : "không thêm"}
               />
             </CardContent>
           </Card>
@@ -287,7 +349,7 @@ export default function WorksheetPage() {
         <div className="min-w-0 space-y-3">
           <div className="flex flex-wrap items-center justify-between gap-2">
             <p className="font-black">
-              Xem trước · {list.length ? `${sheetPageCount(list.length, chars.length, options.blankPages)} trang A4` : "chưa có từ"}
+              Xem trước · {list.length ? `${sheetPageCount(list.length, chars.length, options)} trang A4` : "chưa có từ"}
               {loadingStrokes && <span className="ml-2 text-sm font-semibold text-muted-foreground">đang tải thứ tự nét…</span>}
             </p>
             <p className="text-xs font-semibold text-muted-foreground">Khi in: chọn khổ A4, tỉ lệ 100%; muốn có file thì chọn “Lưu dưới dạng PDF”.</p>

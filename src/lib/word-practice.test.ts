@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import { loadAllVocab } from "./content";
 import { loadHanziParts } from "./hanzi-parts";
 import { buildWordPractice, isCustom, practiceWords } from "./word-practice";
-import { parseCustom, sheetPageCount, VOCAB_ROWS } from "./worksheet";
+import { DEFAULT_SHEET_OPTIONS, listPerPage, listPerRow, parseCustom, sheetPageCount, VOCAB_ROWS } from "./worksheet";
 
 const vocab = await loadAllVocab();
 const hp = await loadHanziParts();
@@ -53,8 +53,20 @@ describe("luyện các từ trong vở", () => {
 
 describe("số trang vở", () => {
   it("bảng từ chia trang theo VOCAB_ROWS + mỗi chữ một trang + trang trắng", () => {
-    expect(sheetPageCount(10, 12, 1)).toBe(1 + 12 + 1);
-    expect(sheetPageCount(VOCAB_ROWS + 1, 5, 0)).toBe(2 + 5);
-    expect(sheetPageCount(0, 0, 2)).toBe(1 + 2);
+    const o = (blankPages: number) => ({ ...DEFAULT_SHEET_OPTIONS, blankPages });
+    expect(sheetPageCount(10, 12, o(1))).toBe(1 + 12 + 1);
+    expect(sheetPageCount(VOCAB_ROWS + 1, 5, o(0))).toBe(2 + 5);
+    expect(sheetPageCount(0, 0, o(2))).toBe(1 + 2);
+  });
+
+  it("danh sách gọn: mặc định ô nhỏ 5 dòng → 3 chữ/trang, 11 ô/dòng; ô to 5 dòng → 2 chữ/trang", () => {
+    const list = { ...DEFAULT_SHEET_OPTIONS, layout: "list" as const, blankPages: 0 };
+    expect(listPerRow("small")).toBe(11);
+    expect(listPerRow("big")).toBe(6);
+    expect(listPerPage(list)).toBe(3);
+    expect(listPerPage({ ...list, listSize: "big" })).toBe(2);
+    expect(listPerPage({ ...list, listSize: "big", listRows: 10 })).toBe(1);
+    expect(sheetPageCount(4, 7, list)).toBe(3);
+    expect(sheetPageCount(0, 0, { ...list, blankPages: 1 })).toBe(1 + 1);
   });
 });

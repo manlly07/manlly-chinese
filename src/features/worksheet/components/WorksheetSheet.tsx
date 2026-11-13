@@ -1,7 +1,23 @@
 import type { ReactNode } from "react";
 import { hanChars } from "@/lib/content";
 import type { StrokeData } from "@/lib/stroke-data";
-import { chunk, type GridStyle, practiceRows, type SheetOptions, sheetPageCount, type SheetWord, VOCAB_ROWS } from "@/lib/worksheet";
+import {
+  CELL_GAP,
+  CELLS,
+  chunk,
+  type GridStyle,
+  LIST_BLOCK_GAP,
+  LIST_GAP,
+  LIST_LEFT,
+  listBlockHeight,
+  listPerPage,
+  listPerRow,
+  practiceRows,
+  type SheetOptions,
+  sheetPageCount,
+  type SheetWord,
+  VOCAB_ROWS,
+} from "@/lib/worksheet";
 import { GridCell } from "./GridCell";
 
 /** Thông tin hiển thị ở đầu trang luyện một chữ. */
@@ -25,15 +41,15 @@ interface Props {
 }
 
 // khổ A4 trừ lề 12 mm = 186 × 273 mm; mỗi hàng = số ô × cạnh + khe 0,6 mm giữa các ô (≤ 186 mm)
-const BIG = { size: 22, perRow: 8 }; // 180,2 mm
-const SMALL = { size: 12.5, perRow: 14 }; // 182,8 mm
+const BIG = CELLS.big;
+const SMALL = CELLS.small;
 const STEP = { size: 14.5, perRow: 12 }; // 180,6 mm
 const BLANK_ROWS = 19; // ô cỡ chữ nhỏ: 19 × 13,1 mm + tiêu đề ≈ 262 mm ≤ 273 mm
 
 const countOf = (strokes: Map<string, StrokeData | null>, c: string) => strokes.get(c)?.strokes.length ?? 0;
 
 function Row({ children }: { children: ReactNode }) {
-  return <div className="flex" style={{ gap: "0.6mm" }}>{children}</div>;
+  return <div className="flex" style={{ gap: `${CELL_GAP}mm` }}>{children}</div>;
 }
 
 function SectionTitle({ children }: { children: ReactNode }) {
@@ -120,7 +136,7 @@ function VocabPage({ title, words, strokes, first, last, no }: Pick<Props, "titl
 /** Trang luyện một chữ: đầu trang → thứ tự nét → chữ to → chữ nhỏ. */
 function CharPage({ meta, data, options, title, no }: { meta: CharMeta; data: StrokeData | null; options: SheetOptions; title: string; no: PageNo }) {
   const n = data?.strokes.length ?? 0;
-  const practice = (rows: number, trace: number, { size, perRow }: typeof BIG) =>
+  const practice = (rows: number, trace: number, { size, perRow }: { size: number; perRow: number }) =>
     practiceRows(rows, trace).map((r, k) => (
       <Row key={k}>
         {Array.from({ length: perRow }, (_, i) => (
@@ -195,6 +211,67 @@ function CharPage({ meta, data, options, title, no }: { meta: CharMeta; data: St
   );
 }
 
+/** Một khối của bố cục danh sách gọn: chữ + pinyin + nghĩa bên trái, các dòng ô tập viết bên phải. */
+function ListBlock({ meta, data, options }: { meta: CharMeta; data: StrokeData | null; options: SheetOptions }) {
+  const { size } = CELLS[options.listSize];
+  const perRow = listPerRow(options.listSize);
+  const height = listBlockHeight(options);
+  return (
+    <div className="flex" style={{ gap: `${LIST_GAP}mm`, height: `${height}mm` }}>
+      <div
+        style={{
+          width: `${LIST_LEFT}mm`,
+          flexShrink: 0,
+          overflow: "hidden",
+          background: "var(--paper-head)",
+          borderRadius: "1.5mm",
+          padding: "2mm 2.5mm",
+          fontSize: "3.2mm",
+          lineHeight: 1.4,
+        }}
+      >
+        <p className="hanzi" style={{ fontSize: "12mm", lineHeight: 1.15 }}>
+          {meta.char}
+        </p>
+        <p style={{ fontFamily: "Mali, Nunito, sans-serif", fontSize: "4.2mm", fontWeight: 800 }}>{meta.pinyin || "—"}</p>
+        {meta.hanViet && <p style={{ fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.2mm" }}>{meta.hanViet}</p>}
+        {meta.meaning && (
+          <p style={{ display: "-webkit-box", WebkitLineClamp: 3, WebkitBoxOrient: "vertical", overflow: "hidden" }}>{meta.meaning}</p>
+        )}
+      </div>
+      <div style={{ display: "grid", gap: `${CELL_GAP}mm`, alignContent: "start" }}>
+        {practiceRows(options.listRows, options.listTrace).map((r, k) => (
+          <Row key={k}>
+            {Array.from({ length: perRow }, (_, i) => (
+              <GridCell key={i} size={size} grid={options.grid} char={meta.char} data={data} mode={r.kind} traceStyle={options.traceStyle} />
+            ))}
+          </Row>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/** Trang của bố cục danh sách gọn: tiêu đề + vài chữ xếp liền nhau. */
+function ListPage({ metas, strokes, options, title, first, no }: { metas: CharMeta[]; strokes: Props["strokes"]; options: SheetOptions; title: string; first: boolean; no: PageNo }) {
+  return (
+    <section className="paper-page">
+      <Header title={title} />
+      {first && (
+        <p style={{ fontSize: "3.4mm", fontWeight: 700, margin: "0 0 3mm" }}>
+          Họ tên: ____________________________ &nbsp;&nbsp;&nbsp; Ngày: ____ / ____ / ______
+        </p>
+      )}
+      <div style={{ display: "grid", gap: `${LIST_BLOCK_GAP}mm` }}>
+        {metas.map((m) => (
+          <ListBlock key={m.char} meta={m} data={strokes.get(m.char) ?? null} options={options} />
+        ))}
+      </div>
+      <Footer {...no} />
+    </section>
+  );
+}
+
 /** Trang cuối: toàn ô trống để luyện thêm chữ bất kỳ. */
 function BlankPage({ title, grid, no }: { title: string; grid: GridStyle; no: PageNo }) {
   return (
@@ -214,12 +291,28 @@ function BlankPage({ title, grid, no }: { title: string; grid: GridStyle; no: Pa
   );
 }
 
-/** Toàn bộ vở: trang từ mới + một trang cho mỗi chữ (+ trang trắng). Kích thước theo mm để in A4 đúng tỉ lệ. */
+/** Toàn bộ vở: trang từ mới + một trang cho mỗi chữ, hoặc danh sách gọn (+ trang trắng). Kích thước theo mm để in A4 đúng tỉ lệ. */
 export function WorksheetSheet({ title, words, chars, strokes, options }: Props) {
   const vocabPages = chunk(words, VOCAB_ROWS);
   if (!vocabPages.length) vocabPages.push([]);
-  const total = sheetPageCount(words.length, chars.length, options.blankPages);
+  const total = sheetPageCount(words.length, chars.length, options);
   const no = (page: number) => ({ page, total });
+  const blanks = (from: number) =>
+    Array.from({ length: options.blankPages }, (_, i) => <BlankPage key={`blank-${i}`} title={title} grid={options.grid} no={no(from + i + 1)} />);
+
+  if (options.layout === "list") {
+    const pages = chunk(chars, listPerPage(options));
+    if (!pages.length) pages.push([]);
+    return (
+      <div className="paper">
+        {pages.map((ms, i) => (
+          <ListPage key={`list-${i}`} metas={ms} strokes={strokes} options={options} title={title} first={i === 0} no={no(i + 1)} />
+        ))}
+        {blanks(pages.length)}
+      </div>
+    );
+  }
+
   const afterVocab = vocabPages.length;
   return (
     <div className="paper">
@@ -229,9 +322,7 @@ export function WorksheetSheet({ title, words, chars, strokes, options }: Props)
       {chars.map((m, i) => (
         <CharPage key={m.char} meta={m} data={strokes.get(m.char) ?? null} options={options} title={title} no={no(afterVocab + i + 1)} />
       ))}
-      {Array.from({ length: options.blankPages }, (_, i) => (
-        <BlankPage key={`blank-${i}`} title={title} grid={options.grid} no={no(afterVocab + chars.length + i + 1)} />
-      ))}
+      {blanks(afterVocab + chars.length)}
     </div>
   );
 }
