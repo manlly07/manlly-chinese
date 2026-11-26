@@ -163,7 +163,6 @@ function CharPage({ meta, data, options, title, no }: { meta: CharMeta; data: St
         </div>
         <div style={{ fontSize: "3.4mm", lineHeight: 1.55 }}>
           <p style={{ fontFamily: "Mali, Nunito, sans-serif", fontSize: "5.5mm", fontWeight: 800 }}>{meta.pinyin || "—"}</p>
-          {meta.hanViet && <p style={{ fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.3mm" }}>Hán Việt: {meta.hanViet}</p>}
           {meta.meaning && <p>Nghĩa: {meta.meaning}</p>}
           <p>
             {n ? `${n} nét` : "Chưa tải được thứ tự nét"}
