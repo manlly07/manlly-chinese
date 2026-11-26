@@ -234,7 +234,6 @@ function ListBlock({ meta, data, options }: { meta: CharMeta; data: StrokeData |
           {meta.char}
         </p>
         <p style={{ fontFamily: "Mali, Nunito, sans-serif", fontSize: "4.2mm", fontWeight: 800 }}>{meta.pinyin || "—"}</p>
-        {meta.hanViet && <p style={{ fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.2mm" }}>{meta.hanViet}</p>}
         {meta.meaning && (
           <p style={{ display: "-webkit-box", WebkitLineClamp: 3, WebkitBoxOrient: "vertical", overflow: "hidden" }}>{meta.meaning}</p>
         )}
